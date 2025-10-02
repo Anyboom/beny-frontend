@@ -1,0 +1,62 @@
+@use "sass:color";
+
+// https://www.htmlcsscolor.com/
+
+// -------------------------------------------
+
+$color-fun-blue: #294985;
+$color-white: #ffffff;
+$color-ebony: #2c303c;
+$color-whisper: #ededed;
+$color-storm-grey: #80838a;
+$color-indian-red: #ce5b5b;
+
+// -------------------------------------------
+
+$color-placeholder: $color-storm-grey;
+
+
+$color-accent: $color-fun-blue;
+$color-accent-hover: color.adjust($color-accent, $blackness: 10%);
+
+$color-text: $color-ebony;
+$color-text-hover: color.adjust($color-text, $blackness: 10%);
+
+$color-text-error: $color-indian-red;
+
+$color-default-white: $color-white;
+$color-default-white-hover: color.adjust($color-default-white, $blackness: 5%);
+
+$color-default-black: $color-ebony;
+
+// -------------------------------------------
+
+$time-function-default: ease;
+$transition-default: 0.2s $time-function-default;
+
+// -------------------------------------------
+
+$font-size: 16;
+$line-height: 1.65;
+$default-font: "Inter", sans-serif, system-ui;
+
+// -------------------------------------------
+
+$spacing-base: 8px;
+$spacing-1: $spacing-base;
+$spacing-2: $spacing-base * 2;
+$spacing-3: $spacing-base * 3;
+$spacing-4: $spacing-base * 4;
+$spacing-5: $spacing-base * 5;
+$spacing-6: $spacing-base * 6;
+$spacing-7: $spacing-base * 7;
+$spacing-8: $spacing-base * 8;
+
+// -------------------------------------------
+
+$view-port-xs: 576px;
+$view-port-sm: 768px;
+$view-port-md: 1024px;
+$view-port-lg: 1280px;
+$view-port-xl: 1440px;
+$view-port-xxl: 1800px;

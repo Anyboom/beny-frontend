@@ -1,0 +1,32 @@
+@use "variables" as *;
+@use "reset";
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+}
+
+body {
+  min-width: 380px;
+  position: relative;
+  overflow-x: hidden;
+  font-size: $font-size;
+  line-height: $line-height;
+  font-family: $default-font;
+  height: 100svh;
+}
+
+.container {
+  max-width: $view-port-lg;
+  margin: 0 auto;
+  padding: 0 clamp($spacing-1, 2%, $spacing-3);
+}
+
+#__nuxt {
+  min-height: 100%;
+}
+
+::selection {
+  background: $color-accent;
+  color: $color-white;
+}

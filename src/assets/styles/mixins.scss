@@ -1,0 +1,45 @@
+@use "variables" as *;
+
+@mixin hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin view-port-xxl {
+  @media (max-width: $view-port-xxl) {
+    @content;
+  }
+}
+
+@mixin view-port-xl {
+  @media (max-width: $view-port-xl) {
+    @content;
+  }
+}
+
+@mixin view-port-lg {
+  @media (max-width: $view-port-lg) {
+    @content;
+  }
+}
+
+@mixin view-port-md {
+  @media (max-width: $view-port-md) {
+    @content;
+  }
+}
+
+@mixin view-port-sm {
+  @media (max-width: $view-port-sm) {
+    @content;
+  }
+}
+
+@mixin view-port-xs {
+  @media (max-width: $view-port-xs) {
+    @content;
+  }
+}
