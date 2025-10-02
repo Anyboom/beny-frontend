@@ -22,10 +22,10 @@ export default defineConfig([
   prettier,
   pluginVue.configs["flat/essential"],
   {
-    files: ["**/*.vue"],
+    files: ["**/*.vue", "**/*.ts"],
     rules: {
       "vue/multi-word-component-names": "off",
-      "@typescript-eslint/no-explicit-any": "off"
+      "@typescript-eslint/no-explicit-any": "off",
     },
   },
   {

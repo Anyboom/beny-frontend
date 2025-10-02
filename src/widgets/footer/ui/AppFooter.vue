@@ -1,7 +1,5 @@
 <script setup lang="ts">
-
 import { AppLogo } from "~/shared/ui/AppLogo";
-import { Icon } from "#components";
 </script>
 
 <template>

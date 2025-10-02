@@ -1,0 +1,19 @@
+version: "3.7"
+name: "beny-frontend"
+
+services:
+  beny-frontend:
+    image: oven/bun:1.1.45
+    container_name: beny-frontend
+    working_dir: /usr/src/app
+    volumes:
+      - ../../:/usr/src/app
+    ports:
+      - "3000:3000"
+    command: ["sh", "-c", "bun install && bun run dev"]
+    networks:
+      - beny
+
+networks:
+  beny:
+    external: true
