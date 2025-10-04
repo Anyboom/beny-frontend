@@ -41,5 +41,5 @@ export default defineNuxtConfig({
     defaultLocale: "ru",
   },
 
-  runtimeConfig: { public: { directus: { url: "beny-cms-backend:8055" } } },
+  runtimeConfig: { public: { directus: { url: "beny-directus:8055" } } },
 });
