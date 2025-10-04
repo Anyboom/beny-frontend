@@ -47,16 +47,18 @@
     <div class="container">
       <div class="main-banner__wrapper">
         <div class="main-banner__content">
-          <h1 class="main-banner__title">
-            Команда, которая поможет в мире ставок
-          </h1>
+          <h1 class="main-banner__title">Команда, которая поможет в мире ставок</h1>
           <div class="main-banner__buttons">
             <app-button>Присоединиться</app-button>
           </div>
         </div>
         <div class="main-banner__cards">
           <div class="main-banner__cards-wrapper">
-            <div v-for="item in items" :key="item.competition" class="main-banner__card">
+            <div
+              v-for="item in items"
+              :key="item.competition"
+              class="main-banner__card"
+            >
               <BetCard :data="item" />
             </div>
           </div>

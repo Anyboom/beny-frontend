@@ -9,13 +9,14 @@
 </script>
 
 <template>
-  <section id="personal-forecast" class="personal-forecast">
+  <section
+    id="personal-forecast"
+    class="personal-forecast"
+  >
     <div class="container">
       <div class="personal-forecast__wrapper">
         <div class="personal-forecast__content">
-          <h2 class="personal-forecast__title">
-            Индивидуальный прогноз
-          </h2>
+          <h2 class="personal-forecast__title">Индивидуальный прогноз</h2>
           <p class="personal-forecast__paragraph">
             Мы — команда аналитиков, работающая с цифрами, а не догадками. Никаких "гарантированных побед" — только
             анализ статистики, тактики и коэффициентов. Так делают профессионалы, и мы не исключение.

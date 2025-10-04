@@ -27,50 +27,82 @@
 </script>
 
 <template>
-  <form class="personal-forecast-form" @submit.prevent="handleSubmit(onSubmit)">
+  <form
+    class="personal-forecast-form"
+    @submit.prevent="handleSubmit(onSubmit)"
+  >
     <div class="personal-forecast-form__group">
-      <label class="personal-forecast-form__label" :for="ids.name">Имя</label>
+      <label
+        class="personal-forecast-form__label"
+        :for="ids.name"
+        >Имя</label
+      >
       <input
         :id="ids.name"
         v-model="values.name"
         class="personal-forecast-form__input"
         type="text"
+      />
+      <span
+        v-show="errors.name"
+        class="personal-forecast-form__error"
+        >{{ errors.name }}</span
       >
-      <span v-show="errors.name" class="personal-forecast-form__error">{{ errors.name }}</span>
     </div>
     <div class="personal-forecast-form__group">
-      <label class="personal-forecast-form__label" :for="ids.communicationMethod">Способ связи</label>
+      <label
+        class="personal-forecast-form__label"
+        :for="ids.communicationMethod"
+        >Способ связи</label
+      >
       <input
         :id="ids.communicationMethod"
         v-model="values.communicationMethod"
         class="personal-forecast-form__input"
         type="text"
+      />
+      <span
+        v-show="errors.communicationMethod"
+        class="personal-forecast-form__error"
       >
-      <span v-show="errors.communicationMethod" class="personal-forecast-form__error">
         {{ errors.communicationMethod }}
       </span>
     </div>
     <div class="personal-forecast-form__group">
-      <label class="personal-forecast-form__label" :for="ids.coefficient">Желаемый коэффициент</label>
+      <label
+        class="personal-forecast-form__label"
+        :for="ids.coefficient"
+        >Желаемый коэффициент</label
+      >
       <input
         :id="ids.coefficient"
         v-model="values.coefficient"
         class="personal-forecast-form__input"
         type="text"
+      />
+      <span
+        v-show="errors.coefficient"
+        class="personal-forecast-form__error"
       >
-      <span v-show="errors.coefficient" class="personal-forecast-form__error">
         {{ errors.coefficient }}
       </span>
     </div>
     <div class="personal-forecast-form__group">
-      <label class="personal-forecast-form__label" :for="ids.message">Комментарий</label>
+      <label
+        class="personal-forecast-form__label"
+        :for="ids.message"
+        >Комментарий</label
+      >
       <textarea
         :id="ids.message"
         v-model="values.message"
         class="personal-forecast-form__textarea"
         rows="15"
       />
-      <span v-show="errors.message" class="personal-forecast-form__error">
+      <span
+        v-show="errors.message"
+        class="personal-forecast-form__error"
+      >
         {{ errors.message }}
       </span>
     </div>

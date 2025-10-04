@@ -11,7 +11,7 @@ $h2-line-height: 1.3;
   line-height: $h2-line-height;
 }
 
-@mixin link  {
+@mixin link {
   color: $color-text;
   border-bottom: 2px solid transparent;
   @include hover {

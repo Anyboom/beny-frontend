@@ -32,7 +32,10 @@
           <span>{{ data.coefficient }}</span>
         </div>
       </div>
-      <div class="bet-card__status" :class="[`bet-card__status--${data.status}`]" />
+      <div
+        class="bet-card__status"
+        :class="[`bet-card__status--${data.status}`]"
+      />
     </div>
   </div>
 </template>

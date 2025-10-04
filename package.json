@@ -10,7 +10,13 @@
     "postinstall": "nuxt prepare"
   },
   "lint-staged": {
-    "*.{js,ts,html,scss,css}": ["prettier --write", "eslint . --ignore-pattern '.nuxt/*'", "git add"]
+    "*.{js,ts,vue}": [
+      "eslint --fix --ignore-pattern '.nuxt/*'",
+      "prettier --write"
+    ],
+    "*.{html,scss,css,json,md}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@directus/visual-editing": "^1.1.0",

@@ -15,5 +15,8 @@
 </script>
 
 <template>
-  <component :is="component" v-bind="block" />
+  <component
+    :is="component"
+    v-bind="block"
+  />
 </template>

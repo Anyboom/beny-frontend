@@ -15,7 +15,14 @@
         <a href="/">
           <AppLogo />
         </a>
-        <span class="footer__info"> Дизайн и разработка: <a href="#" class="footer__link">Даниил Волков</a> </span>
+        <span class="footer__info">
+          Дизайн и разработка:
+          <a
+            href="#"
+            class="footer__link"
+            >Даниил Волков</a
+          >
+        </span>
       </div>
     </div>
   </footer>

@@ -12,10 +12,11 @@
   <section class="click-bait">
     <div class="container">
       <div class="click-bait__wrapper">
-        <p class="click-bait__content">
-          Твой успех начинается вместе с нами
-        </p>
-        <app-button href="https://vk.com" target="_blank">
+        <p class="click-bait__content">Твой успех начинается вместе с нами</p>
+        <app-button
+          href="https://vk.com"
+          target="_blank"
+        >
           Присоединиться
         </app-button>
       </div>

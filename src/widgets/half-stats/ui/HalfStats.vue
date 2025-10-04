@@ -93,14 +93,19 @@
 </script>
 
 <template>
-  <section id="half-stats" class="half-stats">
+  <section
+    id="half-stats"
+    class="half-stats"
+  >
     <div class="container">
       <div class="half-stats__wrapper">
-        <h2 class="half-stats__title">
-          Статистика
-        </h2>
+        <h2 class="half-stats__title">Статистика</h2>
         <div class="half-stats__items">
-          <BetCard v-for="item in items" :key="item.competition" :data="item" />
+          <BetCard
+            v-for="item in items"
+            :key="item.competition"
+            :data="item"
+          />
         </div>
         <div class="half-stats__buttons">
           <AppButton>Подробнее</AppButton>

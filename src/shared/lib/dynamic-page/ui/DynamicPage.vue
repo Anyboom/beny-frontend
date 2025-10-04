@@ -10,5 +10,9 @@
 </script>
 
 <template>
-  <DynamicComponent v-for="block of blocks" :key="block.id" :block="block" />
+  <DynamicComponent
+    v-for="block of blocks"
+    :key="block.id"
+    :block="block"
+  />
 </template>

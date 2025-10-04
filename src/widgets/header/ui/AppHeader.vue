@@ -51,7 +51,10 @@
           <AppLogo />
         </a>
         <div class="header__nav-wrapper">
-          <nav class="header__nav" :class="{ 'header__nav--open': isVisibleMobileMenu }">
+          <nav
+            class="header__nav"
+            :class="{ 'header__nav--open': isVisibleMobileMenu }"
+          >
             <a
               v-for="item in items"
               :key="item.value"
