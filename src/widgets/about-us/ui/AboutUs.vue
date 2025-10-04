@@ -5,11 +5,13 @@
 </script>
 
 <template>
-  <section class="about-us" id="about-us">
+  <section id="about-us" class="about-us">
     <div class="container">
       <div class="about-us__wrapper">
         <div class="about-us__content">
-          <h2 class="about-us__title">О нас</h2>
+          <h2 class="about-us__title">
+            О нас
+          </h2>
           <p class="about-us__paragraph">
             Мы — команда аналитиков, работающая с цифрами, а не догадками. Никаких "гарантированных побед" — только
             анализ статистики, тактики и коэффициентов. Так делают профессионалы, и мы не исключение.
@@ -25,8 +27,13 @@
         </div>
         <div class="about-us__image-wrapper">
           <div class="about-us__image">
-            <svg class="about-us__icon" viewBox="0 0 43 45" width="43" height="45">
-              <use href="@/assets/images/sprites.svg#logo"></use>
+            <svg
+              class="about-us__icon"
+              viewBox="0 0 43 45"
+              width="43"
+              height="45"
+            >
+              <use href="@/assets/images/sprites.svg#logo" />
             </svg>
           </div>
         </div>

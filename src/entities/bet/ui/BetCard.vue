@@ -9,7 +9,7 @@
 <template>
   <div class="bet-card">
     <div class="bet-card__wrapper">
-      <div class="bet-card__image"></div>
+      <div class="bet-card__image" />
       <div class="bet-card__content">
         <div class="bet-card__content-item">
           <span>Матч:</span>
@@ -32,7 +32,7 @@
           <span>{{ data.coefficient }}</span>
         </div>
       </div>
-      <div class="bet-card__status" :class="[`bet-card__status--${data.status}`]"></div>
+      <div class="bet-card__status" :class="[`bet-card__status--${data.status}`]" />
     </div>
   </div>
 </template>

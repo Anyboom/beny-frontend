@@ -5,7 +5,11 @@
     click: [];
   }>();
 
-  const { disabled = false, href = undefined } = defineProps<{
+  const {
+    disabled = false,
+    href = undefined,
+    target = undefined,
+  } = defineProps<{
     disabled?: boolean;
     href?: string;
     target?: "_blank" | "_parent" | "_top" | "_self";
@@ -25,7 +29,14 @@
 </script>
 
 <template>
-  <component :is="tag" :href="href" :target="target" class="button" @click="handleClick" :disabled="disabled">
+  <component
+    :is="tag"
+    :href="href"
+    :target="target"
+    class="button"
+    :disabled="disabled"
+    @click="handleClick"
+  >
     <slot />
   </component>
 </template>

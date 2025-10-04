@@ -52,7 +52,13 @@
         </a>
         <div class="header__nav-wrapper">
           <nav class="header__nav" :class="{ 'header__nav--open': isVisibleMobileMenu }">
-            <a class="header__nav-item" @click="closeMenu" :href="item.link" v-for="item in items" :key="item.value">
+            <a
+              v-for="item in items"
+              :key="item.value"
+              class="header__nav-item"
+              :href="item.link"
+              @click="closeMenu"
+            >
               {{ item.value }}
             </a>
           </nav>

@@ -3,7 +3,7 @@
 <template>
   <div class="default-layout">
     <div class="default-layout__wrapper">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>

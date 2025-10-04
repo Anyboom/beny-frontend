@@ -13,7 +13,9 @@
 <template>
   <section class="not-loaded">
     <div class="container">
-      <div class="not-loaded__wrapper">Не удалось загрузить блок: {{ collection }}</div>
+      <div class="not-loaded__wrapper">
+        Не удалось загрузить блок: {{ collection }}
+      </div>
     </div>
   </section>
 </template>

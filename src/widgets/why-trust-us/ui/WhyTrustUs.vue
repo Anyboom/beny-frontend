@@ -22,12 +22,14 @@
 </script>
 
 <template>
-  <section class="why-trust-us" id="why-trust-us">
+  <section id="why-trust-us" class="why-trust-us">
     <div class="container">
       <div class="why-trust-us__wrapper">
-        <h2 class="why-trust-us__title">Почему нам доверяют</h2>
+        <h2 class="why-trust-us__title">
+          Почему нам доверяют
+        </h2>
         <div class="why-trust-us__card-wrapper">
-          <div class="why-trust-us__card" v-for="item in items" :key="item.title">
+          <div v-for="item in items" :key="item.title" class="why-trust-us__card">
             <h3 class="why-trust-us__card-title">
               {{ item.title }}
             </h3>

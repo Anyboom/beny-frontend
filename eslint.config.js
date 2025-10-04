@@ -20,12 +20,23 @@ export default defineConfig([
   sonarjs.configs.recommended,
   tseslint.configs.recommended,
   prettier,
-  pluginVue.configs["flat/essential"],
+  pluginVue.configs["flat/recommended"],
   {
     files: ["**/*.vue", "**/*.ts"],
     rules: {
       "vue/multi-word-component-names": "off",
       "@typescript-eslint/no-explicit-any": "off",
+      "vue/max-attributes-per-line": [
+        "error",
+        {
+          "singleline": {
+            "max": 3,
+          },
+          "multiline": {
+            "max": 1,
+          },
+        },
+      ],
     },
   },
   {

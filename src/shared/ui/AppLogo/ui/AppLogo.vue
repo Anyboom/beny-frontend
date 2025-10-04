@@ -2,8 +2,13 @@
 
 <template>
   <div class="logo">
-    <svg class="logo__icon" viewBox="0 0 43 45" width="43" height="45">
-      <use href="@/assets/images/sprites.svg#logo"></use>
+    <svg
+      class="logo__icon"
+      viewBox="0 0 43 45"
+      width="43"
+      height="45"
+    >
+      <use href="@/assets/images/sprites.svg#logo" />
     </svg>
   </div>
 </template>

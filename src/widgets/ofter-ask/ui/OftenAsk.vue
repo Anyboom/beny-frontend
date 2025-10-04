@@ -36,10 +36,12 @@
 </script>
 
 <template>
-  <section class="often-ask" id="often-ask">
+  <section id="often-ask" class="often-ask">
     <div class="container">
       <div class="often-ask__wrapper">
-        <h2 class="often-ask__title">Часто спрашивают</h2>
+        <h2 class="often-ask__title">
+          Часто спрашивают
+        </h2>
         <div class="often-ask__items">
           <app-accordion v-for="(item, index) in items" :key="index">
             <template #title>

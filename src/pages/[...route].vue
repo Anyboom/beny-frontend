@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { definePageMeta } from "#imports";
   import { useRoute } from "#app";
-  import { BlocksRepository } from "~/app/blocks/blocks.repository";
+  import { type Block, DynamicPage } from "~/shared/lib/dynamic-page";
 
   definePageMeta({
     middleware: "resolve-route",
@@ -9,16 +9,9 @@
 
   const route = useRoute() as any;
 
-  const dynamicBlocks = route?.["meta"]?.["pageData"]?.["data"]?.["blocks"] as any;
+  const blocks: Block[] = route?.["meta"]?.["pageData"]?.["data"]?.["blocks"];
 </script>
 
 <template>
-  <component
-    :is="BlocksRepository.get(block.collection).component"
-    v-bind="block"
-    :key="block.id"
-    v-for="block in dynamicBlocks"
-  />
+  <DynamicPage :blocks="blocks" />
 </template>
-
-<style scoped></style>
