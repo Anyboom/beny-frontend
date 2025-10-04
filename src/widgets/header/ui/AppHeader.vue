@@ -37,6 +37,12 @@
   ];
 </script>
 
+<script lang="ts">
+  export default {
+    inheritAttrs: false,
+  };
+</script>
+
 <template>
   <header class="header">
     <div class="container">
@@ -62,7 +68,7 @@
   </header>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
   @use "@/assets/styles/variables" as *;
   @use "@/assets/styles/mixins" as *;
 

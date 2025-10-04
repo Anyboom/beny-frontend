@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { AppLogo } from "~/shared/ui/AppLogo";
+  import { AppLogo } from "~/shared/ui/AppLogo";
+</script>
+
+<script lang="ts">
+  export default {
+    inheritAttrs: false,
+  };
 </script>
 
 <template>
@@ -9,15 +15,13 @@ import { AppLogo } from "~/shared/ui/AppLogo";
         <a href="/">
           <AppLogo />
         </a>
-        <span class="footer__info">
-          Дизайн и разработка: <a href="#" class="footer__link">Даниил Волков</a>
-        </span>
+        <span class="footer__info"> Дизайн и разработка: <a href="#" class="footer__link">Даниил Волков</a> </span>
       </div>
     </div>
   </footer>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
   @use "@/assets/styles/variables" as *;
   @use "@/assets/styles/typography" as *;
 

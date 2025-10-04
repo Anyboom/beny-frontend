@@ -2,6 +2,12 @@
   import { AppButton } from "~/shared/ui/AppButton";
 </script>
 
+<script lang="ts">
+  export default {
+    inheritAttrs: false,
+  };
+</script>
+
 <template>
   <section class="click-bait">
     <div class="container">
@@ -13,7 +19,7 @@
   </section>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
   @use "@/assets/styles/variables" as *;
   @use "@/assets/styles/mixins" as *;
 

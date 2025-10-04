@@ -2,6 +2,12 @@
   import { PersonalForecastForm } from "~/features/personal-forecast";
 </script>
 
+<script lang="ts">
+  export default {
+    inheritAttrs: false,
+  };
+</script>
+
 <template>
   <section class="personal-forecast" id="personal-forecast">
     <div class="container">
@@ -25,7 +31,7 @@
   </section>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
   @use "@/assets/styles/variables" as *;
   @use "@/assets/styles/typography" as *;
   @use "@/assets/styles/mixins" as *;

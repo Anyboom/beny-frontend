@@ -10,15 +10,13 @@
 
 <style lang="scss">
   @use "@/assets/styles/variables" as *;
-
-  body:has(.default-layout) {
-    background: $color-accent;
-  }
-</style>
-
-<style scoped lang="scss">
-  @use "@/assets/styles/variables" as *;
   @use "@/assets/styles/mixins" as *;
+
+  body {
+    :has(.default-layout) {
+      background: $color-accent;
+    }
+  }
 
   .default-layout {
     height: 100%;
