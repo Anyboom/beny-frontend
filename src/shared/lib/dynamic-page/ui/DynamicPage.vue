@@ -1,18 +1,30 @@
 <script setup lang="ts">
-  import type { Block } from "~/shared/lib/dynamic-page/model/block.interface";
   import DynamicComponent from "~/shared/lib/dynamic-page/ui/DynamicComponent.vue";
+  import { onMounted } from "vue";
+  import { apply } from "@directus/visual-editing";
+  import { createError, useRoute } from "#app";
+  import type { Page } from "~/shared/lib/dynamic-page/model/page.interface";
 
-  interface DynamicPageProps {
-    blocks: Block[];
+  const route = useRoute();
+
+  const page: Page = route?.["meta"]?.["pageData"] as Page;
+
+  if (page?.matched) {
+    console.log(`Загружена страница ${page.title} по адресу - ${page.slug}`);
+  } else {
+    throw createError({
+      statusCode: 404,
+      statusMessage: "Страница не найдена",
+    });
   }
 
-  defineProps<DynamicPageProps>();
+  onMounted(() => apply({ directusUrl: "https://directus.localhost" }));
 </script>
 
 <template>
   <DynamicComponent
-    v-for="block of blocks"
-    :key="block.id"
+    v-for="(block, index) of page.blocks"
+    :key="index"
     :block="block"
   />
 </template>

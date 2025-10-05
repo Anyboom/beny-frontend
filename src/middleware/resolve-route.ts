@@ -12,10 +12,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
       return directus(`/resolve-route${to.path}`);
     });
 
-    if (data?.value?.matched) {
-      to.meta.pageData = data.value;
-      return;
-    }
+    to.meta.pageData = data.value;
   } catch (error) {
     console.error("Route resolution failed:", error);
     return false;

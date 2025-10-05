@@ -1,6 +1,17 @@
 <script setup lang="ts">
   import { AppButton } from "~/shared/ui/AppButton";
   import { BetCard, type BetEntity } from "~/entities/bet";
+  import type { Block } from "~/shared/lib/dynamic-page";
+  import { setAttr } from "@directus/visual-editing";
+
+  interface MainBannerProps extends Block {
+    item: {
+      id: number;
+      title: string;
+    };
+  }
+
+  defineProps<MainBannerProps>();
 
   const items: BetEntity[] = [
     {
@@ -47,7 +58,12 @@
     <div class="container">
       <div class="main-banner__wrapper">
         <div class="main-banner__content">
-          <h1 class="main-banner__title">Команда, которая поможет в мире ставок</h1>
+          <h1
+            class="main-banner__title"
+            :data-directus="setAttr({ collection: 'block_main_banner', item: item.id, fields: 'title', mode: 'modal' })"
+          >
+            {{ item.title }}
+          </h1>
           <div class="main-banner__buttons">
             <app-button>Присоединиться</app-button>
           </div>

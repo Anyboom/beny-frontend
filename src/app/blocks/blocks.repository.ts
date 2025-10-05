@@ -11,27 +11,24 @@ import { PersonalForecastBlock } from "~/app/blocks/personal-forecast.block";
 import { WhyTrustUsBlock } from "~/app/blocks/why-trust-us.block";
 
 export class BlocksRepository {
-  private static blocks: Record<string, BaseBlock> = {
-    [HeaderBlock.name]: new HeaderBlock(),
-    [AboutUsBlock.name]: new AboutUsBlock(),
-    [ClickBaitBlock.name]: new ClickBaitBlock(),
-    [FooterBlock.name]: new FooterBlock(),
-    [HalfStatsBlock.name]: new HalfStatsBlock(),
-    [MainBannerBlock.name]: new MainBannerBlock(),
-    [OftenAskBlock.name]: new OftenAskBlock(),
-    [PersonalForecastBlock.name]: new PersonalForecastBlock(),
-    [WhyTrustUsBlock.name]: new WhyTrustUsBlock(),
-  };
-
-  private static notLoadedBlock = new NotLoadedBlock();
+  private static readonly blocks: Map<string, BaseBlock> = new Map([
+    [HeaderBlock.name, new HeaderBlock()],
+    [AboutUsBlock.name, new AboutUsBlock()],
+    [ClickBaitBlock.name, new ClickBaitBlock()],
+    [FooterBlock.name, new FooterBlock()],
+    [HalfStatsBlock.name, new HalfStatsBlock()],
+    [MainBannerBlock.name, new MainBannerBlock()],
+    [OftenAskBlock.name, new OftenAskBlock()],
+    [PersonalForecastBlock.name, new PersonalForecastBlock()],
+    [WhyTrustUsBlock.name, new WhyTrustUsBlock()],
+    [NotLoadedBlock.name, new NotLoadedBlock()],
+  ]);
 
   static get(name: string): BaseBlock {
-    const result: BaseBlock | undefined = this.blocks[name];
+    return this.blocks.get(name) ?? this.getFallbackBlock();
+  }
 
-    if (result == undefined) {
-      return this.notLoadedBlock;
-    }
-
-    return result;
+  private static getFallbackBlock(): BaseBlock {
+    return this.blocks.get(NotLoadedBlock.name)!;
   }
 }
