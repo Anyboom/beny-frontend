@@ -42,8 +42,8 @@
 </template>
 
 <style scoped lang="scss">
-  @use "@/assets/styles/mixins" as *;
-  @use "@/assets/styles/variables" as *;
+  @use "@/shared/assets/styles/mixins" as *;
+  @use "@/shared/assets/styles/variables" as *;
 
   .button {
     text-transform: uppercase;

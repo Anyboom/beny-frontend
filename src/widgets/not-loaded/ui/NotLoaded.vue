@@ -13,16 +13,14 @@
 <template>
   <section class="not-loaded">
     <div class="container">
-      <div class="not-loaded__wrapper">
-        Не удалось загрузить блок: {{ collection }}
-      </div>
+      <div class="not-loaded__wrapper">Не удалось загрузить блок: {{ collection }}</div>
     </div>
   </section>
 </template>
 
 <style lang="scss">
-  @use "@/assets/styles/variables" as *;
-  @use "@/assets/styles/typography" as *;
+  @use "@/shared/assets/styles/variables" as *;
+  @use "@/shared/assets/styles/typography" as *;
 
   .not-loaded {
     margin: $spacing-4 0;

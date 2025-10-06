@@ -35,9 +35,9 @@
 </template>
 
 <style lang="scss">
-  @use "@/assets/styles/variables" as *;
-  @use "@/assets/styles/typography" as *;
-  @use "@/assets/styles/mixins" as *;
+  @use "@/shared/assets/styles/variables" as *;
+  @use "@/shared/assets/styles/typography" as *;
+  @use "@/shared/assets/styles/mixins" as *;
 
   .personal-forecast {
     margin-bottom: $spacing-8;

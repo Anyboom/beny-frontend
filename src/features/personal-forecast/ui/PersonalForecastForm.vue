@@ -113,7 +113,7 @@
 </template>
 
 <style scoped lang="scss">
-  @use "@/assets/styles/variables" as *;
+  @use "@/shared/assets/styles/variables" as *;
 
   .personal-forecast-form {
     display: flex;

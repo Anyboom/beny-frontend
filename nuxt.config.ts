@@ -13,12 +13,19 @@ export default defineNuxtConfig({
     typeCheck: true,
   },
 
+  dir: {
+    layouts: "app/layouts",
+    pages: "app/providers/router/routes",
+    middleware: "app/providers/router/middleware",
+    assets: "shared/assets",
+  },
+
   imports: {
     autoImport: false,
   },
 
   srcDir: "./src",
-  css: ["@/assets/styles/global.scss"],
+  css: ["@/shared/assets/styles/global.scss"],
 
   app: {
     head: {

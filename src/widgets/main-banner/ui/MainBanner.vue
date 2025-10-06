@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { AppButton } from "~/shared/ui/AppButton";
   import { BetCard, type BetEntity } from "~/entities/bet";
-  import type { Block } from "~/shared/lib/dynamic-page";
+  import type { Block } from "~/pages/dynamic-page";
   import { setAttr } from "@directus/visual-editing";
 
   interface MainBannerProps extends Block {
@@ -85,8 +85,8 @@
 </template>
 
 <style lang="scss">
-  @use "@/assets/styles/variables" as *;
-  @use "@/assets/styles/mixins" as *;
+  @use "@/shared/assets/styles/variables" as *;
+  @use "@/shared/assets/styles/mixins" as *;
 
   .main-banner {
     margin-bottom: $spacing-8;

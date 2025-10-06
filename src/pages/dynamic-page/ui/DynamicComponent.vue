@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import type { Block } from "~/shared/lib/dynamic-page/model/block.interface";
+  import type { Block } from "~/pages/dynamic-page/model/block.interface";
   import { computed } from "#imports";
-  import { BlocksRepository } from "~/app/blocks/blocks.repository";
+  import { BlocksRepository } from "~/pages/dynamic-page/model/blocks/blocks.repository";
 
   interface DynamicComponentProps {
     block: Block;

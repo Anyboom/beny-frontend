@@ -34,7 +34,7 @@
               width="43"
               height="45"
             >
-              <use href="@/assets/images/sprites.svg#logo" />
+              <use href="@/shared/assets/images/sprites.svg#logo" />
             </svg>
           </div>
         </div>
@@ -44,9 +44,9 @@
 </template>
 
 <style lang="scss">
-  @use "@/assets/styles/variables" as *;
-  @use "@/assets/styles/typography" as *;
-  @use "@/assets/styles/mixins" as *;
+  @use "@/shared/assets/styles/variables" as *;
+  @use "@/shared/assets/styles/typography" as *;
+  @use "@/shared/assets/styles/mixins" as *;
 
   .about-us {
     margin-bottom: $spacing-8;

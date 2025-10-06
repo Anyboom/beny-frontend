@@ -1,4 +1,4 @@
-import { BaseBlock } from "~/app/blocks/base.block";
+import { BaseBlock } from "~/pages/dynamic-page/model/blocks/base.block";
 import type { Component } from "vue";
 import { AppFooter } from "~/widgets/footer";
 

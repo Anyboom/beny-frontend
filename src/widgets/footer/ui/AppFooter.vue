@@ -29,8 +29,8 @@
 </template>
 
 <style lang="scss">
-  @use "@/assets/styles/variables" as *;
-  @use "@/assets/styles/typography" as *;
+  @use "@/shared/assets/styles/variables" as *;
+  @use "@/shared/assets/styles/typography" as *;
 
   .footer {
     &__wrapper {

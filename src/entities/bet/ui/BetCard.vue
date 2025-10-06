@@ -41,8 +41,8 @@
 </template>
 
 <style scoped lang="scss">
-  @use "@/assets/styles/typography" as *;
-  @use "@/assets/styles/variables" as *;
+  @use "@/shared/assets/styles/typography" as *;
+  @use "@/shared/assets/styles/variables" as *;
 
   .bet-card {
     &__wrapper {
@@ -89,7 +89,7 @@
     &__image {
       height: 100px;
 
-      background-image: url("~/assets/images/bet-card__background.svg");
+      background-image: url("~/shared/assets/images/bet-card__background.svg");
       background-size: cover;
     }
   }
