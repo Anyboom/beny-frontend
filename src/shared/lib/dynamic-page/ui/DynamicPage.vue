@@ -1,9 +1,9 @@
 <script setup lang="ts">
-  import DynamicComponent from "~/pages/dynamic-page/ui/DynamicComponent.vue";
+  import DynamicComponent from "~/shared/lib/dynamic-page/ui/DynamicComponent.vue";
   import { onMounted } from "vue";
   import { apply } from "@directus/visual-editing";
   import { createError, useRoute } from "#app";
-  import type { Page } from "~/pages/dynamic-page/model/page.interface";
+  import type { Page } from "~/shared/lib/dynamic-page/model/page.interface";
 
   const route = useRoute();
 

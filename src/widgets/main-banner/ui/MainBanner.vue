@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { AppButton } from "~/shared/ui/AppButton";
   import { BetCard, type BetEntity } from "~/entities/bet";
-  import type { Block } from "~/pages/dynamic-page";
+  import type { Block } from "~/shared/lib/dynamic-page";
   import { setAttr } from "@directus/visual-editing";
 
   interface MainBannerProps extends Block {

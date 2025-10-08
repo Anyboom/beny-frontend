@@ -1,4 +1,4 @@
-import type { Block } from "~/pages/dynamic-page";
+import type { Block } from "~/shared/lib/dynamic-page";
 
 export interface Page {
   matched: boolean;
