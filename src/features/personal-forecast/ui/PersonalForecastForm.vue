@@ -134,6 +134,7 @@
       font-size: 14px;
       font-weight: 700;
       color: $color-text;
+      width: fit-content;
     }
 
     &__input,
