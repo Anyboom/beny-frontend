@@ -8,12 +8,12 @@ export const BetStatusEnum = {
 export type BetStatusEnum = (typeof BetStatusEnum)[keyof typeof BetStatusEnum];
 
 export type BetEntity = {
-  id: string;
+  id: number;
   homeTeam: string;
   guestTeam: string;
   competition: string;
   startedAt: string;
   forecast: string;
-  coefficient: string;
+  coefficient: number;
   status: BetStatusEnum;
 };

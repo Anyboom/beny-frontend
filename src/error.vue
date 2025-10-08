@@ -9,6 +9,7 @@
 </script>
 
 <template>
+  {{ error }}
   <span>{{ error.statusCode }}</span>
   <span>Ошибка</span>
 </template>

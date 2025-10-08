@@ -1,50 +1,56 @@
 <script setup lang="ts">
   import { AppButton } from "~/shared/ui/AppButton";
-  import { BetCard, type BetEntity } from "~/entities/bet";
+  import { BetCard } from "~/entities/bet";
   import type { Block } from "~/shared/lib/dynamic-page";
+  import type { ButtonGroup } from "~/shared/lib/dynamic-page/model/blocks/button-group.interface";
+  import type { BetStatusEnum } from "~/entities/bet/model/bet.entity";
   import { setAttr } from "@directus/visual-editing";
 
   interface MainBannerProps extends Block {
     item: {
       id: number;
       title: string;
+      button_group: ButtonGroup;
+      bets: {
+        id: number;
+        bets_id: {
+          id: number;
+          started_at: string;
+          coefficient: number;
+          status: BetStatusEnum;
+          home_team: {
+            name: string;
+          };
+          guest_team: {
+            name: string;
+          };
+          competition: {
+            name: string;
+          };
+          forecast: {
+            name: string;
+          };
+        };
+      }[];
     };
   }
 
-  defineProps<MainBannerProps>();
+  const { item } = defineProps<MainBannerProps>();
 
-  const items: BetEntity[] = [
-    {
-      id: "1",
-      coefficient: "1, 85",
-      competition: "Лига Наций",
-      startedAt: "22:00 | 4 июня 2025",
-      status: "win",
-      guestTeam: "Германия",
-      homeTeam: "Россия",
-      forecast: "ИТБ 1 ( 1.5 )",
-    },
-    {
-      id: "1",
-      coefficient: "1, 85",
-      competition: "Лига Наций",
-      startedAt: "22:00 | 4 июня 2025",
-      status: "return",
-      guestTeam: "Германия",
-      homeTeam: "Россия",
-      forecast: "ИТБ 1 ( 1.5 )",
-    },
-    {
-      id: "1",
-      coefficient: "1, 85",
-      competition: "Лига Наций",
-      startedAt: "22:00 | 4 июня 2025",
-      status: "lose",
-      guestTeam: "Германия",
-      homeTeam: "Россия",
-      forecast: "ИТБ 1 ( 1.5 )",
-    },
-  ];
+  const title = item.title;
+
+  const buttons = item.button_group.buttons;
+
+  const bets = item.bets.map((bet) => ({
+    id: bet.bets_id.id,
+    coefficient: bet.bets_id.coefficient,
+    competition: bet.bets_id.competition.name,
+    startedAt: bet.bets_id.started_at,
+    status: bet.bets_id.status,
+    guestTeam: bet.bets_id.guest_team.name,
+    homeTeam: bet.bets_id.home_team.name,
+    forecast: bet.bets_id.forecast.name,
+  }));
 </script>
 
 <script lang="ts">
@@ -62,20 +68,47 @@
             class="main-banner__title"
             :data-directus="setAttr({ collection: 'block_main_banner', item: item.id, fields: 'title', mode: 'modal' })"
           >
-            {{ item.title }}
+            {{ title }}
           </h1>
-          <div class="main-banner__buttons">
-            <app-button>Присоединиться</app-button>
+          <div
+            class="main-banner__buttons"
+            :data-directus="
+              setAttr({
+                collection: 'block_main_banner',
+                item: item.id,
+                fields: 'button_group',
+                mode: 'modal',
+              })
+            "
+          >
+            <app-button
+              v-for="button of buttons"
+              :key="button.id"
+              :href="button.href"
+              :target="button.target"
+            >
+              {{ button.label }}
+            </app-button>
           </div>
         </div>
-        <div class="main-banner__cards">
+        <div
+          class="main-banner__cards"
+          :data-directus="
+            setAttr({
+              collection: 'block_main_banner',
+              item: item.id,
+              fields: 'bets',
+              mode: 'modal',
+            })
+          "
+        >
           <div class="main-banner__cards-wrapper">
             <div
-              v-for="item in items"
-              :key="item.competition"
+              v-for="bet in bets"
+              :key="bet.id"
               class="main-banner__card"
             >
-              <BetCard :data="item" />
+              <BetCard :data="bet" />
             </div>
           </div>
         </div>
