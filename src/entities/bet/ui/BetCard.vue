@@ -1,9 +1,13 @@
 <script setup lang="ts">
   import type { BetEntity } from "~/entities/bet/model/bet.entity";
+  import "dayjs/locale/ru";
+  import { dayjs } from "~/shared/lib/dayjs";
 
-  defineProps<{
+  const props = defineProps<{
     data: BetEntity;
   }>();
+
+  const startedAt = dayjs(props.data.startedAt).format("HH:mm | D MMMM YYYY");
 </script>
 
 <template>
@@ -21,7 +25,7 @@
         </div>
         <div class="bet-card__content-item">
           <span>Время:</span>
-          <span>{{ data.startedAt }}</span>
+          <span>{{ startedAt }}</span>
         </div>
         <div class="bet-card__content-item">
           <span>Прогноз:</span>
