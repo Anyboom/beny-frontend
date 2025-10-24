@@ -26,6 +26,16 @@ export default defineConfig([
     rules: {
       "vue/multi-word-component-names": "off",
       "@typescript-eslint/no-explicit-any": "off",
+      "vue/html-self-closing": [
+        "error",
+        {
+          "html": {
+            "void": "always",
+            "normal": "never",
+            "component": "always",
+          },
+        },
+      ],
     },
   },
   {

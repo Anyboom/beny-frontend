@@ -29,6 +29,7 @@
     "@directus/visual-editing": "^1.1.0",
     "@nuxt/icon": "1.15.",
     "dayjs": "^1.11.18",
+    "dompurify": "^3.3.0",
     "nuxt": "^4.0.0",
     "nuxt-directus": "^5.7.0",
     "valibot": "^1.1.0",

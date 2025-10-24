@@ -1,3 +1,19 @@
+<script lang="ts" setup>
+  import type { Block } from "~/shared/lib/dynamic-page";
+  import { setAttr } from "@directus/visual-editing";
+  import { AppSafeHtmlRenderer } from "~/shared/ui/AppSafeHtmlRenderer";
+
+  interface AboutUsProps extends Block {
+    item: {
+      id: number;
+      title: string;
+      content: string;
+    };
+  }
+
+  const { item } = defineProps<AboutUsProps>();
+</script>
+
 <script lang="ts">
   export default {
     inheritAttrs: false,
@@ -12,19 +28,16 @@
     <div class="container">
       <div class="about-us__wrapper">
         <div class="about-us__content">
-          <h2 class="about-us__title">О нас</h2>
-          <p class="about-us__paragraph">
-            Мы — команда аналитиков, работающая с цифрами, а не догадками. Никаких "гарантированных побед" — только
-            анализ статистики, тактики и коэффициентов. Так делают профессионалы, и мы не исключение.
-          </p>
-          <p class="about-us__paragraph">
-            Честность — наш принцип. Все прогнозы публикуем "как есть", с открытым архивом удач и ошибок. Если данных
-            недостаточно — честно пишем "без прогноза".
-          </p>
-          <p class="about-us__paragraph">
-            Каждый разбор содержит проверяемые данные с источниками. Нужен трезвый подход к ставкам — вам к нам. Ждете
-            чуда — это не про нас.
-          </p>
+          <h2
+            class="about-us__title"
+            :data-directus="setAttr({ collection: 'block_about_us', item: item.id, fields: 'title', mode: 'modal' })"
+          >
+            О нас
+          </h2>
+          <AppSafeHtmlRenderer
+            :html="item.content"
+            :data-directus="setAttr({ collection: 'block_about_us', item: item.id, fields: 'content', mode: 'modal' })"
+          />
         </div>
         <div class="about-us__image-wrapper">
           <div class="about-us__image">
@@ -73,14 +86,6 @@
     &__icon {
       fill: $color-white;
       width: 221px;
-    }
-
-    &__paragraph {
-      color: $color-text;
-
-      &:not(:last-of-type) {
-        margin-bottom: $spacing-2;
-      }
     }
 
     &__image {
