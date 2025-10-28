@@ -3,7 +3,7 @@
   import { DynamicPage } from "~/shared/lib/dynamic-page";
 
   definePageMeta({
-    middleware: "resolve-route",
+    middleware: "dynamic-page",
   });
 </script>
 

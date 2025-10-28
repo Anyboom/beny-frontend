@@ -6,3 +6,5 @@ export const personalForecastSchema = v.object({
   communicationMethod: v.pipe(v.string(), v.nonEmpty("Поле является обязательным для заполнения")),
   message: v.pipe(v.string(), v.nonEmpty("Поле является обязательным для заполнения")),
 });
+
+export type PersonalForecastInput = v.InferInput<typeof personalForecastSchema>;

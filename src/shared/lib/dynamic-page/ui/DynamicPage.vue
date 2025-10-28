@@ -7,10 +7,17 @@
 
   const route = useRoute();
 
-  const page: Page = route?.["meta"]?.["pageData"] as Page;
+  const currentPage: Page = route?.["meta"]?.["currentPage"] as Page;
 
-  if (page?.matched) {
-    console.log(`Загружена страница ${page.title} по адресу - ${page.slug}`);
+  if (currentPage == undefined) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: "Не получилось получить страницу",
+    });
+  }
+
+  if (currentPage.matched) {
+    console.log(`Загружена страница ${currentPage.title} по адресу - ${currentPage.slug}`);
   } else {
     throw createError({
       statusCode: 404,
@@ -23,7 +30,7 @@
 
 <template>
   <DynamicComponent
-    v-for="(block, index) of page.blocks"
+    v-for="(block, index) of currentPage.blocks"
     :key="index"
     :block="block"
   />

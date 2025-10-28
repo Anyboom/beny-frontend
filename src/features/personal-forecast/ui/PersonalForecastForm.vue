@@ -3,6 +3,7 @@
   import { AppButton } from "~/shared/ui/AppButton";
   import { useForm } from "~/shared/composables/use-form";
   import { personalForecastSchema } from "~/features/personal-forecast/model/personal-forecast.schema";
+  import { createForecastApi } from "~/features/personal-forecast/api/create-forecast.api";
 
   const ids = {
     name: useId(),
@@ -21,8 +22,12 @@
     },
   });
 
-  function onSubmit() {
-    reset();
+  async function onSubmit() {
+    try {
+      await createForecastApi(values.value);
+    } finally {
+      reset();
+    }
   }
 </script>
 
@@ -35,8 +40,9 @@
       <label
         class="personal-forecast-form__label"
         :for="ids.name"
-        >Имя</label
       >
+        Имя
+      </label>
       <input
         :id="ids.name"
         v-model="values.name"
@@ -46,15 +52,17 @@
       <span
         v-show="errors.name"
         class="personal-forecast-form__error"
-        >{{ errors.name }}</span
       >
+        {{ errors.name }}
+      </span>
     </div>
     <div class="personal-forecast-form__group">
       <label
         class="personal-forecast-form__label"
         :for="ids.communicationMethod"
-        >Способ связи</label
       >
+        Способ связи
+      </label>
       <input
         :id="ids.communicationMethod"
         v-model="values.communicationMethod"
@@ -72,8 +80,9 @@
       <label
         class="personal-forecast-form__label"
         :for="ids.coefficient"
-        >Желаемый коэффициент</label
       >
+        Желаемый коэффициент
+      </label>
       <input
         :id="ids.coefficient"
         v-model="values.coefficient"
@@ -91,14 +100,15 @@
       <label
         class="personal-forecast-form__label"
         :for="ids.message"
-        >Комментарий</label
       >
+        Комментарий
+      </label>
       <textarea
         :id="ids.message"
         v-model="values.message"
         class="personal-forecast-form__textarea"
         rows="15"
-      />
+      ></textarea>
       <span
         v-show="errors.message"
         class="personal-forecast-form__error"

@@ -31,7 +31,6 @@
     "dayjs": "^1.11.18",
     "dompurify": "^3.3.0",
     "nuxt": "^4.0.0",
-    "nuxt-directus": "^5.7.0",
     "valibot": "^1.1.0",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1",

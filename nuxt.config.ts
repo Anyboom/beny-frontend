@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
 
@@ -41,13 +40,5 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["nuxt-directus", "@nuxt/icon"],
-
-  runtimeConfig: {
-    public: {
-      directus: {
-        url: "beny-directus:8055",
-      },
-    },
-  },
+  modules: ["@nuxt/icon"],
 });
