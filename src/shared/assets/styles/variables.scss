@@ -10,8 +10,28 @@ $color-ebony: #2c303c;
 $color-whisper: #ededed;
 $color-storm-grey: #80838a;
 $color-indian-red: #ce5b5b;
+$color-suva-grey: #8f8f8f;
+$color-rock-blue: #94a4c2;
+$color-rosy-brown: #c29494;
+$color-shadow-green: #94c2af;
+$color-grey: #757575;
+$color-japanese-laurel: #388e3c;
+$color-persian-red: #d32f2f;
+$color-orange-peel: #ffa000;
 
 // -------------------------------------------
+
+$color-toastify-text: $color-white;
+$color-toastify-status-default: $color-grey;
+$color-toastify-status-success: $color-japanese-laurel;
+$color-toastify-status-error: $color-persian-red;
+$color-toastify-status-info: $color-fun-blue;
+$color-toastify-status-warning: $color-orange-peel;
+
+$color-bet-status-pending: $color-suva-grey;
+$color-bet-status-win: $color-shadow-green;
+$color-bet-status-lose: $color-rosy-brown;
+$color-bet-status-return: $color-rock-blue;
 
 $color-placeholder: $color-storm-grey;
 

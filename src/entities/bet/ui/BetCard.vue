@@ -13,7 +13,7 @@
 <template>
   <div class="bet-card">
     <div class="bet-card__wrapper">
-      <div class="bet-card__image" />
+      <div class="bet-card__image"></div>
       <div class="bet-card__content">
         <div class="bet-card__content-item">
           <span>Матч:</span>
@@ -39,7 +39,7 @@
       <div
         class="bet-card__status"
         :class="[`bet-card__status--${data.status}`]"
-      />
+      ></div>
     </div>
   </div>
 </template>
@@ -59,19 +59,19 @@
       height: 10px;
 
       &--win {
-        background: #94c2af;
+        background: $color-bet-status-win;
       }
 
       &--lose {
-        background: #c29494;
+        background: $color-bet-status-lose;
       }
 
       &--return {
-        background: #94a4c2;
+        background: $color-bet-status-return;
       }
 
       &--pending {
-        background: #8f8f8f;
+        background: $color-bet-status-pending;
       }
     }
 

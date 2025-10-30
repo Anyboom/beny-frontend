@@ -1,4 +1,7 @@
+@use "vue3-toastify/dist/index.css";
+
 @use "variables" as *;
+@use "toastify";
 @use "reset";
 
 html {

@@ -3,6 +3,9 @@
   import { revalidateLogic, useForm } from "@tanstack/vue-form";
   import { personalForecastSchema } from "~/features/personal-forecast/model/personal-forecast.schema";
   import { createForecastApi } from "~/features/personal-forecast/api/create-forecast.api";
+  import { useNuxtApp } from "#app";
+
+  const { $toast } = useNuxtApp();
 
   const form = useForm({
     defaultValues: {
@@ -18,6 +21,13 @@
     onSubmit: async ({ value, formApi }) => {
       try {
         await createForecastApi(value);
+        $toast("Форма успешно отправлена", {
+          "type": "success",
+        });
+      } catch {
+        $toast("Не получилось отправить форму", {
+          "type": "error",
+        });
       } finally {
         formApi.reset();
       }
