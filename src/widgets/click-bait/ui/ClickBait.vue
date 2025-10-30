@@ -1,5 +1,18 @@
 <script setup lang="ts">
   import { AppButton } from "~/shared/ui/AppButton";
+  import type { Block } from "~/shared/lib/dynamic-page";
+  import type { ButtonGroup } from "~/shared/lib/dynamic-page/model/blocks/button-group.interface";
+  import { setAttr } from "@directus/visual-editing";
+
+  interface ClickBaitProps extends Block {
+    item: {
+      id: number;
+      content: string;
+      button_group: ButtonGroup;
+    };
+  }
+
+  const { item } = defineProps<ClickBaitProps>();
 </script>
 
 <script lang="ts">
@@ -11,13 +24,22 @@
 <template>
   <section class="click-bait">
     <div class="container">
-      <div class="click-bait__wrapper">
-        <p class="click-bait__content">Твой успех начинается вместе с нами</p>
+      <div
+        class="click-bait__wrapper"
+        :data-directus="
+          setAttr({ collection: 'block_click_bait', item: item.id, fields: 'content, button_group', mode: 'modal' })
+        "
+      >
+        <p class="click-bait__content">
+          {{ item.content }}
+        </p>
         <app-button
-          href="https://vk.com"
-          target="_blank"
+          v-for="button of item.button_group.buttons"
+          :key="button.id"
+          :href="button.href"
+          :target="button.target"
         >
-          Присоединиться
+          {{ button.label }}
         </app-button>
       </div>
     </div>
