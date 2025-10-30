@@ -1,18 +1,19 @@
 <script setup lang="ts">
-  const items = [
-    {
-      title: "Качество",
-      caption: "Наши прогнозы основаны на глубоком анализе статистики, формы команд и внутренних факторов.",
-    },
-    {
-      title: "Прозрачность и честность",
-      caption: "Мы публикуем все результаты — как удачные, так и неудачные ставки.",
-    },
-    {
-      title: "Оперативность и актуальность",
-      caption: "Мы публикуем прогнозы заранее, с учётом последних новостей и коэффициентов.",
-    },
-  ];
+  import type { Block } from "~/shared/lib/dynamic-page";
+  import { setAttr } from "@directus/visual-editing";
+
+  interface WhyTrustUsProps extends Block {
+    item: {
+      id: number;
+      title: string;
+      cards: {
+        title: string;
+        content: string;
+      }[];
+    };
+  }
+
+  const { item } = defineProps<WhyTrustUsProps>();
 </script>
 
 <script lang="ts">
@@ -28,18 +29,26 @@
   >
     <div class="container">
       <div class="why-trust-us__wrapper">
-        <h2 class="why-trust-us__title">Почему нам доверяют</h2>
-        <div class="why-trust-us__card-wrapper">
+        <h2
+          class="why-trust-us__title"
+          :data-directus="setAttr({ collection: 'block_why_trust_us', item: item.id, fields: 'title', mode: 'modal' })"
+        >
+          {{ item.title }}
+        </h2>
+        <div
+          class="why-trust-us__card-wrapper"
+          :data-directus="setAttr({ collection: 'block_why_trust_us', item: item.id, fields: 'cards', mode: 'modal' })"
+        >
           <div
-            v-for="item in items"
-            :key="item.title"
+            v-for="element of item.cards"
+            :key="element.title"
             class="why-trust-us__card"
           >
             <h3 class="why-trust-us__card-title">
-              {{ item.title }}
+              {{ element.title }}
             </h3>
             <p class="why-trust-us__card-caption">
-              {{ item.caption }}
+              {{ element.content }}
             </p>
           </div>
         </div>
