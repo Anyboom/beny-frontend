@@ -1,5 +1,18 @@
 <script setup lang="ts">
   import { PersonalForecastForm } from "~/features/personal-forecast";
+  import type { Block } from "~/shared/lib/dynamic-page";
+  import { AppSafeHtmlRenderer } from "~/shared/ui/AppSafeHtmlRenderer";
+  import { setAttr } from "@directus/visual-editing";
+
+  interface PersonalForecastProps extends Block {
+    item: {
+      id: number;
+      title: string;
+      content: string;
+    };
+  }
+
+  const { item } = defineProps<PersonalForecastProps>();
 </script>
 
 <script lang="ts">
@@ -16,15 +29,20 @@
     <div class="container">
       <div class="personal-forecast__wrapper">
         <div class="personal-forecast__content">
-          <h2 class="personal-forecast__title">Индивидуальный прогноз</h2>
-          <p class="personal-forecast__paragraph">
-            Мы — команда аналитиков, работающая с цифрами, а не догадками. Никаких "гарантированных побед" — только
-            анализ статистики, тактики и коэффициентов. Так делают профессионалы, и мы не исключение.
-          </p>
-          <p class="personal-forecast__paragraph">
-            Честность — наш принцип. Все прогнозы публикуем "как есть", с открытым архивом удач и ошибок. Если данных
-            недостаточно — честно пишем "без прогноза".
-          </p>
+          <h2
+            class="personal-forecast__title"
+            :data-directus="
+              setAttr({ collection: 'block_personal_forecast', item: item.id, fields: 'title', mode: 'modal' })
+            "
+          >
+            {{ item.title }}
+          </h2>
+          <AppSafeHtmlRenderer
+            :html="item.content"
+            :data-directus="
+              setAttr({ collection: 'block_personal_forecast', item: item.id, fields: 'content', mode: 'modal' })
+            "
+          />
         </div>
         <div class="personal-forecast__form">
           <PersonalForecastForm />
@@ -54,14 +72,6 @@
 
       @include view-port-md {
         grid-template-columns: repeat(1, 1fr);
-      }
-    }
-
-    &__paragraph {
-      color: $color-text;
-
-      &:not(:last-of-type) {
-        margin-bottom: $spacing-2;
       }
     }
   }
