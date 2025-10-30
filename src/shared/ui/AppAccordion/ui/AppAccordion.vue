@@ -1,14 +1,14 @@
 <script setup lang="ts"></script>
 
 <template>
-  <details class="accordion">
-    <summary class="accordion__summary">
-      <span class="accordion__title">
-        <slot name="title" />
+  <details class="app-accordion">
+    <summary class="app-accordion__summary">
+      <span class="app-accordion__title">
+        <slot name="title"></slot>
       </span>
     </summary>
-    <div class="accordion__content">
-      <slot />
+    <div class="app-accordion__content">
+      <slot></slot>
     </div>
   </details>
 </template>
@@ -17,7 +17,7 @@
   @use "@/shared/assets/styles/variables" as *;
   @use "@/shared/assets/styles/mixins" as *;
 
-  .accordion {
+  .app-accordion {
     &[open] > &__summary {
       background: $color-default-white-hover;
     }

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-  import { computed } from "#imports";
-
   const emit = defineEmits<{
     click: [];
   }>();
@@ -23,9 +21,7 @@
     emit("click");
   }
 
-  const tag = computed(() => {
-    return href ? "a" : "button";
-  });
+  const tag = href ? "a" : "button";
 </script>
 
 <template>
@@ -33,11 +29,11 @@
     :is="tag"
     :href="href"
     :target="target"
-    class="button"
+    class="app-button"
     :disabled="disabled"
     @click="handleClick"
   >
-    <slot />
+    <slot></slot>
   </component>
 </template>
 
@@ -45,7 +41,7 @@
   @use "@/shared/assets/styles/mixins" as *;
   @use "@/shared/assets/styles/variables" as *;
 
-  .button {
+  .app-button {
     text-transform: uppercase;
     border-radius: $spacing-1;
     background: $color-accent;

@@ -4,6 +4,8 @@
   import { personalForecastSchema } from "~/features/personal-forecast/model/personal-forecast.schema";
   import { createForecastApi } from "~/features/personal-forecast/api/create-forecast.api";
   import { useNuxtApp } from "#app";
+  import { AppInput } from "~/shared/ui/AppInput";
+  import { AppTextarea } from "~/shared/ui/AppTextarea";
 
   const { $toast } = useNuxtApp();
 
@@ -55,13 +57,11 @@
           >
             Имя
           </label>
-          <input
+          <AppInput
             :id="field.name"
-            class="personal-forecast-form__input"
-            type="text"
             :name="field.name"
             :value="state.value"
-            @input="(e) => field.handleChange((e.target as HTMLInputElement).value)"
+            @input="(e: Event) => field.handleChange((e.target as HTMLInputElement).value)"
             @blur="field.handleBlur"
           />
           <span
@@ -82,13 +82,11 @@
           >
             Способ связи
           </label>
-          <input
+          <AppInput
             :id="field.name"
-            class="personal-forecast-form__input"
-            type="text"
             :value="state.value"
             :name="field.name"
-            @input="(e) => field.handleChange((e.target as HTMLInputElement).value)"
+            @input="(e: Event) => field.handleChange((e.target as HTMLInputElement).value)"
             @blur="field.handleBlur"
           />
           <span
@@ -109,13 +107,11 @@
           >
             Желаемый коэффициент
           </label>
-          <input
+          <AppInput
             :id="field.name"
-            class="personal-forecast-form__input"
-            type="text"
             :value="state.value"
             :name="field.name"
-            @input="(e) => field.handleChange((e.target as HTMLInputElement).value)"
+            @input="(e: Event) => field.handleChange((e.target as HTMLInputElement).value)"
             @blur="field.handleBlur"
           />
           <span
@@ -136,15 +132,13 @@
           >
             Комментарий
           </label>
-          <textarea
+          <AppTextarea
             :id="field.name"
-            class="personal-forecast-form__textarea"
-            rows="15"
             :value="state.value"
             :name="field.name"
-            @input="(e) => field.handleChange((e.target as HTMLInputElement).value)"
+            @input="(e: Event) => field.handleChange((e.target as HTMLInputElement).value)"
             @blur="field.handleBlur"
-          ></textarea>
+          />
           <span
             v-if="!field.state.meta.isValid && field?.state?.meta?.errors?.at(0)"
             class="personal-forecast-form__error"
@@ -187,27 +181,6 @@
       font-weight: 700;
       color: $color-text;
       width: fit-content;
-    }
-
-    &__input,
-    &__textarea {
-      background: $color-default-white;
-      color: $color-text;
-      font-size: 12px;
-      border-radius: $spacing-1;
-      padding: $spacing-2;
-
-      &:focus {
-        outline: 2px solid $color-accent;
-      }
-
-      &::placeholder {
-        color: $color-placeholder;
-      }
-    }
-
-    &__textarea {
-      resize: none;
     }
 
     &__buttons {

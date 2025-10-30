@@ -1,9 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="logo">
+  <div class="app-logo">
     <svg
-      class="logo__icon"
+      class="app-logo__icon"
       viewBox="0 0 43 45"
       width="43"
       height="45"
@@ -17,7 +17,7 @@
   @use "@/shared/assets/styles/variables" as *;
   @use "@/shared/assets/styles/mixins" as *;
 
-  .logo {
+  .app-logo {
     background: $color-accent;
     padding: $spacing-1;
     border-radius: $spacing-2;
