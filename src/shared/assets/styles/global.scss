@@ -7,6 +7,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 20px;
+  scrollbar-color: $color-rock-blue $color-accent-hover;
+  scrollbar-width: thin;
 }
 
 body {
