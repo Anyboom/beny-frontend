@@ -1,32 +1,20 @@
 <script setup lang="ts">
   import { AppAccordion } from "~/shared/ui/AppAccordion";
+  import type { Block } from "~/shared/lib/dynamic-page";
+  import { setAttr } from "@directus/visual-editing";
 
-  const items = [
-    {
-      title: "Качество",
-      text: "Наши прогнозы основаны на глубоком анализе статистики, формы команд и внутренних факторов.",
-    },
-    {
-      title: "Прозрачность и честность",
-      text: "Мы публикуем все результаты — как удачные, так и неудачные ставки.",
-    },
-    {
-      title: "Оперативность и актуальность",
-      text: "Мы публикуем прогнозы заранее, с учётом последних новостей и коэффициентов.",
-    },
-    {
-      title: "Оперативность и актуальность",
-      text: "Мы публикуем прогнозы заранее, с учётом последних новостей и коэффициентов.",
-    },
-    {
-      title: "Оперативность и актуальность",
-      text: "Мы публикуем прогнозы заранее, с учётом последних новостей и коэффициентов.",
-    },
-    {
-      title: "Оперативность и актуальность",
-      text: "Мы публикуем прогнозы заранее, с учётом последних новостей и коэффициентов.",
-    },
-  ];
+  interface OftenAskProps extends Block {
+    item: {
+      id: number;
+      title: string;
+      content: {
+        title: string;
+        content: string;
+      }[];
+    };
+  }
+
+  const { item } = defineProps<OftenAskProps>();
 </script>
 
 <script lang="ts">
@@ -42,17 +30,25 @@
   >
     <div class="container">
       <div class="often-ask__wrapper">
-        <h2 class="often-ask__title">Часто спрашивают</h2>
-        <div class="often-ask__items">
+        <h2
+          class="often-ask__title"
+          :data-directus="setAttr({ collection: 'block_often_ask', item: item.id, fields: 'title', mode: 'modal' })"
+        >
+          {{ item.title }}
+        </h2>
+        <div
+          class="often-ask__items"
+          :data-directus="setAttr({ collection: 'block_often_ask', item: item.id, fields: 'content', mode: 'modal' })"
+        >
           <app-accordion
-            v-for="(item, index) in items"
+            v-for="(element, index) in item.content"
             :key="index"
           >
             <template #title>
-              {{ item.title }}
+              {{ element.title }}
             </template>
             <template #default>
-              {{ item.text }}
+              {{ element.content }}
             </template>
           </app-accordion>
         </div>
