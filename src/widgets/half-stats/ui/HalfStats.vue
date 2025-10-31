@@ -104,7 +104,7 @@
           <BetCard
             v-for="item in items"
             :key="item.competition"
-            :data="item"
+            v-bind="item"
           />
         </div>
         <div class="half-stats__buttons">
