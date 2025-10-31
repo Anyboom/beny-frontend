@@ -3,11 +3,9 @@
   import "dayjs/locale/ru";
   import { dayjs } from "~/shared/lib/dayjs";
 
-  const props = defineProps<{
-    data: BetEntity;
-  }>();
+  const props = defineProps<BetEntity>();
 
-  const startedAt = dayjs(props.data.startedAt).format("HH:mm | D MMMM YYYY");
+  const startedAt = dayjs(props.startedAt).format("HH:mm | D MMMM YYYY");
 </script>
 
 <template>
@@ -17,11 +15,11 @@
       <div class="bet-card__content">
         <div class="bet-card__content-item">
           <span>Матч:</span>
-          <span>{{ data.homeTeam }} - {{ data.guestTeam }}</span>
+          <span>{{ props.homeTeam }} - {{ props.guestTeam }}</span>
         </div>
         <div class="bet-card__content-item">
           <span>Соревнование:</span>
-          <span>{{ data.competition }}</span>
+          <span>{{ props.competition }}</span>
         </div>
         <div class="bet-card__content-item">
           <span>Время:</span>
@@ -29,16 +27,16 @@
         </div>
         <div class="bet-card__content-item">
           <span>Прогноз:</span>
-          <span>{{ data.forecast }}</span>
+          <span>{{ props.forecast }}</span>
         </div>
         <div class="bet-card__content-item">
           <span>КФ:</span>
-          <span>{{ data.coefficient }}</span>
+          <span>{{ props.coefficient }}</span>
         </div>
       </div>
       <div
         class="bet-card__status"
-        :class="[`bet-card__status--${data.status}`]"
+        :class="[`bet-card__status--${props.status}`]"
       ></div>
     </div>
   </div>

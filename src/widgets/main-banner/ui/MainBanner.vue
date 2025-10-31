@@ -108,7 +108,7 @@
               :key="bet.id"
               class="main-banner__card"
             >
-              <BetCard :data="bet" />
+              <BetCard v-bind="bet" />
             </div>
           </div>
         </div>
