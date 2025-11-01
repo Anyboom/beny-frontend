@@ -1,4 +1,1 @@
-import { defineNuxtRouteMiddleware } from "#app";
-import { dynamicPageMiddleware } from "~/shared/lib/dynamic-page";
-
-export default defineNuxtRouteMiddleware(dynamicPageMiddleware);
+export { dynamicPageMiddleware as default } from "~/pages/dynamic-page";
