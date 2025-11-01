@@ -1,6 +1,7 @@
 import type { RouteLocationNormalizedGeneric } from "#vue-router";
+import { defineNuxtRouteMiddleware } from "#app";
 
-export async function dynamicPageMiddleware(to: RouteLocationNormalizedGeneric) {
+export default defineNuxtRouteMiddleware(async (to: RouteLocationNormalizedGeneric) => {
   const url = import.meta.server
     ? `http://beny-directus:8055/resolve-route${to.path}`
     : `https://directus.localhost/resolve-route${to.path}`;
@@ -10,4 +11,4 @@ export async function dynamicPageMiddleware(to: RouteLocationNormalizedGeneric) 
   } catch (error) {
     console.error("Не получилось выполнить запрос:", error);
   }
-}
+});

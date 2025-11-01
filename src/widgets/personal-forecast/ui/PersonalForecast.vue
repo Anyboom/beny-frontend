@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { PersonalForecastForm } from "~/features/personal-forecast";
-  import type { Block } from "~/shared/lib/dynamic-page";
+  import type { Block } from "~/pages/dynamic-page";
   import { AppSafeHtmlRenderer } from "~/shared/ui/AppSafeHtmlRenderer";
   import { setAttr } from "@directus/visual-editing";
 

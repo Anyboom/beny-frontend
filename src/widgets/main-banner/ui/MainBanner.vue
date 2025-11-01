@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { AppButton } from "~/shared/ui/AppButton";
   import { BetCard } from "~/entities/bet";
-  import type { Block } from "~/shared/lib/dynamic-page";
-  import type { ButtonGroup } from "~/shared/lib/dynamic-page/model/blocks/button-group.interface";
+  import type { Block } from "~/pages/dynamic-page";
+  import type { ButtonGroup } from "~/pages/dynamic-page/model/button-group.interface";
   import type { BetStatusEnum } from "~/entities/bet/model/bet.entity";
   import { setAttr } from "@directus/visual-editing";
 

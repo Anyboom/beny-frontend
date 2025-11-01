@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { Block } from "~/shared/lib/dynamic-page";
+  import type { Block } from "~/pages/dynamic-page";
   import { setAttr } from "@directus/visual-editing";
   import { AppSafeHtmlRenderer } from "~/shared/ui/AppSafeHtmlRenderer";
 

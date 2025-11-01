@@ -1,4 +1,4 @@
-import { BaseBlock } from "~/shared/lib/dynamic-page/model/blocks/base.block";
+import { BaseBlock } from "~/pages/dynamic-page/blocks/base.block";
 import type { Component } from "vue";
 import { HalfStats } from "~/widgets/half-stats";
 

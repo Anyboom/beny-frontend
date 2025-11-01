@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { AppButton } from "~/shared/ui/AppButton";
-  import type { Block } from "~/shared/lib/dynamic-page";
-  import type { ButtonGroup } from "~/shared/lib/dynamic-page/model/blocks/button-group.interface";
+  import type { Block } from "~/pages/dynamic-page";
+  import type { ButtonGroup } from "~/pages/dynamic-page/model/button-group.interface";
   import { setAttr } from "@directus/visual-editing";
 
   interface ClickBaitProps extends Block {

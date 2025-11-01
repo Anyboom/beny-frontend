@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { AppAccordion } from "~/shared/ui/AppAccordion";
-  import type { Block } from "~/shared/lib/dynamic-page";
+  import type { Block } from "~/pages/dynamic-page";
   import { setAttr } from "@directus/visual-editing";
 
   interface OftenAskProps extends Block {
