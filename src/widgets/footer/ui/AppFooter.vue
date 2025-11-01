@@ -20,8 +20,9 @@
           <a
             href="#"
             class="footer__link"
-            >Даниил Волков</a
           >
+            Даниил Волков
+          </a>
         </span>
       </div>
     </div>

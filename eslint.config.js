@@ -26,6 +26,8 @@ export default defineConfig([
     rules: {
       "vue/multi-word-component-names": "off",
       "@typescript-eslint/no-explicit-any": "off",
+      "vue/singleline-html-element-content-newline": "off",
+      "vue/no-v-html": "off",
       "vue/html-self-closing": [
         "error",
         {
@@ -47,5 +49,8 @@ export default defineConfig([
     plugins: { css },
     language: "css/css",
     extends: ["css/recommended"],
+  },
+  {
+    ignores: [".nuxt/*"],
   },
 ]);

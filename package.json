@@ -9,7 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "prepare": "husky",
-    "commit": "bun run git-cz"
+    "commit": "bun run git-cz",
+    "lint": "eslint ."
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
