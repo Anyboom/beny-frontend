@@ -1,13 +1,13 @@
 import type { RouteLocationNormalizedGeneric } from "#vue-router";
 import { defineNuxtRouteMiddleware } from "#app";
+import { pathDirectus } from "~/shared/api/path-directus";
+import { useAsyncData } from "#app";
 
 export default defineNuxtRouteMiddleware(async (to: RouteLocationNormalizedGeneric) => {
-  const url = import.meta.server
-    ? `http://beny-directus:8055/resolve-route${to.path}`
-    : `https://directus.localhost/resolve-route${to.path}`;
-
   try {
-    to.meta.currentPage = await $fetch(url);
+    const { data } = await useAsyncData("users", () => $fetch(`${pathDirectus}/resolve-route${to.path}`));
+
+    to.meta.currentPage = data;
   } catch (error) {
     console.error("Не получилось выполнить запрос:", error);
   }
