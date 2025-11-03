@@ -42,6 +42,7 @@
   @use "@/shared/assets/styles/variables" as *;
 
   .app-button {
+    display: inline-block;
     text-transform: uppercase;
     border-radius: $spacing-1;
     background: $color-accent;
