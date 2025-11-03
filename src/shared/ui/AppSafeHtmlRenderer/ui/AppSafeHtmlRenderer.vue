@@ -9,7 +9,7 @@
   const { html } = defineProps<AppSafeHtmlRendererProps>();
 
   const sanitizedHtml = computed(() => {
-    return DOMPurify.sanitize(html, {
+    return DOMPurify?.sanitize?.(html, {
       ALLOW_DATA_ATTR: false,
     });
   });
