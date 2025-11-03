@@ -2,7 +2,7 @@
   import DynamicComponent from "~/pages/dynamic-page/ui/DynamicComponent.vue";
   import { onMounted } from "vue";
   import { apply } from "@directus/visual-editing";
-  import { createError, useRoute } from "#app";
+  import { createError, useHead, useRoute } from "#app";
   import type { Page } from "~/pages/dynamic-page/model/page.interface";
 
   const route = useRoute();
@@ -26,6 +26,11 @@
   }
 
   onMounted(() => apply({ directusUrl: "https://directus.localhost" }));
+
+  useHead({
+    title: currentPage.title,
+    meta: [{ name: "description", content: currentPage.description }],
+  });
 </script>
 
 <template>

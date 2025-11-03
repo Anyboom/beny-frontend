@@ -5,6 +5,7 @@ export interface Page {
   template: string;
   params: Record<string, string | number>;
   title: string;
+  description: string;
   slug: string;
   blocks: Block[];
 }
