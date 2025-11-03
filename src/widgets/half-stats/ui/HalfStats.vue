@@ -1,89 +1,43 @@
 <script setup lang="ts">
-  import { BetCard, type BetEntity } from "~/entities/bet";
+  import { BetCard, type BetEntity, useGetBetsApi } from "~/entities/bet";
   import { AppButton } from "~/shared/ui/AppButton";
+  import BetCardSkeleton from "~/entities/bet/ui/BetCardSkeleton.vue";
+  import { computed } from "#imports";
+  import type { Block } from "~/pages/dynamic-page";
+  import type { ButtonGroup } from "~/pages/dynamic-page/model/button-group.interface";
 
-  const items: BetEntity[] = [
-    {
-      id: 1,
-      coefficient: 1.85,
-      competition: "Лига Наций",
-      startedAt: "22:00 | 4 июня 2025",
-      status: "win",
-      guestTeam: "Германия",
-      homeTeam: "Россия",
-      forecast: "ИТБ 1 ( 1.5 )",
-    },
-    {
-      id: 1,
-      coefficient: 1.85,
-      competition: "Лига Наций",
-      startedAt: "22:00 | 4 июня 2025",
-      status: "win",
-      guestTeam: "Германия",
-      homeTeam: "Россия",
-      forecast: "ИТБ 1 ( 1.5 )",
-    },
-    {
-      id: 1,
-      coefficient: 1.85,
-      competition: "Лига Наций",
-      startedAt: "22:00 | 4 июня 2025",
-      status: "win",
-      guestTeam: "Германия",
-      homeTeam: "Россия",
-      forecast: "ИТБ 1 ( 1.5 )",
-    },
-    {
-      id: 1,
-      coefficient: 1.85,
-      competition: "Лига Наций",
-      startedAt: "22:00 | 4 июня 2025",
-      status: "win",
-      guestTeam: "Германия",
-      homeTeam: "Россия",
-      forecast: "ИТБ 1 ( 1.5 )",
-    },
-    {
-      id: 1,
-      coefficient: 1.85,
-      competition: "Лига Наций",
-      startedAt: "22:00 | 4 июня 2025",
-      status: "win",
-      guestTeam: "Германия",
-      homeTeam: "Россия",
-      forecast: "ИТБ 1 ( 1.5 )",
-    },
-    {
-      id: 1,
-      coefficient: 1.85,
-      competition: "Лига Наций",
-      startedAt: "22:00 | 4 июня 2025",
-      status: "win",
-      guestTeam: "Германия",
-      homeTeam: "Россия",
-      forecast: "ИТБ 1 ( 1.5 )",
-    },
-    {
-      id: 1,
-      coefficient: 1.85,
-      competition: "Лига Наций",
-      startedAt: "22:00 | 4 июня 2025",
-      status: "win",
-      guestTeam: "Германия",
-      homeTeam: "Россия",
-      forecast: "ИТБ 1 ( 1.5 )",
-    },
-    {
-      id: 1,
-      coefficient: 1.85,
-      competition: "Лига Наций",
-      startedAt: "22:00 | 4 июня 2025",
-      status: "win",
-      guestTeam: "Германия",
-      homeTeam: "Россия",
-      forecast: "ИТБ 1 ( 1.5 )",
-    },
-  ];
+  interface MainBannerProps extends Block {
+    item: {
+      id: number;
+      title: string;
+      button_group: ButtonGroup;
+    };
+  }
+
+  const { item } = defineProps<MainBannerProps>();
+
+  const { data, pending, error } = await useGetBetsApi();
+
+  const title = item.title;
+
+  const buttons = item?.button_group?.buttons;
+
+  const bets = computed<BetEntity[]>(() => {
+    if (data?.value?.data == undefined) {
+      return [];
+    }
+
+    return data.value.data.map((bet) => ({
+      id: bet.id,
+      coefficient: bet.coefficient,
+      competition: bet.competition.name,
+      startedAt: bet.started_at,
+      status: bet.status,
+      guestTeam: bet.guest_team.name,
+      homeTeam: bet.home_team.name,
+      forecast: bet.forecast.name,
+    }));
+  });
 </script>
 
 <script lang="ts">
@@ -99,17 +53,37 @@
   >
     <div class="container">
       <div class="half-stats__wrapper">
-        <h2 class="half-stats__title">Статистика</h2>
-        <div class="half-stats__items">
-          <BetCard
-            v-for="item in items"
-            :key="item.competition"
-            v-bind="item"
-          />
-        </div>
-        <div class="half-stats__buttons">
-          <AppButton>Подробнее</AppButton>
-        </div>
+        <h2 class="half-stats__title">
+          {{ title }}
+        </h2>
+        <template v-if="pending">
+          <div class="half-stats__items">
+            <BetCardSkeleton
+              v-for="element in 8"
+              :key="element"
+            />
+          </div>
+        </template>
+        <template v-else-if="!pending && !error && data">
+          <div class="half-stats__items">
+            <BetCard
+              v-for="element in bets"
+              :key="element.competition"
+              v-bind="element"
+            />
+          </div>
+          <div class="half-stats__buttons">
+            <app-button
+              v-for="button of buttons"
+              :key="button.id"
+              :href="button.href"
+              :target="button.target"
+            >
+              {{ button.label }}
+            </app-button>
+          </div>
+        </template>
+        <template v-else> </template>
       </div>
     </div>
   </section>
