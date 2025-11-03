@@ -1,15 +1,24 @@
 <script lang="ts" setup>
+  import DOMPurify from "isomorphic-dompurify";
+  import { computed } from "#imports";
+
   interface AppSafeHtmlRendererProps {
     html: string;
   }
 
   const { html } = defineProps<AppSafeHtmlRendererProps>();
+
+  const sanitizedHtml = computed(() => {
+    return DOMPurify.sanitize(html, {
+      ALLOW_DATA_ATTR: false,
+    });
+  });
 </script>
 
 <template>
   <div
-    v-dompurify-html="html"
     class="app-safe-html-renderer"
+    v-html="sanitizedHtml"
   ></div>
 </template>
 
