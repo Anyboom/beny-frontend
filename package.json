@@ -30,6 +30,8 @@
     "@directus/visual-editing": "^1.1.0",
     "@nuxt/icon": "1.15.",
     "@tanstack/vue-form": "^1.23.8",
+    "@vueuse/core": "^14.0.0",
+    "@vueuse/nuxt": "^14.0.0",
     "dayjs": "^1.11.18",
     "isomorphic-dompurify": "^2.31.0",
     "nuxt": "^4.2.0",
