@@ -11,7 +11,8 @@
 
   const instanceBlock = computed(() => BlocksRepository.get(block.collection));
 
-  const component = computed(() => instanceBlock.value.component);
+  const componentModule = instanceBlock.value.component();
+  const component = componentModule instanceof Promise ? (await componentModule).default : componentModule;
 </script>
 
 <template>

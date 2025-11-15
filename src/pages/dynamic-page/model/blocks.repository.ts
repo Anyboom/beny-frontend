@@ -12,7 +12,7 @@ import { WhyTrustUsBlock } from "~/pages/dynamic-page/blocks/why-trust-us.block"
 import { FullStatsBlock } from "~/pages/dynamic-page/blocks/full-stats.block";
 
 export class BlocksRepository {
-  private static readonly blocks: Map<string, BaseBlock> = new Map([
+  private static readonly blocks: Map<string, BaseBlock> = new Map<string, BaseBlock>([
     [HeaderBlock.name, new HeaderBlock()],
     [AboutUsBlock.name, new AboutUsBlock()],
     [ClickBaitBlock.name, new ClickBaitBlock()],

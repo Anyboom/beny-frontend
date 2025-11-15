@@ -118,6 +118,10 @@
               Коэффициент
               <AppInput />
             </label>
+            <label>
+              Коэффициент
+              <AppInput />
+            </label>
             <div>
               <AppCheckbox label="Выигрыш" />
               <AppCheckbox label="Прогрыш" />
