@@ -9,6 +9,7 @@ import { MainBannerBlock } from "~/pages/dynamic-page/blocks/main-banner.block";
 import { OftenAskBlock } from "~/pages/dynamic-page/blocks/often-ask.block";
 import { PersonalForecastBlock } from "~/pages/dynamic-page/blocks/personal-forecast.block";
 import { WhyTrustUsBlock } from "~/pages/dynamic-page/blocks/why-trust-us.block";
+import { FullStatsBlock } from "~/pages/dynamic-page/blocks/full-stats.block";
 
 export class BlocksRepository {
   private static readonly blocks: Map<string, BaseBlock> = new Map([
@@ -22,6 +23,7 @@ export class BlocksRepository {
     [PersonalForecastBlock.name, new PersonalForecastBlock()],
     [WhyTrustUsBlock.name, new WhyTrustUsBlock()],
     [NotLoadedBlock.name, new NotLoadedBlock()],
+    [FullStatsBlock.name, new FullStatsBlock()],
   ]);
 
   static get(name: string): BaseBlock {
