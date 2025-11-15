@@ -1,1 +1,1 @@
-export { default as AppCheckbox } from "./ui/AppCheckbox.vue";
+export { default as AppCheckbox } from "./AppCheckbox.vue";

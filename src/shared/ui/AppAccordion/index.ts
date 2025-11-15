@@ -1,1 +1,1 @@
-export { default as AppAccordion } from "./ui/AppAccordion.vue";
+export { default as AppAccordion } from "./AppAccordion.vue";

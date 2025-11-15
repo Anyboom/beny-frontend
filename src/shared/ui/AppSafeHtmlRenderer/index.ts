@@ -1,1 +1,1 @@
-export { default as AppSafeHtmlRenderer } from "./ui/AppSafeHtmlRenderer.vue";
+export { default as AppSafeHtmlRenderer } from "./AppSafeHtmlRenderer.vue";

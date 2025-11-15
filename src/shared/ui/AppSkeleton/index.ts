@@ -1,1 +1,1 @@
-export { default as AppSkeleton } from "./ui/AppSkeleton.vue";
+export { default as AppSkeleton } from "./AppSkeleton.vue";

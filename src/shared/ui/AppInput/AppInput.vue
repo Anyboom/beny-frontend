@@ -8,7 +8,7 @@
 </template>
 
 <style scoped lang="scss">
-  @use "@/shared/assets/styles/variables" as *;
+  @use "~/shared/assets/styles/variables" as *;
 
   .app-input {
     background: $color-default-white;

@@ -23,7 +23,7 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/variables" as *;
+  @use "~/shared/assets/styles/variables" as *;
 
   .app-safe-html-renderer {
     p {

@@ -14,8 +14,8 @@
 </template>
 
 <style scoped lang="scss">
-  @use "@/shared/assets/styles/variables" as *;
-  @use "@/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/variables" as *;
+  @use "~/shared/assets/styles/mixins" as *;
 
   .app-accordion {
     &[open] > &__summary {

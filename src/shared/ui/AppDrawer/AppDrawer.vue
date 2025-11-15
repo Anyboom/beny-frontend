@@ -194,9 +194,9 @@
 </template>
 
 <style lang="scss" scoped>
-  @use "@/shared/assets/styles/typography" as *;
-  @use "@/shared/assets/styles/variables" as *;
-  @use "@/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/typography" as *;
+  @use "~/shared/assets/styles/variables" as *;
+  @use "~/shared/assets/styles/mixins" as *;
 
   .app-drawer {
     $block: &;
