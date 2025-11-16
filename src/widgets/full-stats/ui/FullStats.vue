@@ -3,6 +3,8 @@
   import { AppInput } from "~/shared/ui/AppInput";
   import { AppButton } from "~/shared/ui/AppButton";
   import { AppCheckbox } from "~/shared/ui/AppCheckbox";
+  import { AppSelect } from "~/shared/ui/AppSelect";
+  import { ref } from "vue";
 
   const items: BetEntity[] = [
     {
@@ -12,86 +14,219 @@
       startedAt: new Date().toString(),
       status: "win",
       guestTeam: "Германия",
-      homeTeam: "Россия",
+      homeTeam: "Россия1",
       forecast: "ИТБ 1 ( 1.5 )",
     },
     {
-      id: 1,
+      id: 2,
       coefficient: 1.85,
       competition: "Лига Наций",
       startedAt: new Date().toString(),
       status: "win",
       guestTeam: "Германия",
-      homeTeam: "Россия",
+      homeTeam: "Россия2",
       forecast: "ИТБ 1 ( 1.5 )",
     },
     {
-      id: 1,
+      id: 3,
       coefficient: 1.85,
       competition: "Лига Наций",
       startedAt: new Date().toString(),
       status: "win",
       guestTeam: "Германия",
-      homeTeam: "Россия",
+      homeTeam: "Россия3",
       forecast: "ИТБ 1 ( 1.5 )",
     },
     {
-      id: 1,
+      id: 4,
       coefficient: 1.85,
       competition: "Лига Наций",
       startedAt: new Date().toString(),
       status: "win",
       guestTeam: "Германия",
-      homeTeam: "Россия",
+      homeTeam: "Россия4",
       forecast: "ИТБ 1 ( 1.5 )",
     },
     {
-      id: 1,
+      id: 5,
       coefficient: 1.85,
       competition: "Лига Наций",
       startedAt: new Date().toString(),
       status: "win",
       guestTeam: "Германия",
-      homeTeam: "Россия",
+      homeTeam: "Россия5",
       forecast: "ИТБ 1 ( 1.5 )",
     },
     {
-      id: 1,
+      id: 6,
       coefficient: 1.85,
       competition: "Лига Наций",
       startedAt: new Date().toString(),
       status: "win",
       guestTeam: "Германия",
-      homeTeam: "Россия",
+      homeTeam: "Россия6",
       forecast: "ИТБ 1 ( 1.5 )",
     },
     {
-      id: 1,
+      id: 7,
       coefficient: 1.85,
       competition: "Лига Наций",
       startedAt: new Date().toString(),
       status: "win",
       guestTeam: "Германия",
-      homeTeam: "Россия",
+      homeTeam: "Россия7",
       forecast: "ИТБ 1 ( 1.5 )",
     },
     {
-      id: 1,
+      id: 8,
       coefficient: 1.85,
       competition: "Лига Наций",
       startedAt: new Date().toString(),
       status: "win",
       guestTeam: "Германия",
-      homeTeam: "Россия",
+      homeTeam: "Россия8",
+      forecast: "ИТБ 1 ( 1.5 )",
+    },
+    {
+      id: 8,
+      coefficient: 1.85,
+      competition: "Лига Наций",
+      startedAt: new Date().toString(),
+      status: "win",
+      guestTeam: "Германия",
+      homeTeam: "Россия8",
+      forecast: "ИТБ 1 ( 1.5 )",
+    },
+    {
+      id: 8,
+      coefficient: 1.85,
+      competition: "Лига Наций",
+      startedAt: new Date().toString(),
+      status: "win",
+      guestTeam: "Германия",
+      homeTeam: "Россия8",
+      forecast: "ИТБ 1 ( 1.5 )",
+    },
+    {
+      id: 8,
+      coefficient: 1.85,
+      competition: "Лига Наций",
+      startedAt: new Date().toString(),
+      status: "win",
+      guestTeam: "Германия",
+      homeTeam: "Россия8",
+      forecast: "ИТБ 1 ( 1.5 )",
+    },
+    {
+      id: 8,
+      coefficient: 1.85,
+      competition: "Лига Наций",
+      startedAt: new Date().toString(),
+      status: "win",
+      guestTeam: "Германия",
+      homeTeam: "Россия8",
+      forecast: "ИТБ 1 ( 1.5 )",
+    },
+    {
+      id: 8,
+      coefficient: 1.85,
+      competition: "Лига Наций",
+      startedAt: new Date().toString(),
+      status: "win",
+      guestTeam: "Германия",
+      homeTeam: "Россия8",
+      forecast: "ИТБ 1 ( 1.5 )",
+    },
+    {
+      id: 8,
+      coefficient: 1.85,
+      competition: "Лига Наций",
+      startedAt: new Date().toString(),
+      status: "win",
+      guestTeam: "Германия",
+      homeTeam: "Россия8",
+      forecast: "ИТБ 1 ( 1.5 )",
+    },
+    {
+      id: 8,
+      coefficient: 1.85,
+      competition: "Лига Наций",
+      startedAt: new Date().toString(),
+      status: "win",
+      guestTeam: "Германия",
+      homeTeam: "Россия8",
+      forecast: "ИТБ 1 ( 1.5 )",
+    },
+    {
+      id: 8,
+      coefficient: 1.85,
+      competition: "Лига Наций",
+      startedAt: new Date().toString(),
+      status: "win",
+      guestTeam: "Германия",
+      homeTeam: "Россия8",
+      forecast: "ИТБ 1 ( 1.5 )",
+    },
+    {
+      id: 8,
+      coefficient: 1.85,
+      competition: "Лига Наций",
+      startedAt: new Date().toString(),
+      status: "win",
+      guestTeam: "Германия",
+      homeTeam: "Россия8",
+      forecast: "ИТБ 1 ( 1.5 )",
+    },
+    {
+      id: 8,
+      coefficient: 1.85,
+      competition: "Лига Наций",
+      startedAt: new Date().toString(),
+      status: "win",
+      guestTeam: "Германия",
+      homeTeam: "Россия8",
+      forecast: "ИТБ 1 ( 1.5 )",
+    },
+    {
+      id: 8,
+      coefficient: 1.85,
+      competition: "Лига Наций",
+      startedAt: new Date().toString(),
+      status: "win",
+      guestTeam: "Германия",
+      homeTeam: "Россия8",
+      forecast: "ИТБ 1 ( 1.5 )",
+    },
+    {
+      id: 8,
+      coefficient: 1.85,
+      competition: "Лига Наций",
+      startedAt: new Date().toString(),
+      status: "win",
+      guestTeam: "Германия",
+      homeTeam: "Россия8",
+      forecast: "ИТБ 1 ( 1.5 )",
+    },
+    {
+      id: 8,
+      coefficient: 1.85,
+      competition: "Лига Наций",
+      startedAt: new Date().toString(),
+      status: "win",
+      guestTeam: "Германия",
+      homeTeam: "Россия8",
       forecast: "ИТБ 1 ( 1.5 )",
     },
   ];
+
+  const selectedItem = ref<BetEntity>(items[0]!);
 </script>
 
 <template>
   <section class="full-stats">
     <div class="container">
       <div class="full-stats__wrapper">
+        {{ selectedItem }}
         <h2 class="full-stats__title">Статистика</h2>
         <div class="full-stats__layout">
           <div class="full-stats__cards">
@@ -104,7 +239,12 @@
           <div class="full-stats__filters">
             <label>
               Домашная команда
-              <AppInput />
+              <AppSelect
+                v-model="selectedItem"
+                :options="items"
+                data-key="id"
+                option-label="homeTeam"
+              />
             </label>
             <label>
               Гостевая команда

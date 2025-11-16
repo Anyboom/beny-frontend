@@ -9,6 +9,7 @@
 
 <style scoped lang="scss">
   @use "~/shared/assets/styles/variables" as *;
+  @use "~/shared/assets/styles/mixins" as *;
 
   .app-textarea {
     background: $color-default-white;
@@ -17,9 +18,15 @@
     border-radius: $spacing-1;
     padding: $spacing-2;
     resize: none;
+    outline: none;
+    border: 2px solid $color-default-border;
+
+    @include hover {
+      border: 2px solid $color-default-border-hover;
+    }
 
     &:focus {
-      outline: 2px solid $color-accent;
+      border: 2px solid $color-accent;
     }
 
     &::placeholder {

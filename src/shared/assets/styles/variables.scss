@@ -14,7 +14,7 @@ $color-suva-grey: #8f8f8f;
 $color-rock-blue: #94a4c2;
 $color-rosy-brown: #c29494;
 $color-shadow-green: #94c2af;
-$color-grey: #757575;
+$color-grey: #dddddd;
 $color-japanese-laurel: #388e3c;
 $color-persian-red: #d32f2f;
 $color-orange-peel: #ffa000;
@@ -47,6 +47,9 @@ $color-default-white: $color-white;
 $color-default-white-hover: color.adjust($color-default-white, $blackness: 5%);
 
 $color-default-black: $color-ebony;
+
+$color-default-border: $color-grey;
+$color-default-border-hover: $color-accent;
 
 // -------------------------------------------
 
