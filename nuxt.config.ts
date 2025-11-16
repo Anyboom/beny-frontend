@@ -27,6 +27,12 @@ export default defineNuxtConfig({
   srcDir: "./src",
   css: ["@/shared/assets/styles/global.scss"],
 
+  watchers: {
+    chokidar: {
+      ignored: /node_modules/,
+    },
+  },
+
   app: {
     head: {
       link: [
