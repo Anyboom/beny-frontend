@@ -19,7 +19,13 @@
 
   .app-accordion {
     &[open] > &__summary {
-      background: $color-default-white-hover;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+
+      border-top: 2px solid $color-accent;
+      border-left: 2px solid $color-accent;
+      border-right: 2px solid $color-accent;
+      border-bottom: 2px solid transparent;
     }
 
     &__title {
@@ -34,21 +40,27 @@
       list-style: none;
       cursor: pointer;
       user-select: none;
-      transition: $transition-default;
+      transition: background-color $transition-default;
+      border: 2px solid transparent;
 
       @include hover {
-        background: $color-default-white-hover;
+        border: 2px solid $color-default-border;
       }
     }
 
     &__content {
       background: $color-default-white;
       padding: $spacing-3 $spacing-2;
-      border-radius: $spacing-2;
-      margin-top: $spacing-1;
 
       font-size: 14px;
       color: $color-text;
+
+      margin-top: -2px;
+      border-radius: 0 0 $spacing-2 $spacing-2;
+
+      border-bottom: 2px solid $color-accent;
+      border-left: 2px solid $color-accent;
+      border-right: 2px solid $color-accent;
     }
   }
 </style>
