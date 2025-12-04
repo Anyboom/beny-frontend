@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import { ref, computed, onMounted, onBeforeUnmount } from "vue";
-  import { AppInput } from "~/shared/ui/AppInput";
   import { set } from "@vueuse/core";
 
   interface Option {
@@ -176,7 +175,7 @@
         v-if="searchable"
         class="app-select__search"
       >
-        <AppInput
+        <input
           v-model="searchQuery"
           class="app-select__search-input"
           placeholder="Поиск..."
@@ -234,7 +233,9 @@
       justify-content: space-between;
       align-items: center;
 
-      border: 2px solid $color-default-border;
+      border: 2px solid transparent;
+
+      transition: border $transition-default;
 
       @include hover {
         border: 2px solid $color-default-border-hover;
@@ -307,8 +308,17 @@
       border-bottom: 1px solid #eee;
 
       &-input {
+        background: $color-default-white;
+        color: $color-text;
+        font-size: 12px;
+        border-radius: $spacing-1;
+        padding: $spacing-2;
+        border: 2px solid $color-default-border;
         width: 100%;
-        border: 1px solid #ddd;
+
+        &::placeholder {
+          color: $color-placeholder;
+        }
       }
     }
 

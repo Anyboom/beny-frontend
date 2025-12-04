@@ -6,6 +6,11 @@
       <span class="app-accordion__title">
         <slot name="title"></slot>
       </span>
+      <Icon
+        class="app-accordion__icon"
+        name="charm:chevron-down"
+        size="20"
+      />
     </summary>
     <div class="app-accordion__content">
       <slot></slot>
@@ -28,6 +33,14 @@
       border-bottom: 2px solid transparent;
     }
 
+    &[open] &__icon {
+      transform: rotate(180deg);
+    }
+
+    &__icon {
+      transition: transform $transition-default;
+    }
+
     &__title {
       font-weight: 500;
       color: $color-text;
@@ -40,12 +53,10 @@
       list-style: none;
       cursor: pointer;
       user-select: none;
-      transition: background-color $transition-default;
       border: 2px solid transparent;
-
-      @include hover {
-        border: 2px solid $color-default-border;
-      }
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     &__content {

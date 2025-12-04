@@ -19,7 +19,9 @@
     padding: $spacing-2;
     resize: none;
     outline: none;
-    border: 2px solid $color-default-border;
+    border: 2px solid transparent;
+
+    transition: border $transition-default;
 
     @include hover {
       border: 2px solid $color-default-border-hover;

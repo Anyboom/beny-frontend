@@ -20,7 +20,8 @@
     font-size: 12px;
     border-radius: $spacing-1;
     padding: $spacing-2;
-    border: 2px solid $color-default-border;
+    border: 2px solid transparent;
+    transition: border $transition-default;
 
     @include hover {
       border: 2px solid $color-default-border-hover;

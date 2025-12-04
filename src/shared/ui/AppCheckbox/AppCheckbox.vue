@@ -81,7 +81,7 @@
       border: 2px solid #ddd;
       border-radius: 4px;
       margin-right: 8px;
-      transition: all 0.2s ease;
+      transition: all $transition-default;
     }
 
     &.disabled {

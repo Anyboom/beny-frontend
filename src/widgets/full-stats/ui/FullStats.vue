@@ -820,6 +820,7 @@
                 v-model="selectedItem"
                 :options="items"
                 data-key="id"
+                searchable
                 option-label="homeTeam"
               />
             </label>
