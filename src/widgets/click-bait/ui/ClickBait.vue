@@ -48,6 +48,7 @@
 
 <style lang="scss">
   @use "@/shared/assets/styles/variables" as *;
+  @use "@/shared/assets/styles/typography" as *;
   @use "@/shared/assets/styles/mixins" as *;
 
   .click-bait {
@@ -67,8 +68,7 @@
     }
 
     &__content {
-      font-size: 14px;
-      font-weight: 500;
+      @include apply-text("caption");
       color: $color-text;
     }
   }

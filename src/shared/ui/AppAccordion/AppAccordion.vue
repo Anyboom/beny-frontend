@@ -21,6 +21,7 @@
 <style scoped lang="scss">
   @use "~/shared/assets/styles/variables" as *;
   @use "~/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/typography" as *;
 
   .app-accordion {
     &[open] > &__summary {
@@ -42,7 +43,7 @@
     }
 
     &__title {
-      font-weight: 500;
+      @include apply-text("body-small");
       color: $color-text;
     }
 
@@ -62,8 +63,6 @@
     &__content {
       background: $color-default-white;
       padding: $spacing-3 $spacing-2;
-
-      font-size: 14px;
       color: $color-text;
 
       margin-top: -2px;
@@ -72,6 +71,8 @@
       border-bottom: 2px solid $color-accent;
       border-left: 2px solid $color-accent;
       border-right: 2px solid $color-accent;
+
+      @include apply-text("caption");
     }
   }
 </style>

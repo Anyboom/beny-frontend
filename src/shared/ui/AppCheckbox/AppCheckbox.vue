@@ -28,6 +28,7 @@
 <style scoped lang="scss">
   @use "~/shared/assets/styles/variables" as *;
   @use "~/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/typography" as *;
 
   .app-checkbox {
     $this: &;
@@ -69,7 +70,7 @@
     }
 
     &__label {
-      font-size: 14px;
+      @include apply-text("label");
       color: #333;
     }
 

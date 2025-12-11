@@ -13,15 +13,17 @@
 <style scoped lang="scss">
   @use "~/shared/assets/styles/variables" as *;
   @use "~/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/typography" as *;
 
   .app-input {
     background: $color-default-white;
     color: $color-text;
-    font-size: 12px;
     border-radius: $spacing-1;
     padding: $spacing-2;
     border: 2px solid transparent;
     transition: border $transition-default;
+
+    @include apply-text("input");
 
     @include hover {
       border: 2px solid $color-default-border-hover;
@@ -32,6 +34,7 @@
     }
 
     &::placeholder {
+      @include apply-text("caption-small");
       color: $color-placeholder;
     }
   }

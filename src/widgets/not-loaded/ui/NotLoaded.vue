@@ -30,6 +30,8 @@
       border-radius: $spacing-2;
       padding: $spacing-2;
 
+      @include apply-text("body");
+
       display: flex;
       justify-content: space-between;
       align-items: center;

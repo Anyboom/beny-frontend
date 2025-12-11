@@ -14,24 +14,24 @@
       <div class="bet-card__image"></div>
       <div class="bet-card__content">
         <div class="bet-card__content-item">
-          <span>Матч:</span>
-          <span>{{ props.homeTeam }} - {{ props.guestTeam }}</span>
+          <span class="bet-card__content-item-key">Матч:</span>
+          <span class="bet-card__content-item-value">{{ props.homeTeam }} - {{ props.guestTeam }}</span>
         </div>
         <div class="bet-card__content-item">
-          <span>Соревнование:</span>
-          <span>{{ props.competition }}</span>
+          <span class="bet-card__content-item-key">Соревнование:</span>
+          <span class="bet-card__content-item-value">{{ props.competition }}</span>
         </div>
         <div class="bet-card__content-item">
-          <span>Время:</span>
-          <span>{{ startedAt }}</span>
+          <span class="bet-card__content-item-key">Время:</span>
+          <span class="bet-card__content-item-value">{{ startedAt }}</span>
         </div>
         <div class="bet-card__content-item">
-          <span>Прогноз:</span>
-          <span>{{ props.forecast }}</span>
+          <span class="bet-card__content-item-key">Прогноз:</span>
+          <span class="bet-card__content-item-value">{{ props.forecast }}</span>
         </div>
         <div class="bet-card__content-item">
-          <span>КФ:</span>
-          <span>{{ props.coefficient }}</span>
+          <span class="bet-card__content-item-key">КФ:</span>
+          <span class="bet-card__content-item-value">{{ props.coefficient }}</span>
         </div>
       </div>
       <div
@@ -79,11 +79,13 @@
     }
 
     &__content-item {
-      font-size: 12px;
       display: flex;
       gap: 4px;
+      color: $color-text;
 
-      span:first-of-type {
+      @include apply-text("caption-small");
+
+      &-key {
         font-weight: 700;
       }
     }

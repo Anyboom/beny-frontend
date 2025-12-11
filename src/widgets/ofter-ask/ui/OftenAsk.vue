@@ -84,7 +84,7 @@
   .often-ask {
     margin-bottom: $spacing-8;
     &__title {
-      @include heading-h2;
+      @include apply-text("heading-2");
       color: $color-text;
       margin-bottom: $spacing-2;
     }

@@ -31,6 +31,7 @@
 
 <style lang="scss">
   @use "@/shared/assets/styles/variables" as *;
+  @use "@/shared/assets/styles/mixins" as *;
   @use "@/shared/assets/styles/typography" as *;
 
   .footer {
@@ -44,11 +45,19 @@
     &__info {
       color: $color-text;
       opacity: 0.8;
-      font-size: 14px;
+
+      @include apply-text("caption");
     }
 
     &__link {
-      @include link;
+      color: $color-text;
+      border-bottom: 2px solid transparent;
+
+      @include apply-text("link");
+
+      @include hover {
+        border-bottom: 2px solid $color-text;
+      }
     }
   }
 </style>

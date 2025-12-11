@@ -119,6 +119,7 @@
 
 <style lang="scss">
   @use "@/shared/assets/styles/variables" as *;
+  @use "@/shared/assets/styles/typography" as *;
   @use "@/shared/assets/styles/mixins" as *;
 
   .main-banner {
@@ -139,12 +140,11 @@
       }
     }
     &__title {
-      font-size: 60px;
-      font-weight: 700;
       color: $color-text;
-      line-height: 60px;
       margin-bottom: $spacing-5;
       max-width: 540px;
+
+      @include apply-text("display-1");
 
       @include view-port-md {
         max-width: none;

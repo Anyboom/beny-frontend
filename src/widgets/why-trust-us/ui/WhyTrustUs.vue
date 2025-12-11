@@ -65,9 +65,10 @@
   .why-trust-us {
     margin-bottom: $spacing-8;
     &__title {
-      @include heading-h2;
       color: $color-text;
       margin-bottom: $spacing-2;
+
+      @include apply-text("heading-2");
     }
 
     &__card {
@@ -92,13 +93,15 @@
 
     &__card-title {
       color: $color-text;
-      font-weight: 600;
       margin-bottom: $spacing-2;
+
+      @include apply-text("heading-6");
     }
 
     &__card-caption {
       color: #565963;
-      font-size: 14px;
+
+      @include apply-text("caption");
     }
   }
 </style>

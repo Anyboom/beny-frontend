@@ -80,6 +80,7 @@
 <style lang="scss">
   @use "@/shared/assets/styles/variables" as *;
   @use "@/shared/assets/styles/mixins" as *;
+  @use "@/shared/assets/styles/typography" as *;
 
   .header {
     margin-bottom: $spacing-8;
@@ -117,6 +118,8 @@
     &__nav {
       display: flex;
       gap: $spacing-2;
+
+      @include apply-text("link");
 
       @include view-port-md {
         display: none;

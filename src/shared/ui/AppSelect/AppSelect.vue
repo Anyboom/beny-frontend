@@ -259,7 +259,7 @@
 
     &__placeholder {
       color: $color-text;
-      font-size: 12px;
+      @include apply-text("caption-small");
     }
 
     &__selected-labels {
@@ -267,8 +267,9 @@
       overflow: hidden;
       text-overflow: ellipsis;
       flex-grow: 1;
-      font-size: 12px;
       color: $color-text;
+
+      @include apply-text("input");
     }
 
     &__dropdown-remove,
@@ -310,11 +311,12 @@
       &-input {
         background: $color-default-white;
         color: $color-text;
-        font-size: 12px;
         border-radius: $spacing-1;
         padding: $spacing-2;
         border: 2px solid $color-default-border;
         width: 100%;
+
+        @include apply-text("input");
 
         &::placeholder {
           color: $color-placeholder;

@@ -814,7 +814,7 @@
             />
           </div>
           <div class="full-stats__filters">
-            <label>
+            <label class="full-stats__label">
               Домашная команда
               <AppSelect
                 v-model="selectedItem"
@@ -824,19 +824,19 @@
                 option-label="homeTeam"
               />
             </label>
-            <label>
+            <label class="full-stats__label">
               Гостевая команда
               <AppInput />
             </label>
-            <label>
+            <label class="full-stats__label">
               Соревнование
               <AppInput />
             </label>
-            <label>
+            <label class="full-stats__label">
               Коэффициент
               <AppInput />
             </label>
-            <label>
+            <label class="full-stats__label">
               Коэффициент
               <AppInput />
             </label>
@@ -869,9 +869,17 @@
     margin-bottom: $spacing-8;
 
     &__title {
-      @include heading-h2;
+      @include apply-text("heading-2");
       color: $color-text;
       margin-bottom: $spacing-2;
+    }
+
+    &__label {
+      @include apply-text("label");
+      color: $color-text;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-1;
     }
 
     &__cards {

@@ -160,6 +160,7 @@
 
 <style scoped lang="scss">
   @use "@/shared/assets/styles/variables" as *;
+  @use "@/shared/assets/styles/typography" as *;
 
   .personal-forecast-form {
     display: flex;
@@ -172,15 +173,16 @@
     }
 
     &__error {
-      font-size: 12px;
+      @include apply-text("caption-small");
       color: $color-text-error;
     }
 
     &__label {
-      font-size: 14px;
       font-weight: 700;
       color: $color-text;
       width: fit-content;
+
+      @include apply-text("label");
     }
 
     &__buttons {

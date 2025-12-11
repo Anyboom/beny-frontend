@@ -24,10 +24,13 @@
 
 <style lang="scss">
   @use "~/shared/assets/styles/variables" as *;
+  @use "~/shared/assets/styles/typography" as *;
 
   .app-safe-html-renderer {
     p {
       color: $color-text;
+
+      @include apply-text("body");
 
       &:not(:last-of-type) {
         margin-bottom: $spacing-2;

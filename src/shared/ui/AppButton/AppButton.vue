@@ -40,6 +40,7 @@
 <style scoped lang="scss">
   @use "~/shared/assets/styles/mixins" as *;
   @use "~/shared/assets/styles/variables" as *;
+  @use "~/shared/assets/styles/typography" as *;
 
   .app-button {
     display: inline-block;
@@ -49,15 +50,14 @@
     transition: $transition-default;
     padding: $spacing-1 * 1.5 $spacing-3;
 
-    font-size: 14px;
-
     color: $color-default-white;
-    font-weight: 600;
 
     &:disabled {
       opacity: 0.7;
       cursor: not-allowed;
     }
+
+    @include apply-text("button");
 
     @include hover {
       &:not(:disabled) {

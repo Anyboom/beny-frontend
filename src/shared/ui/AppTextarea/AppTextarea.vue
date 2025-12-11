@@ -9,12 +9,12 @@
 
 <style scoped lang="scss">
   @use "~/shared/assets/styles/variables" as *;
+  @use "~/shared/assets/styles/typography" as *;
   @use "~/shared/assets/styles/mixins" as *;
 
   .app-textarea {
     background: $color-default-white;
     color: $color-text;
-    font-size: 12px;
     border-radius: $spacing-1;
     padding: $spacing-2;
     resize: none;
@@ -22,6 +22,8 @@
     border: 2px solid transparent;
 
     transition: border $transition-default;
+
+    @include apply-text("input");
 
     @include hover {
       border: 2px solid $color-default-border-hover;

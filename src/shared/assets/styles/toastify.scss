@@ -1,22 +1,31 @@
 @use "variables" as *;
+@use "typography" as *;
 
 .Toastify__toast-theme--colored.Toastify__toast--default {
   color: $color-toastify-text;
   background: $color-toastify-status-default;
 }
+
 .Toastify__toast-theme--colored.Toastify__toast--info {
   color: $color-toastify-text;
   background: $color-toastify-status-info;
 }
+
 .Toastify__toast-theme--colored.Toastify__toast--success {
   color: $color-toastify-text;
   background: $color-toastify-status-success;
 }
+
 .Toastify__toast-theme--colored.Toastify__toast--warning {
   color: $color-toastify-text;
   background: $color-toastify-status-warning;
 }
+
 .Toastify__toast-theme--colored.Toastify__toast--error {
   color: $color-toastify-text;
   background: $color-toastify-status-error;
+}
+
+.Toastify__toast-body {
+  @include apply-text("body");
 }
