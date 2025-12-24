@@ -6,7 +6,7 @@
   import type { Block } from "~/pages/dynamic-page";
   import type { ButtonGroup } from "~/pages/dynamic-page/model/button-group.interface";
 
-  interface MainBannerProps extends Block {
+  interface HalfStatsProps extends Block {
     item: {
       id: number;
       title: string;
@@ -14,9 +14,14 @@
     };
   }
 
-  const { item } = defineProps<MainBannerProps>();
+  const { item } = defineProps<HalfStatsProps>();
 
-  const { data, pending, error } = await useGetBetsApi();
+  const { data, pending, error } = await useGetBetsApi({
+    fields: "*.*",
+    limit: 8,
+    sort: "-date_updated",
+    filter: { "status": { "_nin": "pending" } },
+  });
 
   const title = item.title;
 
@@ -27,15 +32,15 @@
       return [];
     }
 
-    return data.value.data.map((bet) => ({
-      id: bet.id,
-      coefficient: bet.coefficient,
-      competition: bet.competition.name,
-      startedAt: bet.started_at,
-      status: bet.status,
-      guestTeam: bet.guest_team.name,
-      homeTeam: bet.home_team.name,
-      forecast: bet.forecast.name,
+    return data.value.data.map((bet: any) => ({
+      id: bet?.id,
+      coefficient: bet?.coefficient,
+      competition: bet?.competition?.name,
+      startedAt: bet?.started_at,
+      status: bet?.status,
+      guestTeam: bet?.guest_team?.name,
+      homeTeam: bet?.home_team?.name,
+      forecast: bet?.forecast?.name,
     }));
   });
 </script>
@@ -67,8 +72,8 @@
         <template v-else-if="!pending && !error && data">
           <div class="half-stats__items">
             <BetCard
-              v-for="element in bets"
-              :key="element.competition"
+              v-for="(element, index) in bets"
+              :key="index"
               v-bind="element"
             />
           </div>
