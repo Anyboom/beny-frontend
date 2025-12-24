@@ -3,15 +3,13 @@
   import { AppInput } from "~/shared/ui/AppInput";
   import { AppButton } from "~/shared/ui/AppButton";
   import { AppCheckbox } from "~/shared/ui/AppCheckbox";
-  import { useRoute } from "#app";
   import { onMounted, ref, watch } from "vue";
   import { getTotalBetsApi } from "~/entities/bet/api/get-total-bets.api";
   import { AppPaginator } from "~/shared/ui/AppPaginator";
   import { computed } from "#imports";
+  import { useRouteQuery } from "@vueuse/router";
 
-  const route = useRoute();
-
-  const currentPage = ref(Number(route.query.page) || 1);
+  const currentPage = useRouteQuery("page", 1, { transform: Number });
   const totalItems = ref(0);
   const itemsPerPage = 9;
 
