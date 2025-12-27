@@ -2,6 +2,7 @@
   import { BetCard, useGetBetsApi, BetCardSkeleton } from "~/entities/bet";
   import { AppButton } from "~/shared/ui/AppButton";
   import type { Block, ButtonGroup } from "~/pages/dynamic-page";
+  import { setAttr } from "@directus/visual-editing";
 
   interface HalfStatsProps extends Block {
     item: {
@@ -38,7 +39,10 @@
   >
     <div class="container">
       <div class="half-stats__wrapper">
-        <h2 class="half-stats__title">
+        <h2
+          class="half-stats__title"
+          :data-directus="setAttr({ collection: 'block_half_stats', item: item.id, fields: 'title', mode: 'modal' })"
+        >
           {{ title }}
         </h2>
         <template v-if="pending">
@@ -57,7 +61,12 @@
               v-bind="element"
             />
           </div>
-          <div class="half-stats__buttons">
+          <div
+            class="half-stats__buttons"
+            :data-directus="
+              setAttr({ collection: 'block_half_stats', item: item.id, fields: 'button_group', mode: 'modal' })
+            "
+          >
             <app-button
               v-for="button of buttons"
               :key="button.id"
