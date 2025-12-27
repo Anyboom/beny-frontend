@@ -1,10 +1,9 @@
 <script setup lang="ts">
   import { AppButton } from "~/shared/ui/AppButton";
-  import { BetCard } from "~/entities/bet";
-  import type { Block } from "~/pages/dynamic-page";
-  import type { ButtonGroup } from "~/pages/dynamic-page/model/button-group.interface";
-  import type { BetStatusEnum } from "~/entities/bet/model/bet.entity";
+  import { BetCard, type BetDTO } from "~/entities/bet";
+  import type { Block, ButtonGroup } from "~/pages/dynamic-page";
   import { setAttr } from "@directus/visual-editing";
+  import { toBetMapper } from "~/entities/bet/api/to-bet.mapper";
 
   interface MainBannerProps extends Block {
     item: {
@@ -13,24 +12,7 @@
       button_group: ButtonGroup;
       bets: {
         id: number;
-        bets_id: {
-          id: number;
-          started_at: string;
-          coefficient: number;
-          status: BetStatusEnum;
-          home_team: {
-            name: string;
-          };
-          guest_team: {
-            name: string;
-          };
-          competition: {
-            name: string;
-          };
-          forecast: {
-            name: string;
-          };
-        };
+        bets_id: BetDTO;
       }[];
     };
   }
@@ -41,16 +23,7 @@
 
   const buttons = item.button_group.buttons;
 
-  const bets = item.bets.map((bet) => ({
-    id: bet.bets_id.id,
-    coefficient: bet.bets_id.coefficient,
-    competition: bet.bets_id.competition.name,
-    startedAt: bet.bets_id.started_at,
-    status: bet.bets_id.status,
-    guestTeam: bet.bets_id.guest_team.name,
-    homeTeam: bet.bets_id.home_team.name,
-    forecast: bet.bets_id.forecast.name,
-  }));
+  const bets = item.bets.map((bet) => toBetMapper(bet.bets_id));
 </script>
 
 <script lang="ts">

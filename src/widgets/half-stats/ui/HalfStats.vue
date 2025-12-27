@@ -1,10 +1,7 @@
 <script setup lang="ts">
-  import { BetCard, type BetEntity, useGetBetsApi } from "~/entities/bet";
+  import { BetCard, useGetBetsApi, BetCardSkeleton } from "~/entities/bet";
   import { AppButton } from "~/shared/ui/AppButton";
-  import BetCardSkeleton from "~/entities/bet/ui/BetCardSkeleton.vue";
-  import { computed } from "#imports";
-  import type { Block } from "~/pages/dynamic-page";
-  import type { ButtonGroup } from "~/pages/dynamic-page/model/button-group.interface";
+  import type { Block, ButtonGroup } from "~/pages/dynamic-page";
 
   interface HalfStatsProps extends Block {
     item: {
@@ -26,23 +23,6 @@
   const title = item.title;
 
   const buttons = item?.button_group?.buttons;
-
-  const bets = computed<BetEntity[]>(() => {
-    if (data?.value?.data == undefined) {
-      return [];
-    }
-
-    return data.value.data.map((bet: any) => ({
-      id: bet?.id,
-      coefficient: bet?.coefficient,
-      competition: bet?.competition?.name,
-      startedAt: bet?.started_at,
-      status: bet?.status,
-      guestTeam: bet?.guest_team?.name,
-      homeTeam: bet?.home_team?.name,
-      forecast: bet?.forecast?.name,
-    }));
-  });
 </script>
 
 <script lang="ts">
@@ -72,7 +52,7 @@
         <template v-else-if="!pending && !error && data">
           <div class="half-stats__items">
             <BetCard
-              v-for="(element, index) in bets"
+              v-for="(element, index) in data"
               :key="index"
               v-bind="element"
             />

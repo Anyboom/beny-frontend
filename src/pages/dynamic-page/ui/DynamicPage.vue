@@ -7,7 +7,7 @@
 
   const route = useRoute();
 
-  const currentPage: Page = route?.["meta"]?.["currentPage"] as Page;
+  const currentPage: Page | undefined = route?.["meta"]?.["currentPage"] as Page | undefined;
 
   if (currentPage == undefined) {
     throw createError({
@@ -35,7 +35,7 @@
 
 <template>
   <DynamicComponent
-    v-for="(block, index) of currentPage.blocks"
+    v-for="(block, index) of currentPage?.blocks"
     :key="index"
     :block="block"
   />

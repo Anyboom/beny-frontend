@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { BetEntity } from "~/entities/bet/model/bet.entity";
+  import type { BetEntity } from "../model/bet.entity";
   import "dayjs/locale/ru";
   import { dayjs } from "~/shared/lib/dayjs";
 
@@ -15,11 +15,11 @@
       <div class="bet-card__content">
         <div class="bet-card__content-item">
           <span class="bet-card__content-item-key">Матч:</span>
-          <span class="bet-card__content-item-value">{{ props.homeTeam }} - {{ props.guestTeam }}</span>
+          <span class="bet-card__content-item-value">{{ homeTeam.name }} - {{ guestTeam.name }}</span>
         </div>
         <div class="bet-card__content-item">
           <span class="bet-card__content-item-key">Соревнование:</span>
-          <span class="bet-card__content-item-value">{{ props.competition }}</span>
+          <span class="bet-card__content-item-value">{{ competition.name }}</span>
         </div>
         <div class="bet-card__content-item">
           <span class="bet-card__content-item-key">Время:</span>
@@ -27,16 +27,16 @@
         </div>
         <div class="bet-card__content-item">
           <span class="bet-card__content-item-key">Прогноз:</span>
-          <span class="bet-card__content-item-value">{{ props.forecast }}</span>
+          <span class="bet-card__content-item-value">{{ forecast.name }}</span>
         </div>
         <div class="bet-card__content-item">
           <span class="bet-card__content-item-key">КФ:</span>
-          <span class="bet-card__content-item-value">{{ props.coefficient }}</span>
+          <span class="bet-card__content-item-value">{{ coefficient }}</span>
         </div>
       </div>
       <div
         class="bet-card__status"
-        :class="[`bet-card__status--${props.status}`]"
+        :class="[`bet-card__status--${status}`]"
       ></div>
     </div>
   </div>

@@ -1,19 +1,16 @@
-export const BetStatusEnum = {
-  win: "win",
-  lose: "lose",
-  pending: "pending",
-  return: "return",
-} as const;
+import type { BetStatusEnum } from "./bet-status.enum";
 
-export type BetStatusEnum = (typeof BetStatusEnum)[keyof typeof BetStatusEnum];
+import type { TeamEntity } from "~/entities/team";
+import type { CompetitionEntity } from "~/entities/competition";
+import type { ForecastEntity } from "~/entities/forecast";
 
 export type BetEntity = {
   id: number;
-  homeTeam: string;
-  guestTeam: string;
-  competition: string;
+  homeTeam: TeamEntity;
+  guestTeam: TeamEntity;
+  competition: CompetitionEntity;
   startedAt: string;
-  forecast: string;
+  forecast: ForecastEntity;
   coefficient: number;
   status: BetStatusEnum;
 };

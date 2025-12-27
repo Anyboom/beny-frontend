@@ -1,10 +1,9 @@
 <script setup lang="ts">
-  import { BetCard, type BetEntity, useGetBetsApi } from "~/entities/bet";
+  import { BetCard, getTotalBetsApi, useGetBetsApi } from "~/entities/bet";
   import { AppInput } from "~/shared/ui/AppInput";
   import { AppButton } from "~/shared/ui/AppButton";
   import { AppCheckbox } from "~/shared/ui/AppCheckbox";
   import { onMounted, ref, watch } from "vue";
-  import { getTotalBetsApi } from "~/entities/bet/api/get-total-bets.api";
   import { AppPaginator } from "~/shared/ui/AppPaginator";
   import { computed } from "#imports";
   import { useRouteQuery } from "@vueuse/router";
@@ -21,23 +20,6 @@
   }));
 
   const { data, refresh } = await useGetBetsApi(parameters);
-
-  const bets = computed<BetEntity[]>(() => {
-    if (data?.value?.data == undefined) {
-      return [];
-    }
-
-    return data.value.data.map((bet: any) => ({
-      id: bet?.id,
-      coefficient: bet?.coefficient,
-      competition: bet?.competition?.name,
-      startedAt: bet?.started_at,
-      status: bet?.status,
-      guestTeam: bet?.guest_team?.name,
-      homeTeam: bet?.home_team?.name,
-      forecast: bet?.forecast?.name,
-    }));
-  });
 
   onMounted(async () => {
     totalItems.value = await getTotalBetsApi();
@@ -58,7 +40,7 @@
         <div class="full-stats__layout">
           <div class="full-stats__cards">
             <BetCard
-              v-for="item of bets"
+              v-for="item of data"
               v-bind="item"
               :key="item.id"
             />

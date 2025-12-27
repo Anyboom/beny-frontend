@@ -40,13 +40,7 @@
 <template>
   <form
     class="personal-forecast-form"
-    @submit="
-      (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        form.handleSubmit();
-      }
-    "
+    @submit.prevent.self="form.handleSubmit"
   >
     <form.Field name="name">
       <template #default="{ field, state }">
