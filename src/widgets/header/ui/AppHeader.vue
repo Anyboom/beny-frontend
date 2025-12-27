@@ -2,6 +2,7 @@
   import { AppLogo } from "~/shared/ui/AppLogo";
   import { Icon } from "#components";
   import { ref } from "vue";
+  import type { Block, ButtonGroup } from "~/pages/dynamic-page";
 
   const isVisibleMobileMenu = ref<boolean>(false);
 
@@ -13,28 +14,16 @@
     isVisibleMobileMenu.value = false;
   }
 
-  const items = [
-    {
-      link: "#about-us",
-      value: "О нас",
-    },
-    {
-      link: "#why-trust-us",
-      value: "Почему нам доверяют",
-    },
-    {
-      link: "#half-stats",
-      value: "Статистика",
-    },
-    {
-      link: "#often-ask",
-      value: "Часто спрашивают",
-    },
-    {
-      link: "#personal-forecast",
-      value: "Индивидуальный прогноз",
-    },
-  ];
+  interface HalfStatsProps extends Block {
+    item: {
+      id: number;
+      button_group: ButtonGroup;
+    };
+  }
+
+  const { item } = defineProps<HalfStatsProps>();
+
+  const elements = item?.button_group?.buttons;
 </script>
 
 <script lang="ts">
@@ -56,13 +45,14 @@
             :class="{ 'header__nav--open': isVisibleMobileMenu }"
           >
             <a
-              v-for="item in items"
-              :key="item.value"
+              v-for="element in elements"
+              :key="element.id"
               class="header__nav-item"
-              :href="item.link"
+              :href="element.href"
+              :target="element.target"
               @click="closeMenu"
             >
-              {{ item.value }}
+              {{ element.label }}
             </a>
           </nav>
           <Icon
