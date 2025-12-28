@@ -1,8 +1,9 @@
 <script setup lang="ts">
-  import { BetCard, useGetBetsApi, BetCardSkeleton } from "~/entities/bet";
+  import { BetCard, BetCardSkeleton, getBetsApi } from "~/entities/bet";
   import { AppButton } from "~/shared/ui/AppButton";
   import type { Block, ButtonGroup } from "~/pages/dynamic-page";
   import { setAttr } from "@directus/visual-editing";
+  import { useAsyncData } from "#app";
 
   interface HalfStatsProps extends Block {
     item: {
@@ -14,12 +15,14 @@
 
   const { item } = defineProps<HalfStatsProps>();
 
-  const { data, pending, error } = await useGetBetsApi({
-    fields: "*.*",
-    limit: 8,
-    sort: "-date_updated",
-    filter: { "status": { "_nin": "pending" } },
-  });
+  const { data, pending, error } = await useAsyncData(() =>
+    getBetsApi({
+      fields: "*.*",
+      limit: 8,
+      sort: "-date_updated",
+      filter: { "status": { "_nin": "pending" } },
+    }),
+  );
 
   const title = item.title;
 

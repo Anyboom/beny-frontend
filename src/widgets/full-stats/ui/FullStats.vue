@@ -1,16 +1,13 @@
 <script setup lang="ts">
-  import { BetCard, getTotalBetsApi, useGetBetsApi } from "~/entities/bet";
-  import { AppInput } from "~/shared/ui/AppInput";
-  import { AppButton } from "~/shared/ui/AppButton";
-  import { AppCheckbox } from "~/shared/ui/AppCheckbox";
-  import { onMounted, ref, watch } from "vue";
-  import { AppPaginator } from "~/shared/ui/AppPaginator";
+  import { BetCard, getBetsApi, getTotalBetsApi } from "~/entities/bet";
+  import { AppPaginator, AppPaginatorSkeleton } from "~/shared/ui/AppPaginator";
   import { computed } from "#imports";
   import { useRouteQuery } from "@vueuse/router";
+  import FullStatsFilters from "./FullStatsFilters.vue";
+  import { useAsyncData } from "#app";
 
   const currentPage = useRouteQuery("page", 1, { transform: Number });
-  const totalItems = ref(0);
-  const itemsPerPage = 9;
+  const itemsPerPage = 1;
 
   const parameters = computed(() => ({
     fields: "*.*",
@@ -19,17 +16,20 @@
     page: currentPage.value,
   }));
 
-  const { data, refresh } = await useGetBetsApi(parameters);
+  const pageForBets = computed(() => `bets-${parameters.value.page}`);
 
-  onMounted(async () => {
-    totalItems.value = await getTotalBetsApi();
+  const { data: bets } = await useAsyncData(pageForBets, () => getBetsApi(parameters), {
+    server: false,
+  });
+
+  const { data: totalItems, status: statusForTotalItems } = await useAsyncData(() => getTotalBetsApi(), {
+    default: () => 0,
+    server: false,
   });
 
   function handlePageChange(page: number) {
     currentPage.value = page;
   }
-
-  watch(currentPage, () => refresh());
 </script>
 
 <template>
@@ -40,38 +40,18 @@
         <div class="full-stats__layout">
           <div class="full-stats__cards">
             <BetCard
-              v-for="item of data"
+              v-for="item of bets"
               v-bind="item"
               :key="item.id"
             />
           </div>
-          <div class="full-stats__filters">
-            <label class="full-stats__label">
-              Гостевая команда
-              <AppInput />
-            </label>
-            <label class="full-stats__label">
-              Соревнование
-              <AppInput />
-            </label>
-            <label class="full-stats__label">
-              Коэффициент
-              <AppInput />
-            </label>
-            <label class="full-stats__label">
-              Коэффициент
-              <AppInput />
-            </label>
-            <div>
-              <AppCheckbox label="Выигрыш" />
-              <AppCheckbox label="Прогрыш" />
-              <AppCheckbox label="Возврат" />
-              <AppCheckbox label="Ожидание" />
-            </div>
-            <AppButton>Обновить</AppButton>
-          </div>
+          <FullStatsFilters />
         </div>
+
+        <AppPaginatorSkeleton v-show="['idle', 'pending'].includes(statusForTotalItems)" />
+
         <AppPaginator
+          v-show="['success'].includes(statusForTotalItems)"
           :current-page="currentPage"
           :total-items="totalItems"
           :items-per-page="itemsPerPage"
@@ -96,14 +76,6 @@
       margin-bottom: $spacing-2;
     }
 
-    &__label {
-      @include apply-text("label");
-      color: $color-text;
-      display: flex;
-      flex-direction: column;
-      gap: $spacing-1;
-    }
-
     &__cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -115,17 +87,6 @@
       display: grid;
       grid-template-columns: 3fr 1fr;
       gap: $spacing-6;
-    }
-
-    &__filters {
-      display: flex;
-      flex-direction: column;
-
-      gap: $spacing-2;
-
-      input {
-        width: 100%;
-      }
     }
   }
 </style>

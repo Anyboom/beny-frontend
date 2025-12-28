@@ -82,9 +82,11 @@
 
   function isSelected(option: Option): boolean {
     const optionKey = getItemKey(option);
+
     if (selectedItems.value) {
       return getItemKey(selectedItems.value) === optionKey;
     }
+
     return false;
   }
 
@@ -106,6 +108,7 @@
     if (selectedItems.value) {
       return getOptionLabel(selectedItems.value);
     }
+
     return undefined;
   });
 </script>
