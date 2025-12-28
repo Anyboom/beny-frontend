@@ -16,11 +16,9 @@
     page: currentPage.value,
   }));
 
-  const pageForBets = computed(() => `bets-${parameters.value.page}`);
+  const pageForBets = computed(() => `bets-${currentPage.value}`);
 
-  const { data: bets } = await useAsyncData(pageForBets, () => getBetsApi(parameters), {
-    server: false,
-  });
+  const { data: bets } = await useAsyncData(pageForBets, () => getBetsApi(parameters));
 
   const { data: totalItems, status: statusForTotalItems } = await useAsyncData(() => getTotalBetsApi(), {
     default: () => 0,
