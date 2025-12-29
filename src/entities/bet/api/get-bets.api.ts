@@ -1,9 +1,9 @@
 import { pathDirectus } from "~/shared/api/path-directus";
 import { type MaybeRefOrGetter, toValue } from "vue";
-import { toBetMapper } from "~/entities/bet/api/to-bet.mapper";
+import type { BetDTO } from "~/entities/bet";
 
-export async function getBetsApi(params: MaybeRefOrGetter<object> = {}) {
-  const response = await $fetch<{ data: any[] }>(`${pathDirectus}/items/bets`, { params: toValue(params) });
-
-  return response?.data?.map((item: any) => toBetMapper(item)) || [];
+export function getBetsApi(params: MaybeRefOrGetter<object> = {}): Promise<{ data: BetDTO[] }> {
+  return $fetch<{ data: BetDTO[] }>(`${pathDirectus}/items/bets`, {
+    params: toValue(params),
+  });
 }

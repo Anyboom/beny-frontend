@@ -5,9 +5,10 @@
   import { useRouteQuery } from "@vueuse/router";
   import FullStatsFilters from "./FullStatsFilters.vue";
   import { useAsyncData } from "#app";
+  import { toBetMapper } from "~/entities/bet/api/to-bet.mapper";
 
   const currentPage = useRouteQuery("page", 1, { transform: Number });
-  const itemsPerPage = 1;
+  const itemsPerPage = 9;
 
   const parameters = computed(() => ({
     fields: "*.*",
@@ -18,11 +19,14 @@
 
   const pageForBets = computed(() => `bets-${currentPage.value}`);
 
-  const { data: bets } = await useAsyncData(pageForBets, () => getBetsApi(parameters));
+  const { data: bets } = await useAsyncData(pageForBets, () => getBetsApi(parameters), {
+    transform: (response) => response.data.map(toBetMapper),
+  });
 
   const { data: totalItems, status: statusForTotalItems } = await useAsyncData(() => getTotalBetsApi(), {
     default: () => 0,
     server: false,
+    transform: (response) => response.data.at(0)!.count,
   });
 
   function handlePageChange(page: number) {

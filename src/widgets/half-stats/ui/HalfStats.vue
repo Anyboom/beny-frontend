@@ -4,6 +4,7 @@
   import type { Block, ButtonGroup } from "~/pages/dynamic-page";
   import { setAttr } from "@directus/visual-editing";
   import { useAsyncData } from "#app";
+  import { toBetMapper } from "~/entities/bet/api/to-bet.mapper";
 
   interface HalfStatsProps extends Block {
     item: {
@@ -15,13 +16,17 @@
 
   const { item } = defineProps<HalfStatsProps>();
 
-  const { data, pending, error } = await useAsyncData(() =>
-    getBetsApi({
-      fields: "*.*",
-      limit: 8,
-      sort: "-date_updated",
-      filter: { "status": { "_nin": "pending" } },
-    }),
+  const { data, pending, error } = await useAsyncData(
+    () =>
+      getBetsApi({
+        fields: "*.*",
+        limit: 8,
+        sort: "-date_updated",
+        filter: { "status": { "_nin": "pending" } },
+      }),
+    {
+      transform: (response) => response.data.map(toBetMapper),
+    },
   );
 
   const title = item.title;

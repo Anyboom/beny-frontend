@@ -1,11 +1,9 @@
 import { pathDirectus } from "~/shared/api/path-directus";
 
-export async function getTotalBetsApi(): Promise<number> {
-  const response: any = await $fetch(`${pathDirectus}/items/bets`, {
+export async function getTotalBetsApi(): Promise<{ data: { count: number }[] }> {
+  return $fetch(`${pathDirectus}/items/bets`, {
     params: {
       "aggregate[count]": "*",
     },
   });
-
-  return response?.data?.[0]?.count || 0;
 }

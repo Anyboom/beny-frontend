@@ -2,9 +2,9 @@
   import { AppCheckbox } from "~/shared/ui/AppCheckbox";
   import { AppButton } from "~/shared/ui/AppButton";
   import { useAsyncData } from "#app";
-  import { type CompetitionEntity, getCompetitionsApi } from "~/entities/competition";
-  import { getTeamsApi, type TeamEntity } from "~/entities/team";
-  import { type ForecastEntity, getForecastsApi } from "~/entities/forecast";
+  import { type CompetitionEntity, getCompetitionsApi, toCompetitionMapper } from "~/entities/competition";
+  import { getTeamsApi, type TeamEntity, toTeamMapper } from "~/entities/team";
+  import { type ForecastEntity, getForecastsApi, toForecastMapper } from "~/entities/forecast";
   import { AppSelect } from "~/shared/ui/AppSelect";
   import { reactive, ref, watchOnce } from "#imports";
   import FullStatsFiltersSkeleton from "~/widgets/full-stats/ui/FullStatsFiltersSkeleton.vue";
@@ -14,6 +14,11 @@
     () => Promise.all([getTeamsApi(), getCompetitionsApi(), getForecastsApi()]),
     {
       server: false,
+      transform: (response) => [
+        response[0].data.map(toTeamMapper),
+        response[1].data.map(toCompetitionMapper),
+        response[2].data.map(toForecastMapper),
+      ],
     },
   );
 
