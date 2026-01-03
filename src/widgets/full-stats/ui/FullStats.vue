@@ -1,37 +1,10 @@
 <script setup lang="ts">
-  import { BetCard, getBetsApi, getTotalBetsApi } from "~/entities/bet";
   import { AppPaginator, AppPaginatorSkeleton } from "~/shared/ui/AppPaginator";
-  import { computed } from "#imports";
-  import { useRouteQuery } from "@vueuse/router";
   import FullStatsFilters from "./FullStatsFilters.vue";
-  import { useAsyncData } from "#app";
-  import { toBetMapper } from "~/entities/bet/api/to-bet.mapper";
+  import FullStatsCards from "~/widgets/full-stats/ui/FullStatsCards.vue";
+  import { useFullStats } from "~/widgets/full-stats/model/use-full-stats";
 
-  const currentPage = useRouteQuery("page", 1, { transform: Number });
-  const itemsPerPage = 9;
-
-  const parameters = computed(() => ({
-    fields: "*.*",
-    limit: itemsPerPage,
-    sort: "-date_updated",
-    page: currentPage.value,
-  }));
-
-  const pageForBets = computed(() => `bets-${currentPage.value}`);
-
-  const { data: bets } = await useAsyncData(pageForBets, () => getBetsApi(parameters), {
-    transform: (response) => response.data.map(toBetMapper),
-  });
-
-  const { data: totalItems, status: statusForTotalItems } = await useAsyncData(() => getTotalBetsApi(), {
-    default: () => 0,
-    server: false,
-    transform: (response) => response.data.at(0)!.count,
-  });
-
-  function handlePageChange(page: number) {
-    currentPage.value = page;
-  }
+  const { currentPage, itemsPerPage, total, changePage, statusOfTotal } = useFullStats();
 </script>
 
 <template>
@@ -39,26 +12,21 @@
     <div class="container">
       <div class="full-stats__wrapper">
         <h2 class="full-stats__title">Статистика</h2>
+
         <div class="full-stats__layout">
-          <div class="full-stats__cards">
-            <BetCard
-              v-for="item of bets"
-              v-bind="item"
-              :key="item.id"
-            />
-          </div>
+          <FullStatsCards />
           <FullStatsFilters />
         </div>
 
-        <AppPaginatorSkeleton v-show="['idle', 'pending'].includes(statusForTotalItems)" />
-
         <AppPaginator
-          v-show="['success'].includes(statusForTotalItems)"
+          v-show="['success'].includes(statusOfTotal)"
           :current-page="currentPage"
-          :total-items="totalItems"
+          :total-items="total"
           :items-per-page="itemsPerPage"
-          @page-changed="handlePageChange"
+          @page-changed="changePage"
         />
+
+        <AppPaginatorSkeleton v-show="['loading', 'pending'].includes(statusOfTotal)" />
       </div>
     </div>
   </section>
@@ -76,13 +44,6 @@
       @include apply-text("heading-2");
       color: $color-text;
       margin-bottom: $spacing-2;
-    }
-
-    &__cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: $spacing-2;
-      align-content: start;
     }
 
     &__layout {

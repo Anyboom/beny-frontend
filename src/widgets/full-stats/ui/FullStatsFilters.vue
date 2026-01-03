@@ -6,9 +6,10 @@
   import { getTeamsApi, type TeamEntity, toTeamMapper } from "~/entities/team";
   import { type ForecastEntity, getForecastsApi, toForecastMapper } from "~/entities/forecast";
   import { AppSelect } from "~/shared/ui/AppSelect";
-  import { reactive, ref, watchOnce } from "#imports";
+  import { ref, storeToRefs, watchOnce } from "#imports";
   import FullStatsFiltersSkeleton from "~/widgets/full-stats/ui/FullStatsFiltersSkeleton.vue";
   import { set } from "@vueuse/core";
+  import { useFullStatsFiltersStore } from "~/widgets/full-stats/model/full-stats-filters.store";
 
   const { data, status } = await useAsyncData(
     () => Promise.all([getTeamsApi(), getCompetitionsApi(), getForecastsApi()]),
@@ -36,12 +37,9 @@
     set(forecasts, data.value.at(2) || []);
   });
 
-  const filters = reactive({
-    homeTeam: undefined,
-    guestTeam: undefined,
-    competition: undefined,
-    forecasts: undefined,
-  });
+  const fullStatsStore = useFullStatsFiltersStore();
+
+  const { filters } = storeToRefs(fullStatsStore);
 </script>
 
 <template>

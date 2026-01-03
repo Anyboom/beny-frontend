@@ -52,5 +52,5 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@nuxt/icon", "@vueuse/nuxt"],
+  modules: ["@nuxt/icon", "@vueuse/nuxt", "@pinia/nuxt", "@pinia/colada-nuxt"],
 });
