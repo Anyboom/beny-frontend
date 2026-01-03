@@ -1,5 +1,6 @@
 @use "variables" as *;
 @use "mixins" as *;
+@use "sass:map";
 
 $font-families: (
   "primary": (
@@ -58,105 +59,105 @@ $letter-spacings: (
 
 $text-styles: (
   "display-1": (
-    "font-size": map-get($font-sizes, "6xl"),
-    "font-weight": map-get($font-weights, "bold"),
-    "line-height": map-get($line-heights, "none"),
-    "letter-spacing": map-get($letter-spacings, "normal"),
+    "font-size": map.get($font-sizes, "6xl"),
+    "font-weight": map.get($font-weights, "bold"),
+    "line-height": map.get($line-heights, "none"),
+    "letter-spacing": map.get($letter-spacings, "normal"),
   ),
   "display-2": (
-    "font-size": map-get($font-sizes, "5xl"),
-    "font-weight": map-get($font-weights, "bold"),
-    "line-height": map-get($line-heights, "tight"),
-    "letter-spacing": map-get($letter-spacings, "tight"),
+    "font-size": map.get($font-sizes, "5xl"),
+    "font-weight": map.get($font-weights, "bold"),
+    "line-height": map.get($line-heights, "tight"),
+    "letter-spacing": map.get($letter-spacings, "tight"),
   ),
   "heading-1": (
-    "font-size": map-get($font-sizes, "4xl"),
-    "font-weight": map-get($font-weights, "bold"),
-    "line-height": map-get($line-heights, "tight"),
+    "font-size": map.get($font-sizes, "4xl"),
+    "font-weight": map.get($font-weights, "bold"),
+    "line-height": map.get($line-heights, "tight"),
   ),
   "heading-2": (
-    "font-size": map-get($font-sizes, "3xl"),
-    "font-weight": map-get($font-weights, "bold"),
-    "line-height": map-get($line-heights, "snug"),
+    "font-size": map.get($font-sizes, "3xl"),
+    "font-weight": map.get($font-weights, "bold"),
+    "line-height": map.get($line-heights, "snug"),
   ),
   "heading-3": (
-    "font-size": map-get($font-sizes, "2xl"),
-    "font-weight": map-get($font-weights, "semibold"),
-    "line-height": map-get($line-heights, "snug"),
+    "font-size": map.get($font-sizes, "2xl"),
+    "font-weight": map.get($font-weights, "semibold"),
+    "line-height": map.get($line-heights, "snug"),
   ),
   "heading-4": (
-    "font-size": map-get($font-sizes, "xl"),
-    "font-weight": map-get($font-weights, "semibold"),
-    "line-height": map-get($line-heights, "normal"),
+    "font-size": map.get($font-sizes, "xl"),
+    "font-weight": map.get($font-weights, "semibold"),
+    "line-height": map.get($line-heights, "normal"),
   ),
   "heading-5": (
-    "font-size": map-get($font-sizes, "lg"),
-    "font-weight": map-get($font-weights, "semibold"),
-    "line-height": map-get($line-heights, "normal"),
+    "font-size": map.get($font-sizes, "lg"),
+    "font-weight": map.get($font-weights, "semibold"),
+    "line-height": map.get($line-heights, "normal"),
   ),
   "heading-6": (
-    "font-size": map-get($font-sizes, "base"),
-    "font-weight": map-get($font-weights, "semibold"),
-    "line-height": map-get($line-heights, "normal"),
+    "font-size": map.get($font-sizes, "base"),
+    "font-weight": map.get($font-weights, "semibold"),
+    "line-height": map.get($line-heights, "normal"),
   ),
   "body-large": (
-    "font-size": map-get($font-sizes, "lg"),
-    "font-weight": map-get($font-weights, "normal"),
-    "line-height": map-get($line-heights, "relaxed"),
+    "font-size": map.get($font-sizes, "lg"),
+    "font-weight": map.get($font-weights, "normal"),
+    "line-height": map.get($line-heights, "relaxed"),
   ),
   "body": (
-    "font-size": map-get($font-sizes, "base"),
-    "font-weight": map-get($font-weights, "normal"),
-    "line-height": map-get($line-heights, "relaxed"),
+    "font-size": map.get($font-sizes, "base"),
+    "font-weight": map.get($font-weights, "normal"),
+    "line-height": map.get($line-heights, "relaxed"),
   ),
   "body-small": (
-    "font-size": map-get($font-sizes, "sm"),
-    "font-weight": map-get($font-weights, "normal"),
-    "line-height": map-get($line-heights, "normal"),
+    "font-size": map.get($font-sizes, "sm"),
+    "font-weight": map.get($font-weights, "normal"),
+    "line-height": map.get($line-heights, "normal"),
   ),
   "caption": (
-    "font-size": map-get($font-sizes, "sm"),
-    "font-weight": map-get($font-weights, "normal"),
-    "line-height": map-get($line-heights, "relaxed"),
+    "font-size": map.get($font-sizes, "sm"),
+    "font-weight": map.get($font-weights, "normal"),
+    "line-height": map.get($line-heights, "relaxed"),
   ),
   "caption-small": (
-    "font-size": map-get($font-sizes, "xs"),
-    "font-weight": map-get($font-weights, "normal"),
-    "line-height": map-get($line-heights, "relaxed"),
+    "font-size": map.get($font-sizes, "xs"),
+    "font-weight": map.get($font-weights, "normal"),
+    "line-height": map.get($line-heights, "relaxed"),
   ),
   "button": (
-    "font-size": map-get($font-sizes, "sm"),
-    "font-weight": map-get($font-weights, "medium"),
-    "line-height": map-get($line-heights, "normal"),
-    "letter-spacing": map-get($letter-spacings, "wide"),
+    "font-size": map.get($font-sizes, "sm"),
+    "font-weight": map.get($font-weights, "medium"),
+    "line-height": map.get($line-heights, "normal"),
+    "letter-spacing": map.get($letter-spacings, "wide"),
   ),
   "input": (
-    "font-size": map-get($font-sizes, "sm"),
-    "font-weight": map-get($font-weights, "medium"),
-    "line-height": map-get($line-heights, "normal"),
-    "letter-spacing": map-get($letter-spacings, "wide"),
+    "font-size": map.get($font-sizes, "sm"),
+    "font-weight": map.get($font-weights, "medium"),
+    "line-height": map.get($line-heights, "normal"),
+    "letter-spacing": map.get($letter-spacings, "wide"),
   ),
   "label": (
-    "font-size": map-get($font-sizes, "sm"),
-    "font-weight": map-get($font-weights, "semibold"),
-    "line-height": map-get($line-heights, "normal"),
-    "letter-spacing": map-get($letter-spacings, "wide"),
+    "font-size": map.get($font-sizes, "sm"),
+    "font-weight": map.get($font-weights, "semibold"),
+    "line-height": map.get($line-heights, "normal"),
+    "letter-spacing": map.get($letter-spacings, "wide"),
   ),
   "link": (
     "font-size": inherit,
-    "font-weight": map-get($font-weights, "medium"),
+    "font-weight": map.get($font-weights, "medium"),
   ),
 ) !default;
 
 @mixin apply-text($style-name) {
-  $style: map-get($text-styles, $style-name);
+  $style: map.get($text-styles, $style-name);
 
   @if $style {
     @each $property, $value in $style {
       #{$property}: $value;
     }
 
-    @if not map-has-key($style, "font-family") {
+    @if not map.has-key($style, "font-family") {
       font-family: $body-font-family;
     }
   } @else {
@@ -164,6 +165,6 @@ $text-styles: (
   }
 }
 
-$base-font-size: map-get($font-sizes, "base") !default;
-$base-line-height: map-get($line-heights, "relaxed") !default;
-$body-font-family: map-get($font-families, "primary") !default;
+$base-font-size: map.get($font-sizes, "base") !default;
+$base-line-height: map.get($line-heights, "relaxed") !default;
+$body-font-family: map.get($font-families, "primary") !default;
