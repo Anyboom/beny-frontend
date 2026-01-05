@@ -17,6 +17,7 @@ const QUERY_KEYS = {
 interface UseFullStatsReturn {
   filters: Ref<object>;
   bets: Ref<BetEntity[]>;
+  statusOfBets: Ref<string>;
   currentPage: Ref<number>;
   itemsPerPage: number;
   total: Ref<number>;
@@ -41,7 +42,7 @@ export function useFullStats(): UseFullStatsReturn {
     page: currentPage.value,
   }));
 
-  const { data: betsData } = useQuery({
+  const { data: betsData, status: statusOfBets } = useQuery({
     key: () => [QUERY_KEYS.BETS, currentPage.value],
     query: () => getBetsApi(queryParameters),
     enabled: import.meta.client,
@@ -76,6 +77,7 @@ export function useFullStats(): UseFullStatsReturn {
   return {
     filters,
     bets,
+    statusOfBets,
     currentPage,
     itemsPerPage: ITEMS_PER_PAGE,
     total,

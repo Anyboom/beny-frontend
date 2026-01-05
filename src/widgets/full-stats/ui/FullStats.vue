@@ -3,8 +3,9 @@
   import FullStatsFilters from "./FullStatsFilters.vue";
   import FullStatsCards from "~/widgets/full-stats/ui/FullStatsCards.vue";
   import { useFullStats } from "~/widgets/full-stats/model/use-full-stats";
+  import FullStatsCardsSkeleton from "~/widgets/full-stats/ui/FullStatsCardsSkeleton.vue";
 
-  const { currentPage, itemsPerPage, total, changePage, statusOfTotal } = useFullStats();
+  const { currentPage, itemsPerPage, total, changePage, statusOfTotal, statusOfBets } = useFullStats();
 </script>
 
 <template>
@@ -14,7 +15,10 @@
         <h2 class="full-stats__title">Статистика</h2>
 
         <div class="full-stats__layout">
-          <FullStatsCards />
+          <FullStatsCards v-show="['success'].includes(statusOfBets)" />
+
+          <FullStatsCardsSkeleton v-show="['loading', 'pending'].includes(statusOfBets)" />
+
           <FullStatsFilters />
         </div>
 
