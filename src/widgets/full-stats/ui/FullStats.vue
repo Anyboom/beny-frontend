@@ -2,10 +2,10 @@
   import { AppPaginator, AppPaginatorSkeleton } from "~/shared/ui/AppPaginator";
   import FullStatsFilters from "./FullStatsFilters.vue";
   import FullStatsCards from "~/widgets/full-stats/ui/FullStatsCards.vue";
-  import { useFullStats } from "~/widgets/full-stats/model/use-full-stats";
+  import { useFullStatsBets } from "~/widgets/full-stats/model/use-full-stats-bets";
   import FullStatsCardsSkeleton from "~/widgets/full-stats/ui/FullStatsCardsSkeleton.vue";
 
-  const { currentPage, itemsPerPage, total, changePage, statusOfTotal, statusOfBets } = useFullStats();
+  const { currentPage, itemsPerPage, total, changePage, statusOfTotal, statusOfBets } = useFullStatsBets();
 </script>
 
 <template>
@@ -17,7 +17,7 @@
         <div class="full-stats__layout">
           <FullStatsCards v-show="['success'].includes(statusOfBets)" />
 
-          <FullStatsCardsSkeleton v-show="['loading', 'pending'].includes(statusOfBets)" />
+          <FullStatsCardsSkeleton v-show="['pending'].includes(statusOfBets)" />
 
           <FullStatsFilters />
         </div>
@@ -30,7 +30,7 @@
           @page-changed="changePage"
         />
 
-        <AppPaginatorSkeleton v-show="['loading', 'pending'].includes(statusOfTotal)" />
+        <AppPaginatorSkeleton v-show="['pending'].includes(statusOfTotal)" />
       </div>
     </div>
   </section>

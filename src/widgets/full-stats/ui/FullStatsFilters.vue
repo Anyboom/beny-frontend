@@ -1,50 +1,25 @@
 <script setup lang="ts">
   import { AppCheckbox } from "~/shared/ui/AppCheckbox";
   import { AppButton } from "~/shared/ui/AppButton";
-  import { useAsyncData } from "#app";
-  import { type CompetitionEntity, getCompetitionsApi, toCompetitionMapper } from "~/entities/competition";
-  import { getTeamsApi, type TeamEntity, toTeamMapper } from "~/entities/team";
-  import { type ForecastEntity, getForecastsApi, toForecastMapper } from "~/entities/forecast";
   import { AppSelect } from "~/shared/ui/AppSelect";
-  import { ref, storeToRefs, watchOnce } from "#imports";
+  import { storeToRefs } from "#imports";
   import FullStatsFiltersSkeleton from "~/widgets/full-stats/ui/FullStatsFiltersSkeleton.vue";
-  import { set } from "@vueuse/core";
   import { useFullStatsFiltersStore } from "~/widgets/full-stats/model/full-stats-filters.store";
-
-  const { data, status } = await useAsyncData(
-    () => Promise.all([getTeamsApi(), getCompetitionsApi(), getForecastsApi()]),
-    {
-      server: false,
-      transform: (response) => [
-        response[0].data.map(toTeamMapper),
-        response[1].data.map(toCompetitionMapper),
-        response[2].data.map(toForecastMapper),
-      ],
-    },
-  );
-
-  const teams = ref<TeamEntity[]>([]);
-  const competitions = ref<CompetitionEntity[]>([]);
-  const forecasts = ref<ForecastEntity[]>([]);
-
-  watchOnce(data, () => {
-    if (data.value === undefined) {
-      return;
-    }
-
-    set(teams, data.value.at(0) || []);
-    set(competitions, data.value.at(1) || []);
-    set(forecasts, data.value.at(2) || []);
-  });
+  import { useFullStatsFilters } from "~/widgets/full-stats/model/use-full-stats-filters";
+  import { useFullStatsBets } from "~/widgets/full-stats/model/use-full-stats-bets";
 
   const fullStatsStore = useFullStatsFiltersStore();
 
-  const { filters } = storeToRefs(fullStatsStore);
+  const { filters, serializedFilters } = storeToRefs(fullStatsStore);
+
+  const { teams, forecasts, competitions, isLoading, isLoaded } = useFullStatsFilters();
+
+  const { applyFilters } = useFullStatsBets();
 </script>
 
 <template>
   <div
-    v-show="status == 'success'"
+    v-show="isLoaded"
     class="full-stats-filters"
   >
     <label class="full-stats-filters__label">
@@ -54,6 +29,7 @@
         :options="teams"
         data-key="id"
         option-label="name"
+        show-clear
       />
     </label>
     <label class="full-stats-filters__label">
@@ -63,6 +39,7 @@
         :options="teams"
         data-key="id"
         option-label="name"
+        show-clear
       />
     </label>
     <label class="full-stats-filters__label">
@@ -72,6 +49,7 @@
         :options="competitions"
         data-key="id"
         option-label="name"
+        show-clear
       />
     </label>
     <label class="full-stats-filters__label">
@@ -81,6 +59,7 @@
         :options="forecasts"
         data-key="id"
         option-label="name"
+        show-clear
       />
     </label>
     <div>
@@ -89,10 +68,10 @@
       <AppCheckbox label="Возврат" />
       <AppCheckbox label="Ожидание" />
     </div>
-    <AppButton>Обновить</AppButton>
+    <AppButton @click="applyFilters(serializedFilters)">Обновить</AppButton>
   </div>
 
-  <FullStatsFiltersSkeleton v-show="['idle', 'pending'].includes(status)" />
+  <FullStatsFiltersSkeleton v-show="isLoading" />
 </template>
 
 <style scoped lang="scss">

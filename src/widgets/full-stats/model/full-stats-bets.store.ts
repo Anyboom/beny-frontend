@@ -5,6 +5,7 @@ import { set } from "@vueuse/core";
 
 export const useFullStatsBetsStore = defineStore("full-stats-bets", () => {
   const bets = ref<BetEntity[]>([]);
+  const total = ref<number>(0);
 
   function setBets(data: MaybeRefOrGetter<BetEntity[]>) {
     set(bets, toValue(data));
@@ -13,5 +14,6 @@ export const useFullStatsBetsStore = defineStore("full-stats-bets", () => {
   return {
     bets,
     setBets,
+    total,
   };
 });

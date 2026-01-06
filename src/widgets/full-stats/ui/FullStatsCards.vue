@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { BetCard } from "~/entities/bet";
-  import { useFullStats } from "~/widgets/full-stats/model/use-full-stats";
+  import { useFullStatsBets } from "~/widgets/full-stats/model/use-full-stats-bets";
 
-  const { bets } = useFullStats();
+  const { bets } = useFullStatsBets();
 </script>
 
 <template>

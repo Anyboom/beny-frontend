@@ -1,9 +1,11 @@
 import { pathDirectus } from "~/shared/api/path-directus";
+import type { MaybeRefOrGetter } from "vue";
 
-export async function getTotalBetsApi(): Promise<{ data: { count: number }[] }> {
+export async function getTotalBetsApi(params: MaybeRefOrGetter<object> = {}): Promise<{ data: { count: number }[] }> {
   return $fetch(`${pathDirectus}/items/bets`, {
-    params: {
+    query: {
       "aggregate[count]": "*",
+      ...params,
     },
   });
 }
