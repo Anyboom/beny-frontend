@@ -63,10 +63,22 @@
       />
     </label>
     <div>
-      <AppCheckbox label="Выигрыш" />
-      <AppCheckbox label="Прогрыш" />
-      <AppCheckbox label="Возврат" />
-      <AppCheckbox label="Ожидание" />
+      <AppCheckbox
+        v-model="filters.statuses.win"
+        label="Выигрыш"
+      />
+      <AppCheckbox
+        v-model="filters.statuses.lose"
+        label="Прогрыш"
+      />
+      <AppCheckbox
+        v-model="filters.statuses.return"
+        label="Возврат"
+      />
+      <AppCheckbox
+        v-model="filters.statuses.pending"
+        label="Ожидание"
+      />
     </div>
     <AppButton @click="applyFilters(serializedFilters)">Обновить</AppButton>
   </div>

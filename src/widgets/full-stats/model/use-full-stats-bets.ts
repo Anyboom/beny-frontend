@@ -6,7 +6,7 @@ import { toBetMapper } from "~/entities/bet/api/to-bet.mapper";
 import { useFullStatsBetsStore } from "~/widgets/full-stats/model/full-stats-bets.store";
 import { type Ref, watch } from "vue";
 
-const ITEMS_PER_PAGE = 1;
+const ITEMS_PER_PAGE = 9;
 
 const QUERY_KEYS = {
   BETS: "bets",

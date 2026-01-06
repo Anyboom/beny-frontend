@@ -1,4 +1,4 @@
-import type { BetStatusEnum } from "./bet-status.enum";
+import { BetStatusEnum } from "./bet-status.enum";
 
 import type { TeamEntity } from "~/entities/team";
 import type { CompetitionEntity } from "~/entities/competition";
