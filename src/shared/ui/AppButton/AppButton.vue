@@ -1,16 +1,14 @@
 <script setup lang="ts">
-  const emit = defineEmits<{
-    click: [];
-  }>();
-
-  const {
-    disabled = false,
-    href = undefined,
-    target = undefined,
-  } = defineProps<{
+  interface Props {
     disabled?: boolean;
     href?: string;
     target?: "_blank" | "_parent" | "_top" | "_self";
+  }
+
+  const { disabled = false, href = undefined, target = undefined } = defineProps<Props>();
+
+  const emit = defineEmits<{
+    click: [];
   }>();
 
   function handleClick() {

@@ -5,28 +5,15 @@
   import FullStatsFiltersSkeleton from "~/widgets/full-stats/ui/FullStatsFiltersSkeleton.vue";
   import { useFullStatsFilters } from "~/widgets/full-stats/model/use-full-stats-filters";
   import { useFullStatsBets } from "~/widgets/full-stats/model/use-full-stats-bets";
-  import { ref, watch } from "vue";
 
   const { teams, forecasts, competitions, isLoading, isLoaded, filters, serializedFilters } = useFullStatsFilters();
 
-  const { updateFilters } = useFullStatsBets();
+  const { updateFilters, updatePage } = useFullStatsBets();
 
-  const isButtonDisabled = ref<boolean>(true);
-
-  function disableSaveButton() {
-    isButtonDisabled.value = true;
-  }
-
-  function enableSaveButton() {
-    isButtonDisabled.value = false;
-  }
-
-  function saveFilters() {
+  function applyFilters() {
+    updatePage(1);
     updateFilters(serializedFilters.value);
-    disableSaveButton();
   }
-
-  watch(serializedFilters, enableSaveButton);
 </script>
 
 <template>
@@ -96,12 +83,7 @@
         label="Ожидание"
       />
     </div>
-    <AppButton
-      :disabled="isButtonDisabled"
-      @click="saveFilters"
-    >
-      Обновить
-    </AppButton>
+    <AppButton @click="applyFilters"> Обновить </AppButton>
   </div>
 
   <FullStatsFiltersSkeleton v-show="isLoading" />
