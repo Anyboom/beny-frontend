@@ -37,12 +37,11 @@ export function useFullStatsBets(): UseFullStatsBetsReturn {
     limit: ITEMS_PER_PAGE,
     sort: "-date_updated",
     page: currentPage.value,
-
     filter: currentFilters.value,
   }));
 
   const { data: betsData, status: statusOfBets } = useQuery({
-    key: () => [QUERY_KEYS.BETS, currentPage.value, { ...currentFilters.value }],
+    key: () => [QUERY_KEYS.BETS, { ...queryParameters.value }],
     query: () => getBetsApi(queryParameters),
     enabled: import.meta.client,
     placeholderData: (previousData) => previousData,
@@ -60,6 +59,7 @@ export function useFullStatsBets(): UseFullStatsBetsReturn {
     key: () => [QUERY_KEYS.BETS_TOTAL, { ...currentFilters.value }],
     query: () => getTotalBetsApi({ filter: currentFilters.value }),
     enabled: import.meta.client,
+    placeholderData: (previousData) => previousData,
   });
 
   watch(

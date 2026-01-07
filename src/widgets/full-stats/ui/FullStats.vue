@@ -4,8 +4,17 @@
   import FullStatsCards from "~/widgets/full-stats/ui/FullStatsCards.vue";
   import { useFullStatsBets } from "~/widgets/full-stats/model/use-full-stats-bets";
   import FullStatsCardsSkeleton from "~/widgets/full-stats/ui/FullStatsCardsSkeleton.vue";
+  import { AppEmptyState } from "~/shared/ui/AppEmptyState";
+  import { AppButton } from "~/shared/ui/AppButton";
+  import { useFullStatsFiltersStore } from "~/widgets/full-stats/model/full-stats-filters.store";
 
-  const { currentPage, itemsPerPage, total, changePage, statusOfTotal, statusOfBets } = useFullStatsBets();
+  const { currentPage, itemsPerPage, total, changePage, statusOfTotal, statusOfBets, bets } = useFullStatsBets();
+
+  const { $reset } = useFullStatsFiltersStore();
+
+  function resetFilters() {
+    $reset();
+  }
 </script>
 
 <template>
@@ -13,13 +22,25 @@
     <div class="container">
       <div class="full-stats__wrapper">
         <h2 class="full-stats__title">Статистика</h2>
-
         <div class="full-stats__layout">
-          <FullStatsCards v-show="['success'].includes(statusOfBets)" />
+          <div class="full-stats__content">
+            <FullStatsCards
+              v-show="['success'].includes(statusOfBets)"
+              :bets="bets"
+            />
 
-          <FullStatsCardsSkeleton v-show="['pending'].includes(statusOfBets)" />
+            <FullStatsCardsSkeleton v-show="['pending'].includes(statusOfBets)" />
 
-          <FullStatsFilters />
+            <AppEmptyState v-show="bets.length == 0 && ['success'].includes(statusOfBets)">
+              <template #actions>
+                <AppButton @click="resetFilters">Очистить фильтры</AppButton>
+              </template>
+            </AppEmptyState>
+          </div>
+
+          <div class="full-stats__sidebar">
+            <FullStatsFilters />
+          </div>
         </div>
 
         <AppPaginator

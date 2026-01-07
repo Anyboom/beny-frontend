@@ -1,8 +1,11 @@
 <script setup lang="ts">
-  import { BetCard } from "~/entities/bet";
-  import { useFullStatsBets } from "~/widgets/full-stats/model/use-full-stats-bets";
+  import { BetCard, type BetEntity } from "~/entities/bet";
 
-  const { bets } = useFullStatsBets();
+  interface Props {
+    bets: BetEntity[];
+  }
+
+  defineProps<Props>();
 </script>
 
 <template>

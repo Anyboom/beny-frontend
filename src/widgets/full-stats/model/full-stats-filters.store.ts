@@ -1,8 +1,9 @@
-import { computed, defineStore, reactive } from "#imports";
+import { computed, defineStore } from "#imports";
 import type { TeamEntity } from "~/entities/team";
 import type { CompetitionEntity } from "~/entities/competition";
 import type { ForecastEntity } from "~/entities/forecast";
 import { BetStatusEnum } from "~/entities/bet";
+import { ref } from "vue";
 
 export type StatsFilters = {
   statuses: Record<BetStatusEnum, boolean>;
@@ -13,7 +14,7 @@ export type StatsFilters = {
 };
 
 export const useFullStatsFiltersStore = defineStore("full-stats-filters", () => {
-  const filters = reactive<StatsFilters>({
+  const initFilters = {
     homeTeam: undefined,
     guestTeam: undefined,
     competition: undefined,
@@ -24,36 +25,38 @@ export const useFullStatsFiltersStore = defineStore("full-stats-filters", () => 
       [BetStatusEnum.win]: false,
       [BetStatusEnum.return]: false,
     },
-  });
+  };
+
+  const filters = ref<StatsFilters>(initFilters);
 
   const serializedFilters = computed(() => {
     const result: Record<string, object> = {};
 
-    if (filters.homeTeam) {
+    if (filters.value.homeTeam) {
       result["home_team"] = {
-        id: filters.homeTeam.id,
+        id: filters.value.homeTeam.id,
       };
     }
 
-    if (filters.guestTeam) {
+    if (filters.value.guestTeam) {
       result["guest_team"] = {
-        id: filters.guestTeam.id,
+        id: filters.value.guestTeam.id,
       };
     }
 
-    if (filters.competition) {
+    if (filters.value.competition) {
       result["competition"] = {
-        id: filters.competition.id,
+        id: filters.value.competition.id,
       };
     }
 
-    if (filters.forecasts) {
+    if (filters.value.forecasts) {
       result["forecast"] = {
-        id: filters.forecasts.id,
+        id: filters.value.forecasts.id,
       };
     }
 
-    const selectedStatuses = Object.entries(filters.statuses)
+    const selectedStatuses = Object.entries(filters.value.statuses)
       .filter(([_, value]) => value)
       .map(([key]) => key);
 
@@ -66,8 +69,13 @@ export const useFullStatsFiltersStore = defineStore("full-stats-filters", () => 
     return result;
   });
 
+  function $reset() {
+    filters.value = initFilters;
+  }
+
   return {
     serializedFilters,
     filters,
+    $reset,
   };
 });
