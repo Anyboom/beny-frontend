@@ -5,7 +5,7 @@
   import { setAttr } from "@directus/visual-editing";
   import { toBetMapper } from "~/entities/bet/api/to-bet.mapper";
 
-  interface MainBannerProps extends Block {
+  interface Props extends Block {
     item: {
       id: number;
       title: string;
@@ -17,7 +17,7 @@
     };
   }
 
-  const { item } = defineProps<MainBannerProps>();
+  const { item } = defineProps<Props>();
 
   const title = item.title;
 

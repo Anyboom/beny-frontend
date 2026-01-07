@@ -3,11 +3,11 @@
   import { computed } from "#imports";
   import { BlocksRepository } from "~/pages/dynamic-page/model/blocks.repository";
 
-  interface DynamicComponentProps {
+  interface Props {
     block: Block;
   }
 
-  const { block } = defineProps<DynamicComponentProps>();
+  const { block } = defineProps<Props>();
 
   const instanceBlock = computed(() => BlocksRepository.get(block.collection));
 

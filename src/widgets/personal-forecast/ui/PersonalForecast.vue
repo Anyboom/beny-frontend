@@ -4,7 +4,7 @@
   import { AppSafeHtmlRenderer } from "~/shared/ui/AppSafeHtmlRenderer";
   import { setAttr } from "@directus/visual-editing";
 
-  interface PersonalForecastProps extends Block {
+  interface Props extends Block {
     item: {
       id: number;
       title: string;
@@ -12,7 +12,7 @@
     };
   }
 
-  const { item } = defineProps<PersonalForecastProps>();
+  const { item } = defineProps<Props>();
 </script>
 
 <script lang="ts">

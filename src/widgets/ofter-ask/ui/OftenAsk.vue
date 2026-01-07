@@ -4,7 +4,7 @@
   import { setAttr } from "@directus/visual-editing";
   import { useColumns } from "~/shared/composables/use-columns";
 
-  interface OftenAskProps extends Block {
+  interface Props extends Block {
     item: {
       id: number;
       title: string;
@@ -15,7 +15,7 @@
     };
   }
 
-  const { item } = defineProps<OftenAskProps>();
+  const { item } = defineProps<Props>();
 
   const { columns } = useColumns(item.content);
   const [firstColumn, secondColumn] = columns.value;

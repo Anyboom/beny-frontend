@@ -1,13 +1,13 @@
 <script setup lang="ts">
   import { computed } from "vue";
 
-  interface AppPaginatorProps {
+  interface Props {
     currentPage: number;
     itemsPerPage?: number;
     totalItems: number;
   }
 
-  const { currentPage, totalItems, itemsPerPage = 10 } = defineProps<AppPaginatorProps>();
+  const { currentPage, totalItems, itemsPerPage = 10 } = defineProps<Props>();
 
   const emit = defineEmits(["page-changed"]);
 

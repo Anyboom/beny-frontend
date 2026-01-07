@@ -3,7 +3,7 @@
   import { setAttr } from "@directus/visual-editing";
   import { AppSafeHtmlRenderer } from "~/shared/ui/AppSafeHtmlRenderer";
 
-  interface AboutUsProps extends Block {
+  interface Props extends Block {
     item: {
       id: number;
       title: string;
@@ -11,7 +11,7 @@
     };
   }
 
-  const { item } = defineProps<AboutUsProps>();
+  const { item } = defineProps<Props>();
 </script>
 
 <script lang="ts">

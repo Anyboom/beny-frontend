@@ -2,11 +2,11 @@
   import DOMPurify from "isomorphic-dompurify";
   import { computed } from "#imports";
 
-  interface AppSafeHtmlRendererProps {
+  interface Props {
     html: string;
   }
 
-  const { html } = defineProps<AppSafeHtmlRendererProps>();
+  const { html } = defineProps<Props>();
 
   const sanitizedHtml = computed(() => {
     return DOMPurify.sanitize(html, {

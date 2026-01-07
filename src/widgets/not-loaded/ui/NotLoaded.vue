@@ -1,7 +1,9 @@
 <script setup lang="ts">
-  defineProps<{
+  interface Props {
     collection: string;
-  }>();
+  }
+
+  defineProps<Props>();
 </script>
 
 <script lang="ts">

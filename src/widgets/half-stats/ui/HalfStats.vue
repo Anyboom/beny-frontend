@@ -6,7 +6,7 @@
   import { useAsyncData } from "#app";
   import { toBetMapper } from "~/entities/bet/api/to-bet.mapper";
 
-  interface HalfStatsProps extends Block {
+  interface Props extends Block {
     item: {
       id: number;
       title: string;
@@ -14,7 +14,7 @@
     };
   }
 
-  const { item } = defineProps<HalfStatsProps>();
+  const { item } = defineProps<Props>();
 
   const { data, pending, error } = await useAsyncData(
     () =>

@@ -14,14 +14,14 @@
     isVisibleMobileMenu.value = false;
   }
 
-  interface HalfStatsProps extends Block {
+  interface Props extends Block {
     item: {
       id: number;
       button_group: ButtonGroup;
     };
   }
 
-  const { item } = defineProps<HalfStatsProps>();
+  const { item } = defineProps<Props>();
 
   const elements = item?.button_group?.buttons;
 </script>

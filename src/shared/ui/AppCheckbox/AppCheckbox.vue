@@ -1,10 +1,10 @@
 <script setup lang="ts">
-  interface AppCheckboxProps {
+  interface Props {
     label?: string;
     disabled?: boolean;
   }
 
-  const { label = undefined, disabled = undefined } = defineProps<AppCheckboxProps>();
+  const { label = undefined, disabled = undefined } = defineProps<Props>();
 
   const model = defineModel<boolean>();
 </script>

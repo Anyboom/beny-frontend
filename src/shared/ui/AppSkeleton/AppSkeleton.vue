@@ -1,11 +1,11 @@
 <script setup lang="ts">
-  interface AppSkeletonProps {
+  interface Props {
     width?: string;
     height?: string;
     borderRadius?: string;
   }
 
-  const { height = "100%", width = "100%", borderRadius = undefined } = defineProps<AppSkeletonProps>();
+  const { height = "100%", width = "100%", borderRadius = undefined } = defineProps<Props>();
 </script>
 
 <template>

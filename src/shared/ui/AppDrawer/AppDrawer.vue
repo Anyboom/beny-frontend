@@ -5,7 +5,7 @@
 
   type DrawerPosition = "left" | "right" | "top" | "bottom";
 
-  interface AppDrawerProps {
+  interface Props {
     modelValue: boolean;
     title?: string;
     position?: DrawerPosition;
@@ -25,7 +25,7 @@
     maskClosable = true,
     escClosable = true,
     modelValue,
-  } = defineProps<AppDrawerProps>();
+  } = defineProps<Props>();
 
   interface AppDrawerEmits {
     "update:modelValue": [value: boolean];

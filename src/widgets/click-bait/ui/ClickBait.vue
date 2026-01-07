@@ -3,7 +3,7 @@
   import type { Block, ButtonGroup } from "~/pages/dynamic-page";
   import { setAttr } from "@directus/visual-editing";
 
-  interface ClickBaitProps extends Block {
+  interface Props extends Block {
     item: {
       id: number;
       content: string;
@@ -11,7 +11,7 @@
     };
   }
 
-  const { item } = defineProps<ClickBaitProps>();
+  const { item } = defineProps<Props>();
 </script>
 
 <script lang="ts">

@@ -2,7 +2,7 @@
   import type { Block } from "~/pages/dynamic-page";
   import { setAttr } from "@directus/visual-editing";
 
-  interface WhyTrustUsProps extends Block {
+  interface Props extends Block {
     item: {
       id: number;
       title: string;
@@ -13,7 +13,7 @@
     };
   }
 
-  const { item } = defineProps<WhyTrustUsProps>();
+  const { item } = defineProps<Props>();
 </script>
 
 <script lang="ts">
