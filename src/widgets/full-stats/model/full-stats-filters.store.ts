@@ -13,20 +13,20 @@ export type StatsFilters = {
   forecasts?: ForecastEntity;
 };
 
-export const useFullStatsFiltersStore = defineStore("full-stats-filters", () => {
-  const initFilters = {
-    homeTeam: undefined,
-    guestTeam: undefined,
-    competition: undefined,
-    forecasts: undefined,
-    statuses: {
-      [BetStatusEnum.lose]: false,
-      [BetStatusEnum.pending]: false,
-      [BetStatusEnum.win]: false,
-      [BetStatusEnum.return]: false,
-    },
-  };
+const initFilters = {
+  homeTeam: undefined,
+  guestTeam: undefined,
+  competition: undefined,
+  forecasts: undefined,
+  statuses: {
+    [BetStatusEnum.lose]: false,
+    [BetStatusEnum.pending]: false,
+    [BetStatusEnum.win]: false,
+    [BetStatusEnum.return]: false,
+  },
+};
 
+export const useFullStatsFiltersStore = defineStore("full-stats-filters", () => {
   const filters = ref<StatsFilters>(initFilters);
 
   const serializedFilters = computed(() => {
@@ -69,13 +69,13 @@ export const useFullStatsFiltersStore = defineStore("full-stats-filters", () => 
     return result;
   });
 
-  function $reset() {
-    filters.value = initFilters;
+  function resetFilters() {
+    filters.value = structuredClone(initFilters);
   }
 
   return {
     serializedFilters,
     filters,
-    $reset,
+    resetFilters,
   };
 });
