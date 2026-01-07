@@ -1,5 +1,5 @@
-import { computed, ref, watchEffect } from "#imports";
-import { useQuery, useRouteQuery } from "#imports";
+import { computed, watchEffect } from "#imports";
+import { useQuery } from "#imports";
 import { storeToRefs } from "#imports";
 import { type BetEntity, getBetsApi, getTotalBetsApi } from "~/entities/bet";
 import { toBetMapper } from "~/entities/bet/api/to-bet.mapper";
@@ -27,10 +27,7 @@ interface UseFullStatsBetsReturn {
 export function useFullStatsBets(): UseFullStatsBetsReturn {
   const betsStore = useFullStatsBetsStore();
 
-  const { bets, total } = storeToRefs(betsStore);
-
-  const currentPage = useRouteQuery("page", 1, { transform: Number });
-  const currentFilters = ref<object>({});
+  const { bets, total, currentPage, currentFilters } = storeToRefs(betsStore);
 
   const queryParameters = computed(() => ({
     fields: "*.*",
