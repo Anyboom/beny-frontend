@@ -6,7 +6,7 @@
   import FullStatsCardsSkeleton from "~/widgets/full-stats/ui/FullStatsCardsSkeleton.vue";
   import { AppEmptyState } from "~/shared/ui/AppEmptyState";
 
-  const { currentPage, itemsPerPage, total, changePage, statusOfTotal, statusOfBets, bets } = useFullStatsBets();
+  const { page, itemsPerPage, total, updatePage, statusOfTotal, statusOfBets, bets } = useFullStatsBets();
 </script>
 
 <template>
@@ -33,10 +33,10 @@
 
         <AppPaginator
           v-show="['success'].includes(statusOfTotal)"
-          :current-page="currentPage"
+          :current-page="page"
           :total-items="total"
           :items-per-page="itemsPerPage"
-          @page-changed="changePage"
+          @page-changed="updatePage"
         />
 
         <AppPaginatorSkeleton v-show="['pending'].includes(statusOfTotal)" />

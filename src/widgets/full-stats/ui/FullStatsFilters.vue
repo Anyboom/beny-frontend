@@ -2,30 +2,31 @@
   import { AppCheckbox } from "~/shared/ui/AppCheckbox";
   import { AppButton } from "~/shared/ui/AppButton";
   import { AppSelect } from "~/shared/ui/AppSelect";
-  import { storeToRefs } from "#imports";
   import FullStatsFiltersSkeleton from "~/widgets/full-stats/ui/FullStatsFiltersSkeleton.vue";
-  import { useFullStatsFiltersStore } from "~/widgets/full-stats/model/full-stats-filters.store";
   import { useFullStatsFilters } from "~/widgets/full-stats/model/use-full-stats-filters";
   import { useFullStatsBets } from "~/widgets/full-stats/model/use-full-stats-bets";
   import { ref, watch } from "vue";
 
-  const fullStatsStore = useFullStatsFiltersStore();
+  const { teams, forecasts, competitions, isLoading, isLoaded, filters, serializedFilters } = useFullStatsFilters();
 
-  const { filters, serializedFilters } = storeToRefs(fullStatsStore);
-
-  const { teams, forecasts, competitions, isLoading, isLoaded } = useFullStatsFilters();
-
-  const { applyFilters } = useFullStatsBets();
+  const { updateFilters } = useFullStatsBets();
 
   const isButtonDisabled = ref<boolean>(true);
 
-  function saveFilters() {
-    applyFilters(serializedFilters.value);
-
+  function disableSaveButton() {
     isButtonDisabled.value = true;
   }
 
-  watch(serializedFilters, () => (isButtonDisabled.value = false));
+  function enableSaveButton() {
+    isButtonDisabled.value = false;
+  }
+
+  function saveFilters() {
+    updateFilters(serializedFilters.value);
+    disableSaveButton();
+  }
+
+  watch(serializedFilters, enableSaveButton);
 </script>
 
 <template>

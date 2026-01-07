@@ -1,23 +1,37 @@
 import { defineStore, useRouteQuery } from "#imports";
-import { type MaybeRefOrGetter, ref, toValue } from "vue";
+import { ref } from "vue";
 import type { BetEntity } from "~/entities/bet";
-import { set } from "@vueuse/core";
 
 export const useFullStatsBetsStore = defineStore("full-stats-bets", () => {
   const bets = ref<BetEntity[]>([]);
   const total = ref<number>(0);
-  const currentPage = useRouteQuery("page", 1, { transform: Number });
-  const currentFilters = ref<object>({});
+  const page = useRouteQuery("page", 1, { transform: Number });
+  const filters = ref<object>({});
 
-  function setBets(data: MaybeRefOrGetter<BetEntity[]>) {
-    set(bets, toValue(data));
+  function updateBets(data: BetEntity[]) {
+    bets.value = data;
+  }
+
+  function updateTotal(newTotal: number) {
+    total.value = newTotal;
+  }
+
+  function updatePage(newPage: number) {
+    page.value = newPage;
+  }
+
+  function updateFilters(newFilters: object) {
+    filters.value = newFilters;
   }
 
   return {
     bets,
-    setBets,
     total,
-    currentPage,
-    currentFilters,
+    page,
+    filters,
+    updateBets,
+    updateTotal,
+    updatePage,
+    updateFilters,
   };
 });

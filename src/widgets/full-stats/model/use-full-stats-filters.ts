@@ -2,7 +2,8 @@ import { ref } from "vue";
 import { getTeamsApi, type TeamEntity, toTeamMapper } from "~/entities/team";
 import { type CompetitionEntity, getCompetitionsApi, toCompetitionMapper } from "~/entities/competition";
 import { type ForecastEntity, getForecastsApi, toForecastMapper } from "~/entities/forecast";
-import { computed, useQuery, watchEffect } from "#imports";
+import { computed, storeToRefs, useQuery, watchEffect } from "#imports";
+import { useFullStatsFiltersStore } from "~/widgets/full-stats/model/full-stats-filters.store";
 
 const QUERY_KEYS = {
   TEAMS: "teams",
@@ -11,6 +12,10 @@ const QUERY_KEYS = {
 } as const;
 
 export function useFullStatsFilters() {
+  const fullStatsFiltersStore = useFullStatsFiltersStore();
+
+  const { filters, serializedFilters } = storeToRefs(fullStatsFiltersStore);
+
   const teams = ref<TeamEntity[]>([]);
   const forecasts = ref<CompetitionEntity[]>([]);
   const competitions = ref<ForecastEntity[]>([]);
@@ -68,5 +73,7 @@ export function useFullStatsFilters() {
     statusOfCompetitions,
     isLoading,
     isLoaded,
+    filters,
+    serializedFilters,
   };
 }

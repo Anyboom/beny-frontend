@@ -16,25 +16,25 @@ const QUERY_KEYS = {
 interface UseFullStatsBetsReturn {
   bets: Ref<BetEntity[]>;
   statusOfBets: Ref<string>;
-  currentPage: Ref<number>;
+  page: Ref<number>;
   itemsPerPage: number;
   total: Ref<number>;
   statusOfTotal: Ref<string>;
-  changePage: (page: number) => void;
-  applyFilters: (filters: object) => void;
+  updatePage: (newPage: number) => void;
+  updateFilters: (newFilters: object) => void;
 }
 
 export function useFullStatsBets(): UseFullStatsBetsReturn {
   const betsStore = useFullStatsBetsStore();
 
-  const { bets, total, currentPage, currentFilters } = storeToRefs(betsStore);
+  const { bets, total, page, filters } = storeToRefs(betsStore);
 
   const queryParameters = computed(() => ({
     fields: "*.*",
     limit: ITEMS_PER_PAGE,
     sort: "-date_updated",
-    page: currentPage.value,
-    filter: currentFilters.value,
+    page: page.value,
+    filter: filters.value,
   }));
 
   const { data: betsData, status: statusOfBets } = useQuery({
@@ -48,13 +48,13 @@ export function useFullStatsBets(): UseFullStatsBetsReturn {
     if (betsData.value?.data) {
       const mappedBets = betsData.value.data.map(toBetMapper);
 
-      betsStore.setBets(mappedBets);
+      betsStore.updateBets(mappedBets);
     }
   });
 
   const { data: totalData, status: statusOfTotal } = useQuery({
-    key: () => [QUERY_KEYS.BETS_TOTAL, { ...currentFilters.value }],
-    query: () => getTotalBetsApi({ filter: currentFilters.value }),
+    key: () => [QUERY_KEYS.BETS_TOTAL, { ...filters.value }],
+    query: () => getTotalBetsApi({ filter: filters.value }),
     enabled: import.meta.client,
     placeholderData: (previousData) => previousData,
   });
@@ -63,28 +63,19 @@ export function useFullStatsBets(): UseFullStatsBetsReturn {
     () => totalData.value?.data?.[0]?.count,
     (newCount) => {
       if (newCount !== undefined && typeof newCount === "number") {
-        total.value = newCount;
+        betsStore.updateTotal(newCount);
       }
     },
   );
 
-  function applyFilters(filters: object) {
-    changePage(1);
-    currentFilters.value = filters;
-  }
-
-  function changePage(page: number) {
-    currentPage.value = page;
-  }
-
   return {
     bets,
     statusOfBets,
-    currentPage,
+    page,
     itemsPerPage: ITEMS_PER_PAGE,
     total,
     statusOfTotal,
-    changePage,
-    applyFilters,
+    updatePage: betsStore.updatePage,
+    updateFilters: betsStore.updateFilters,
   };
 }
