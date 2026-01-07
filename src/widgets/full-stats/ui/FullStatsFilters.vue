@@ -7,6 +7,7 @@
   import { useFullStatsFiltersStore } from "~/widgets/full-stats/model/full-stats-filters.store";
   import { useFullStatsFilters } from "~/widgets/full-stats/model/use-full-stats-filters";
   import { useFullStatsBets } from "~/widgets/full-stats/model/use-full-stats-bets";
+  import { ref, watch } from "vue";
 
   const fullStatsStore = useFullStatsFiltersStore();
 
@@ -15,6 +16,16 @@
   const { teams, forecasts, competitions, isLoading, isLoaded } = useFullStatsFilters();
 
   const { applyFilters } = useFullStatsBets();
+
+  const isButtonDisabled = ref<boolean>(true);
+
+  function saveFilters() {
+    applyFilters(serializedFilters.value);
+
+    isButtonDisabled.value = true;
+  }
+
+  watch(serializedFilters, () => (isButtonDisabled.value = false));
 </script>
 
 <template>
@@ -27,9 +38,10 @@
       <AppSelect
         v-model="filters.homeTeam"
         :options="teams"
-        data-key="id"
+        option-key="id"
         option-label="name"
         show-clear
+        show-search
       />
     </label>
     <label class="full-stats-filters__label">
@@ -37,9 +49,10 @@
       <AppSelect
         v-model="filters.guestTeam"
         :options="teams"
-        data-key="id"
+        option-key="id"
         option-label="name"
         show-clear
+        show-search
       />
     </label>
     <label class="full-stats-filters__label">
@@ -47,9 +60,10 @@
       <AppSelect
         v-model="filters.competition"
         :options="competitions"
-        data-key="id"
+        option-key="id"
         option-label="name"
         show-clear
+        show-search
       />
     </label>
     <label class="full-stats-filters__label">
@@ -57,9 +71,10 @@
       <AppSelect
         v-model="filters.forecasts"
         :options="forecasts"
-        data-key="id"
+        option-key="id"
         option-label="name"
         show-clear
+        show-search
       />
     </label>
     <div>
@@ -80,7 +95,12 @@
         label="Ожидание"
       />
     </div>
-    <AppButton @click="applyFilters(serializedFilters)">Обновить</AppButton>
+    <AppButton
+      :disabled="isButtonDisabled"
+      @click="saveFilters"
+    >
+      Обновить
+    </AppButton>
   </div>
 
   <FullStatsFiltersSkeleton v-show="isLoading" />

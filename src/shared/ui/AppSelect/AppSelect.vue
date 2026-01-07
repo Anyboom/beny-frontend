@@ -1,6 +1,7 @@
 <script setup lang="ts">
-  import { ref, computed, onMounted, onBeforeUnmount } from "vue";
-  import { set } from "@vueuse/core";
+  import { ref, computed } from "vue";
+  import { onClickOutside } from "@vueuse/core";
+  import { useTemplateRef } from "#imports";
 
   interface Option {
     [key: string]: any;
@@ -8,114 +9,106 @@
 
   interface Props {
     options: Option[];
-    searchable?: boolean;
-    placeholder?: string;
     optionLabel?: string;
-    disabled?: boolean;
-    dataKey?: string;
-    grouped?: boolean;
+    optionKey?: string;
+    showSearch?: boolean;
     showClear?: boolean;
-    showCounter?: boolean;
+    disabled?: boolean;
   }
 
-  const props = withDefaults(defineProps<Props>(), {
-    searchable: false,
-    placeholder: "Выберите элементы",
-    optionLabel: "label",
-    disabled: false,
-    dataKey: "value",
-    grouped: false,
-  });
+  const {
+    options,
+    optionLabel = undefined,
+    optionKey = undefined,
+    disabled = false,
+    showClear = false,
+    showSearch = false,
+  } = defineProps<Props>();
 
-  const selectedItems = defineModel<Option>();
-
+  const selectedOption = defineModel<Option>();
   const isOpen = ref(false);
-
   const searchQuery = ref("");
-
-  const dropdownRef = ref<HTMLElement | null>(null);
+  const dropdownRef = useTemplateRef<HTMLDivElement>("app-select-ref");
 
   function getOptionLabel(option: Option): string {
-    return option[props.optionLabel] || String(option.value);
+    return optionLabel ? option[optionLabel] : String(option.name);
   }
 
-  function getItemKey(item: Option): any {
-    return props.dataKey ? item[props.dataKey] : JSON.stringify(item);
+  function getOptionKey(option: Option): string {
+    return optionKey ? String(option[optionKey]) : JSON.stringify(option);
   }
-
-  function handleClickOutside(event: MouseEvent) {
-    if (dropdownRef.value && !dropdownRef.value.contains(event.target as Node)) {
-      isOpen.value = false;
-    }
-  }
-
-  onMounted(() => {
-    document.addEventListener("click", handleClickOutside);
-  });
-
-  onBeforeUnmount(() => {
-    document.removeEventListener("click", handleClickOutside);
-  });
-
-  const flatOptions = computed<Option[]>(() => {
-    return props.options as Option[];
-  });
-
-  const filteredOptions = computed(() => {
-    if (!searchQuery.value) return flatOptions.value;
-    return flatOptions.value.filter((option) =>
-      getOptionLabel(option).toLowerCase().includes(searchQuery.value.toLowerCase()),
-    );
-  });
 
   function toggleDropdown() {
-    if (props.disabled) {
+    if (disabled) {
       return;
     }
 
-    isOpen.value = !isOpen.value;
-
     if (isOpen.value) {
-      searchQuery.value = "";
+      closeDropdown();
+    } else {
+      openDropdown();
     }
+
+    searchQuery.value = "";
   }
 
-  function isSelected(option: Option): boolean {
-    const optionKey = getItemKey(option);
+  function closeDropdown() {
+    isOpen.value = false;
+  }
 
-    if (selectedItems.value) {
-      return getItemKey(selectedItems.value) === optionKey;
+  function openDropdown() {
+    isOpen.value = true;
+  }
+
+  function isSelectedOption(option: Option): boolean {
+    if (selectedOption.value != undefined) {
+      return getOptionKey(selectedOption.value) === getOptionKey(option);
     }
 
     return false;
   }
 
   function toggleOption(option: Option) {
-    if (props.disabled) {
+    if (disabled || isSelectedOption(option)) {
       return;
     }
 
-    selectedItems.value = option;
+    selectedOption.value = option;
 
-    set(isOpen, false);
+    closeDropdown();
   }
 
-  function removeItems() {
-    selectedItems.value = [];
+  function clearOption() {
+    selectedOption.value = undefined;
   }
 
-  const selectedLabels = computed(() => {
-    if (selectedItems.value) {
-      return getOptionLabel(selectedItems.value);
+  const selectedLabel = computed(() => {
+    if (selectedOption.value) {
+      return getOptionLabel(selectedOption.value);
     }
 
     return undefined;
   });
+
+  const filteredOptions = computed(() => {
+    if (searchQuery.value) {
+      return options.filter((option) => {
+        const from = getOptionLabel(option).toLowerCase();
+        const query = searchQuery.value.toLowerCase();
+
+        return from.includes(query);
+      });
+    }
+
+    return options;
+  });
+
+  onClickOutside(dropdownRef, closeDropdown);
 </script>
 
 <template>
   <div
-    ref="dropdownRef"
+    ref="app-select-ref"
     class="app-select"
     :class="{
       'app-select--disabled': disabled,
@@ -126,30 +119,15 @@
       class="app-select__header"
       @click="toggleDropdown"
     >
-      <span
-        v-if="selectedItems?.length === 0"
-        class="app-select__placeholder"
-      >
-        {{ placeholder }}
-      </span>
-      <span
-        v-else
-        class="app-select__selected-labels"
-      >
-        {{ selectedLabels }}
+      <span class="app-select__selected-label">
+        {{ selectedLabel }}
       </span>
 
       <div class="app-select__icons-wrapper">
         <span
-          v-if="selectedItems?.length && props.showCounter"
-          class="app-select__dropdown-counter"
-        >
-          {{ selectedItems.length }}
-        </span>
-        <span
-          v-if="props.showClear"
+          v-if="showClear && selectedOption"
           class="app-select__dropdown-remove"
-          @click.stop="removeItems"
+          @click.stop="clearOption"
         >
           <Icon
             name="charm:cross"
@@ -175,13 +153,12 @@
       class="app-select__dropdown"
     >
       <div
-        v-if="searchable"
+        v-if="showSearch"
         class="app-select__search"
       >
         <input
           v-model="searchQuery"
           class="app-select__search-input"
-          placeholder="Поиск..."
           :disabled="disabled"
         />
       </div>
@@ -192,7 +169,7 @@
           :key="optionIndex"
           class="app-select__option"
           :class="{
-            'app-select__option--selected': isSelected(option),
+            'app-select__option--selected': isSelectedOption(option),
             'app-select__option--disabled': disabled,
           }"
           @click="toggleOption(option)"
@@ -260,12 +237,7 @@
       }
     }
 
-    &__placeholder {
-      color: $color-text;
-      @include apply-text("caption-small");
-    }
-
-    &__selected-labels {
+    &__selected-label {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
