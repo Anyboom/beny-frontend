@@ -44,6 +44,7 @@
 
 <style scoped lang="scss">
   @use "@/shared/assets/styles/variables" as *;
+  @use "~/shared/assets/styles/typography" as *;
 
   .app-empty-state {
     background: $color-default-white;
@@ -58,22 +59,24 @@
 
     &__icon {
       margin: 0 auto;
-      width: 5rem;
-      height: 5rem;
+      width: $spacing-10;
+      height: $spacing-10;
       color: $color-text;
     }
 
     &__title {
-      margin-top: 1.5rem;
-      font-size: 1.875rem;
-      font-weight: 700;
+      margin-top: $spacing-1;
       color: $color-text;
+
+      @include apply-text("heading-3");
     }
 
     &__description {
-      margin-top: 1rem;
-      text-wrap: pretty;
+      margin-top: $spacing-1;
       color: $color-placeholder;
+      text-wrap: pretty;
+
+      @include apply-text("body");
     }
 
     &__actions {
