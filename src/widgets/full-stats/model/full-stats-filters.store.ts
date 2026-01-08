@@ -1,4 +1,4 @@
-import { computed, defineStore } from "#imports";
+import { computed, defineStore, toRaw } from "#imports";
 import type { TeamEntity } from "~/entities/team";
 import type { CompetitionEntity } from "~/entities/competition";
 import type { ForecastEntity } from "~/entities/forecast";
@@ -73,9 +73,14 @@ export const useFullStatsFiltersStore = defineStore("full-stats-filters", () => 
     filters.value = structuredClone(initFilters);
   }
 
+  function updateFilters(newFilters: object) {
+    filters.value = structuredClone(toRaw(newFilters) as StatsFilters);
+  }
+
   return {
     serializedFilters,
     filters,
     resetFilters,
+    updateFilters,
   };
 });

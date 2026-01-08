@@ -1,11 +1,11 @@
-import { defineStore, useRouteQuery } from "#imports";
+import { defineStore } from "#imports";
 import { ref } from "vue";
 import type { BetEntity } from "~/entities/bet";
 
 export const useFullStatsBetsStore = defineStore("full-stats-bets", () => {
   const bets = ref<BetEntity[]>([]);
   const total = ref<number>(0);
-  const page = useRouteQuery("page", 1, { transform: Number });
+  const page = ref<number>(1);
   const filters = ref<object>({});
 
   function updateBets(data: BetEntity[]) {

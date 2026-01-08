@@ -76,5 +76,6 @@ export function useFullStatsFilters() {
     filters,
     serializedFilters,
     resetFilters: fullStatsFiltersStore.resetFilters,
+    updateFilters: fullStatsFiltersStore.updateFilters,
   };
 }

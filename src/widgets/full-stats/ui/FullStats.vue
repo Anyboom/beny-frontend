@@ -7,6 +7,7 @@
   import { AppEmptyState } from "~/shared/ui/AppEmptyState";
   import { AppButton } from "~/shared/ui/AppButton";
   import { useFullStatsFilters } from "~/widgets/full-stats/model/use-full-stats-filters";
+  import { useFullStatsAsyncQuery } from "~/widgets/full-stats/model/use-full-stats-async-query";
 
   const { page, itemsPerPage, total, updatePage, statusOfTotal, statusOfBets, bets, updateFilters } =
     useFullStatsBets();
@@ -18,6 +19,8 @@
     resetFilters();
     updatePage(1);
   }
+
+  useFullStatsAsyncQuery();
 </script>
 
 <template>

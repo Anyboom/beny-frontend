@@ -5,14 +5,19 @@
   import FullStatsFiltersSkeleton from "~/widgets/full-stats/ui/FullStatsFiltersSkeleton.vue";
   import { useFullStatsFilters } from "~/widgets/full-stats/model/use-full-stats-filters";
   import { useFullStatsBets } from "~/widgets/full-stats/model/use-full-stats-bets";
+  import { useCloned } from "#imports";
 
-  const { teams, forecasts, competitions, isLoading, isLoaded, filters, serializedFilters } = useFullStatsFilters();
+  const { teams, forecasts, competitions, isLoading, isLoaded, filters, serializedFilters, updateFilters } =
+    useFullStatsFilters();
 
-  const { updateFilters, updatePage } = useFullStatsBets();
+  const { updateFilters: updateFiltersForBets, updatePage } = useFullStatsBets();
+
+  const { cloned: localFilters, isModified } = useCloned(filters);
 
   function applyFilters() {
+    updateFilters(localFilters.value);
     updatePage(1);
-    updateFilters(serializedFilters.value);
+    updateFiltersForBets(serializedFilters.value);
   }
 </script>
 
@@ -24,7 +29,7 @@
     <label class="full-stats-filters__label">
       Домашняя команда
       <AppSelect
-        v-model="filters.homeTeam"
+        v-model="localFilters.homeTeam"
         :options="teams"
         option-key="id"
         option-label="name"
@@ -35,7 +40,7 @@
     <label class="full-stats-filters__label">
       Гостевая команда
       <AppSelect
-        v-model="filters.guestTeam"
+        v-model="localFilters.guestTeam"
         :options="teams"
         option-key="id"
         option-label="name"
@@ -46,7 +51,7 @@
     <label class="full-stats-filters__label">
       Соревнование
       <AppSelect
-        v-model="filters.competition"
+        v-model="localFilters.competition"
         :options="competitions"
         option-key="id"
         option-label="name"
@@ -57,7 +62,7 @@
     <label class="full-stats-filters__label">
       Прогноз
       <AppSelect
-        v-model="filters.forecasts"
+        v-model="localFilters.forecasts"
         :options="forecasts"
         option-key="id"
         option-label="name"
@@ -67,23 +72,28 @@
     </label>
     <div>
       <AppCheckbox
-        v-model="filters.statuses.win"
+        v-model="localFilters.statuses.win"
         label="Выигрыш"
       />
       <AppCheckbox
-        v-model="filters.statuses.lose"
+        v-model="localFilters.statuses.lose"
         label="Прогрыш"
       />
       <AppCheckbox
-        v-model="filters.statuses.return"
+        v-model="localFilters.statuses.return"
         label="Возврат"
       />
       <AppCheckbox
-        v-model="filters.statuses.pending"
+        v-model="localFilters.statuses.pending"
         label="Ожидание"
       />
     </div>
-    <AppButton @click="applyFilters"> Обновить </AppButton>
+    <AppButton
+      :disabled="!isModified"
+      @click="applyFilters"
+    >
+      Обновить
+    </AppButton>
   </div>
 
   <FullStatsFiltersSkeleton v-show="isLoading" />
