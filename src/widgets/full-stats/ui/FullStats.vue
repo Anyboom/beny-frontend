@@ -50,7 +50,7 @@
         </div>
 
         <AppPaginator
-          v-show="['success'].includes(statusOfTotal)"
+          v-show="['success'].includes(statusOfTotal) && bets.length > 0"
           :current-page="page"
           :total-items="total"
           :items-per-page="itemsPerPage"
