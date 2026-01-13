@@ -1,10 +1,10 @@
-import { computed, watchEffect } from "#imports";
+import { computed } from "#imports";
 import { useQuery } from "#imports";
 import { storeToRefs } from "#imports";
 import { type BetEntity, getBetsApi, getTotalBetsApi } from "~/entities/bet";
 import { toBetMapper } from "~/entities/bet/api/to-bet.mapper";
 import { useFullStatsBetsStore } from "~/widgets/full-stats/model/full-stats-bets.store";
-import { type Ref, watch } from "vue";
+import { type Ref } from "vue";
 
 const ITEMS_PER_PAGE = 9;
 
@@ -14,11 +14,11 @@ const QUERY_KEYS = {
 } as const;
 
 interface UseFullStatsBetsReturn {
-  bets: Ref<BetEntity[]>;
+  bets: Ref<BetEntity[] | undefined>;
   statusOfBets: Ref<string>;
   page: Ref<number>;
   itemsPerPage: number;
-  total: Ref<number>;
+  total: Ref<number | undefined>;
   statusOfTotal: Ref<string>;
   updatePage: (newPage: number) => void;
   updateFilters: (newFilters: object) => void;
@@ -27,7 +27,7 @@ interface UseFullStatsBetsReturn {
 export function useFullStatsBets(): UseFullStatsBetsReturn {
   const betsStore = useFullStatsBetsStore();
 
-  const { bets, total, page, filters } = storeToRefs(betsStore);
+  const { page, filters } = storeToRefs(betsStore);
 
   const queryParameters = computed(() => ({
     fields: "*.*",
@@ -37,36 +37,27 @@ export function useFullStatsBets(): UseFullStatsBetsReturn {
     filter: filters.value,
   }));
 
-  const { data: betsData, status: statusOfBets } = useQuery({
+  const { data: bets, status: statusOfBets } = useQuery({
     key: () => [QUERY_KEYS.BETS, { ...queryParameters.value }],
-    query: () => getBetsApi(queryParameters),
-    enabled: import.meta.client,
-    placeholderData: (previousData) => previousData,
-  });
+    query: async () => {
+      const response = await getBetsApi(queryParameters);
 
-  watchEffect(() => {
-    if (betsData.value?.data) {
-      const mappedBets = betsData.value.data.map(toBetMapper);
-
-      betsStore.updateBets(mappedBets);
-    }
-  });
-
-  const { data: totalData, status: statusOfTotal } = useQuery({
-    key: () => [QUERY_KEYS.BETS_TOTAL, { ...filters.value }],
-    query: () => getTotalBetsApi({ filter: filters.value }),
-    enabled: import.meta.client,
-    placeholderData: (previousData) => previousData,
-  });
-
-  watch(
-    () => totalData.value?.data?.[0]?.count,
-    (newCount) => {
-      if (newCount !== undefined && typeof newCount === "number") {
-        betsStore.updateTotal(newCount);
-      }
+      return response.data.map(toBetMapper);
     },
-  );
+    enabled: import.meta.client,
+    placeholderData: (previousData) => previousData,
+  });
+
+  const { data: total, status: statusOfTotal } = useQuery({
+    key: () => [QUERY_KEYS.BETS_TOTAL, { ...filters.value }],
+    query: async () => {
+      const response = await getTotalBetsApi({ filter: filters.value });
+
+      return response?.data?.[0]?.count;
+    },
+    enabled: import.meta.client,
+    placeholderData: (previousData) => previousData,
+  });
 
   return {
     bets,

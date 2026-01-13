@@ -8,6 +8,8 @@
   import { AppButton } from "~/shared/ui/AppButton";
   import { useFullStatsFilters } from "~/widgets/full-stats/model/use-full-stats-filters";
   import { useFullStatsAsyncQuery } from "~/widgets/full-stats/model/use-full-stats-async-query";
+  import { computed } from "#imports";
+  import type { BetEntity } from "~/entities/bet";
 
   const { page, itemsPerPage, total, updatePage, statusOfTotal, statusOfBets, bets, updateFilters } =
     useFullStatsBets();
@@ -21,6 +23,9 @@
   }
 
   useFullStatsAsyncQuery();
+
+  const isBetsExist = computed(() => Boolean(bets.value && bets.value.length > 0));
+  const isBetsEmpty = computed(() => !isBetsExist.value);
 </script>
 
 <template>
@@ -31,13 +36,13 @@
         <div class="full-stats__layout">
           <div class="full-stats__content">
             <FullStatsCards
-              v-show="['success'].includes(statusOfBets)"
-              :bets="bets"
+              v-if="isBetsExist && ['success'].includes(statusOfBets)"
+              :bets="bets as BetEntity[]"
             />
 
-            <FullStatsCardsSkeleton v-show="['pending'].includes(statusOfBets)" />
+            <FullStatsCardsSkeleton v-if="['pending'].includes(statusOfBets)" />
 
-            <AppEmptyState v-show="bets.length == 0 && ['success'].includes(statusOfBets)">
+            <AppEmptyState v-show="isBetsEmpty && ['success'].includes(statusOfBets)">
               <template #actions>
                 <AppButton @click="clearFilters">Сбросить фильтры</AppButton>
               </template>
@@ -50,7 +55,7 @@
         </div>
 
         <AppPaginator
-          v-show="['success'].includes(statusOfTotal) && bets.length > 0"
+          v-if="['success'].includes(statusOfTotal) && isBetsExist && total"
           :current-page="page"
           :total-items="total"
           :items-per-page="itemsPerPage"
