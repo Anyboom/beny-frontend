@@ -10,7 +10,10 @@
     "postinstall": "nuxt prepare",
     "prepare": "husky",
     "commit": "bun run git-cz",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "story:dev": "histoire dev",
+    "story:build": "histoire build",
+    "story:preview": "histoire preview"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
@@ -28,7 +31,7 @@
   },
   "dependencies": {
     "@directus/visual-editing": "^1.1.0",
-    "@nuxt/icon": "^1.15.0",
+    "@nuxt/icon": "^2.2.0",
     "@pinia/colada": "^0.20.0",
     "@pinia/colada-nuxt": "^0.3.0",
     "@tanstack/vue-form": "^1.27.7",
@@ -49,6 +52,8 @@
     "@commitlint/config-conventional": "^20.3.0",
     "@eslint/css": "^0.10.0",
     "@eslint/js": "^9.39.2",
+    "@histoire/plugin-nuxt": "^1.0.0-beta.1",
+    "@histoire/plugin-vue": "^1.0.0-beta.1",
     "@pinia/nuxt": "^0.11.3",
     "commitizen": "^4.3.1",
     "conventional-changelog-cli": "^5.0.0",
@@ -59,6 +64,7 @@
     "eslint-plugin-sonarjs": "^3.0.5",
     "eslint-plugin-vue": "^10.6.2",
     "globals": "^16.5.0",
+    "histoire": "^1.0.0-beta.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "prettier": "3.6.2",
