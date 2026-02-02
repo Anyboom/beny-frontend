@@ -2,10 +2,13 @@
   import type { BetEntity } from "../model/bet.entity";
   import "dayjs/locale/ru";
   import { dayjs } from "~/shared/lib/dayjs";
+  import { computed } from "#imports";
 
   const props = defineProps<BetEntity>();
 
   const startedAt = dayjs(props.startedAt).format("HH:mm | D MMMM YYYY");
+
+  const event = computed(() => `${props.homeTeam.name} - ${props.guestTeam.name}`);
 </script>
 
 <template>
@@ -15,23 +18,48 @@
       <div class="bet-card__content">
         <div class="bet-card__content-item">
           <span class="bet-card__content-item-key">Матч:</span>
-          <span class="bet-card__content-item-value">{{ homeTeam.name }} - {{ guestTeam.name }}</span>
+          <span
+            class="bet-card__content-item-value"
+            :title="event"
+          >
+            {{ event }}
+          </span>
         </div>
         <div class="bet-card__content-item">
           <span class="bet-card__content-item-key">Соревнование:</span>
-          <span class="bet-card__content-item-value">{{ competition.name }}</span>
+          <span
+            class="bet-card__content-item-value"
+            :title="competition.name"
+          >
+            {{ competition.name }}
+          </span>
         </div>
         <div class="bet-card__content-item">
           <span class="bet-card__content-item-key">Время:</span>
-          <span class="bet-card__content-item-value">{{ startedAt }}</span>
+          <span
+            class="bet-card__content-item-value"
+            :title="startedAt"
+          >
+            {{ startedAt }}
+          </span>
         </div>
         <div class="bet-card__content-item">
           <span class="bet-card__content-item-key">Прогноз:</span>
-          <span class="bet-card__content-item-value">{{ forecast.name }}</span>
+          <span
+            class="bet-card__content-item-value"
+            :title="forecast.name"
+          >
+            {{ forecast.name }}
+          </span>
         </div>
         <div class="bet-card__content-item">
           <span class="bet-card__content-item-key">КФ:</span>
-          <span class="bet-card__content-item-value">{{ coefficient }}</span>
+          <span
+            class="bet-card__content-item-value"
+            :title="String(coefficient)"
+          >
+            {{ coefficient }}
+          </span>
         </div>
       </div>
       <div
@@ -87,6 +115,12 @@
 
       &-key {
         font-weight: 700;
+      }
+
+      &-value {
+        text-wrap: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
 
