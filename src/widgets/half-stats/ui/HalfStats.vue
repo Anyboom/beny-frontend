@@ -3,8 +3,8 @@
   import { AppButton } from "~/shared/ui/AppButton";
   import type { Block, ButtonGroup } from "~/pages/dynamic-page";
   import { setAttr } from "@directus/visual-editing";
-  import { useAsyncData } from "#app";
   import { toBetMapper } from "~/entities/bet/api/to-bet.mapper";
+  import { useQuery } from "#imports";
 
   interface Props extends Block {
     item: {
@@ -16,18 +16,19 @@
 
   const { item } = defineProps<Props>();
 
-  const { data, pending, error } = await useAsyncData(
-    () =>
-      getBetsApi({
+  const { data, isPending, error } = useQuery({
+    key: ["half-stats"],
+    query: async () => {
+      const response = await getBetsApi({
         fields: "*.*",
         limit: 8,
         sort: "-date_updated",
         filter: { "status": { "_nin": "pending" } },
-      }),
-    {
-      transform: (response) => response.data.map(toBetMapper),
+      });
+
+      return response.data.map(toBetMapper);
     },
-  );
+  });
 
   const title = item.title;
 
@@ -53,7 +54,7 @@
         >
           {{ title }}
         </h2>
-        <template v-if="pending">
+        <template v-if="isPending">
           <div class="half-stats__items">
             <BetCardSkeleton
               v-for="element in 8"
@@ -61,7 +62,7 @@
             />
           </div>
         </template>
-        <template v-else-if="!pending && !error && data">
+        <template v-else-if="!isPending && !error && data">
           <div class="half-stats__items">
             <BetCard
               v-for="(element, index) in data"
