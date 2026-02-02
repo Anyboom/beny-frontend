@@ -12,7 +12,7 @@
     caption: string;
   };
 
-  const errors: Record<string, Error> = {
+  const errors: Record<number | string, Error> = {
     404: {
       title: "Страница не найдена",
       caption:
@@ -27,8 +27,8 @@
   const { error } = defineProps<Props>();
 
   const currentError = computed(() => {
-    if (errors?.[error.statusCode]) {
-      return errors[error.statusCode] as Error;
+    if (error.status && errors?.[error.status]) {
+      return errors[error.status] as Error;
     }
 
     return errors.default as Error;
