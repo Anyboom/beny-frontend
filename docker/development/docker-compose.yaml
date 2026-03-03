@@ -3,14 +3,14 @@ name: "beny-frontend"
 
 services:
   beny-frontend:
-    image: oven/bun:1.1.45
+    image: node:22
     container_name: beny-frontend
     working_dir: /usr/src/app
     volumes:
       - ../../:/usr/src/app
     ports:
       - "3000:3000"
-    command: ["sh", "-c", "bun install && bun run dev"]
+    command: ["sh", "-c", "npm install && npm run dev"]
     networks:
       - beny
 

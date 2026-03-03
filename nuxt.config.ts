@@ -33,10 +33,6 @@ export default defineNuxtConfig({
     },
   },
 
-  nitro: {
-    preset: "bun",
-  },
-
   app: {
     head: {
       link: [
