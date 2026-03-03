@@ -69,23 +69,22 @@
 </template>
 
 <style scoped lang="scss">
-  @use "@/shared/assets/styles/typography" as *;
-  @use "@/shared/assets/styles/variables" as *;
-  @use "@/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/core";
+  @use "@/shared/assets/styles/mixins";
 
   .full-stats {
-    margin-bottom: $spacing-8;
+    margin-bottom: core.$spacing-8;
 
     &__title {
-      @include apply-text("heading-2");
-      color: $color-text;
-      margin-bottom: $spacing-2;
+      @include mixins.apply-text("heading-2");
+      color: core.$color-text;
+      margin-bottom: core.$spacing-2;
     }
 
     &__layout {
       display: grid;
       grid-template-columns: 3fr 1fr;
-      gap: $spacing-6;
+      gap: core.$spacing-6;
     }
   }
 </style>

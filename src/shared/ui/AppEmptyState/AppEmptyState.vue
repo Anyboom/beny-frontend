@@ -43,13 +43,13 @@
 </template>
 
 <style scoped lang="scss">
-  @use "@/shared/assets/styles/variables" as *;
-  @use "~/shared/assets/styles/typography" as *;
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .app-empty-state {
-    background: $color-default-white;
-    padding: $spacing-8 $spacing-2;
-    border-radius: $spacing-2;
+    background: core.$color-default-white;
+    padding: core.$spacing-8 core.$spacing-2;
+    border-radius: core.$spacing-2;
 
     &__inner {
       max-width: 500px;
@@ -59,24 +59,24 @@
 
     &__icon {
       margin: 0 auto;
-      width: $spacing-10;
-      height: $spacing-10;
-      color: $color-text;
+      width: core.$spacing-10;
+      height: core.$spacing-10;
+      color: core.$color-text;
     }
 
     &__title {
-      margin-top: $spacing-1;
-      color: $color-text;
+      margin-top: core.$spacing-1;
+      color: core.$color-text;
 
-      @include apply-text("heading-3");
+      @include mixins.apply-text("heading-3");
     }
 
     &__description {
-      margin-top: $spacing-1;
-      color: $color-placeholder;
+      margin-top: core.$spacing-1;
+      color: core.$color-placeholder;
       text-wrap: pretty;
 
-      @include apply-text("body");
+      @include mixins.apply-text("body");
     }
 
     &__actions {

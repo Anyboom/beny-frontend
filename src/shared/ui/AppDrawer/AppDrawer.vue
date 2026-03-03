@@ -194,9 +194,8 @@
 </template>
 
 <style lang="scss" scoped>
-  @use "~/shared/assets/styles/typography" as *;
-  @use "~/shared/assets/styles/variables" as *;
-  @use "~/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .app-drawer {
     $block: &;
@@ -212,7 +211,7 @@
       left: 0;
       bottom: 0;
 
-      @include view-port-sm {
+      @include mixins.view-port-sm {
         width: 100vw;
         max-width: 100vw;
       }
@@ -223,7 +222,7 @@
       right: 0;
       bottom: 0;
 
-      @include view-port-sm {
+      @include mixins.view-port-sm {
         width: 100vw;
         max-width: 100vw;
       }
@@ -234,7 +233,7 @@
       left: 0;
       right: 0;
 
-      @include view-port-sm {
+      @include mixins.view-port-sm {
         height: 80vh;
         max-height: 80vh;
       }
@@ -245,7 +244,7 @@
       left: 0;
       right: 0;
 
-      @include view-port-sm {
+      @include mixins.view-port-sm {
         height: 80vh;
         max-height: 80vh;
       }
@@ -265,43 +264,43 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: $spacing-2 $spacing-3;
+      padding: core.$spacing-2 core.$spacing-3;
       border-bottom: 1px solid #f0f0f0;
       flex-shrink: 0;
 
-      @include view-port-sm {
-        padding: $spacing-1 $spacing-2;
+      @include mixins.view-port-sm {
+        padding: core.$spacing-1 core.$spacing-2;
       }
 
       &-content {
         flex: 1;
-        margin-right: $spacing-2;
+        margin-right: core.$spacing-2;
       }
     }
 
     &__title {
       margin: 0;
-      color: $color-text;
-      @include apply-text("heading-5");
+      color: core.$color-text;
+      @include mixins.apply-text("heading-5");
     }
 
     &__close {
-      font-size: $spacing-4;
+      font-size: core.$spacing-4;
       cursor: pointer;
-      padding: calc($spacing-1 * 0.5);
-      color: $color-text;
-      background-color: $color-default-white;
-      transition: $transition-default;
-      border-radius: $spacing-1;
+      padding: calc(#{core.$spacing-1} * 0.5);
+      color: core.$color-text;
+      background-color: core.$color-default-white;
+      transition: core.$transition-default;
+      border-radius: core.$spacing-1;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: $spacing-4;
-      height: $spacing-4;
+      width: core.$spacing-4;
+      height: core.$spacing-4;
 
       &:hover {
-        background-color: $color-default-white-hover;
-        color: $color-text-hover;
+        background-color: core.$color-default-white-hover;
+        color: core.$color-text-hover;
       }
 
       &-icon {
@@ -311,21 +310,21 @@
 
     &__body {
       flex: 1;
-      padding: $spacing-3;
+      padding: core.$spacing-3;
 
-      @include view-port-sm {
-        padding: $spacing-2;
+      @include mixins.view-port-sm {
+        padding: core.$spacing-2;
       }
     }
 
     &__footer {
-      padding: $spacing-2 $spacing-3;
+      padding: core.$spacing-2 core.$spacing-3;
       border-top: 1px solid #f0f0f0;
       flex-shrink: 0;
       background: #fafafa;
 
-      @include view-port-sm {
-        padding: $spacing-1 $spacing-2;
+      @include mixins.view-port-sm {
+        padding: core.$spacing-1 core.$spacing-2;
       }
     }
 
@@ -338,7 +337,7 @@
       &-top-leave-active,
       &-bottom-enter-active,
       &-bottom-leave-active {
-        transition: $transition-default;
+        transition: core.$transition-default;
       }
 
       &-left-enter-from {

@@ -68,50 +68,49 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/variables" as *;
-  @use "@/shared/assets/styles/mixins" as *;
-  @use "@/shared/assets/styles/typography" as *;
+  @use "~/shared/assets/styles/core";
+  @use "@/shared/assets/styles/mixins";
 
   .header {
-    margin-bottom: $spacing-8;
+    margin-bottom: core.$spacing-8;
 
     &__wrapper {
-      padding: $spacing-3 0;
+      padding: core.$spacing-3 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     &__burger {
-      height: $spacing-4;
-      width: $spacing-4;
-      color: $color-accent;
+      height: core.$spacing-4;
+      width: core.$spacing-4;
+      color: core.$color-accent;
       cursor: pointer;
-      transition: $transition-default;
+      transition: core.$transition-default;
       display: none;
       z-index: 3000;
       position: relative;
 
       &--active {
-        color: $color-accent-hover;
+        color: core.$color-accent-hover;
       }
 
-      @include view-port-md {
+      @include mixins.view-port-md {
         display: block;
       }
 
-      @include hover {
-        color: $color-accent-hover;
+      @include mixins.hover {
+        color: core.$color-accent-hover;
       }
     }
 
     &__nav {
       display: flex;
-      gap: $spacing-2;
+      gap: core.$spacing-2;
 
-      @include apply-text("link");
+      @include mixins.apply-text("link");
 
-      @include view-port-md {
+      @include mixins.view-port-md {
         display: none;
       }
 
@@ -120,11 +119,11 @@
         position: absolute;
         flex-direction: column;
         right: 0;
-        background: $color-default-white;
-        padding: $spacing-3;
-        border-radius: $spacing-2;
+        background: core.$color-default-white;
+        padding: core.$spacing-3;
+        border-radius: core.$spacing-2;
         z-index: 2000;
-        top: $spacing-5;
+        top: core.$spacing-5;
       }
     }
 
@@ -133,11 +132,11 @@
     }
 
     &__nav-item {
-      color: $color-text;
-      transition: $transition-default;
+      color: core.$color-text;
+      transition: core.$transition-default;
 
-      @include hover {
-        color: $color-text-hover;
+      @include mixins.hover {
+        color: core.$color-text-hover;
       }
     }
   }

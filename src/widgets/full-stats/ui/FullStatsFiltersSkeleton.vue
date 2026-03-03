@@ -33,21 +33,20 @@
 </template>
 
 <style scoped lang="scss">
-  @use "@/shared/assets/styles/typography" as *;
-  @use "@/shared/assets/styles/variables" as *;
-  @use "@/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/core";
+  @use "@/shared/assets/styles/mixins";
 
   .full-stats-filters-skeleton {
     display: flex;
     flex-direction: column;
-    gap: $spacing-2;
+    gap: core.$spacing-2;
 
     &__label {
-      @include apply-text("label");
-      color: $color-text;
+      @include mixins.apply-text("label");
+      color: core.$color-text;
       display: flex;
       flex-direction: column;
-      gap: $spacing-1;
+      gap: core.$spacing-1;
     }
   }
 </style>

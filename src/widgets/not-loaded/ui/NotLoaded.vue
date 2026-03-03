@@ -21,18 +21,18 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/variables" as *;
-  @use "@/shared/assets/styles/typography" as *;
+  @use "~/shared/assets/styles/core";
+  @use "~/shared/assets/styles/mixins";
 
   .not-loaded {
-    margin: $spacing-4 0;
+    margin: core.$spacing-4 0;
 
     &__wrapper {
-      background: $color-default-white;
-      border-radius: $spacing-2;
-      padding: $spacing-2;
+      background: core.$color-default-white;
+      border-radius: core.$spacing-2;
+      padding: core.$spacing-2;
 
-      @include apply-text("body");
+      @include mixins.apply-text("body");
 
       display: flex;
       justify-content: space-between;

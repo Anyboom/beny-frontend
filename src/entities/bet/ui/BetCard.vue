@@ -71,12 +71,12 @@
 </template>
 
 <style scoped lang="scss">
-  @use "@/shared/assets/styles/typography" as *;
-  @use "@/shared/assets/styles/variables" as *;
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .bet-card {
     &__wrapper {
-      border-radius: $spacing-2;
+      border-radius: core.$spacing-2;
       overflow: hidden;
       border: 1px solid #eeeeee;
     }
@@ -85,33 +85,33 @@
       height: 10px;
 
       &--win {
-        background: $color-bet-status-win;
+        background: core.$color-bet-status-win;
       }
 
       &--lose {
-        background: $color-bet-status-lose;
+        background: core.$color-bet-status-lose;
       }
 
       &--return {
-        background: $color-bet-status-return;
+        background: core.$color-bet-status-return;
       }
 
       &--pending {
-        background: $color-bet-status-pending;
+        background: core.$color-bet-status-pending;
       }
     }
 
     &__content {
-      padding: $spacing-2;
-      background: $color-default-white;
+      padding: core.$spacing-2;
+      background: core.$color-default-white;
     }
 
     &__content-item {
       display: flex;
       gap: 4px;
-      color: $color-text;
+      color: core.$color-text;
 
-      @include apply-text("caption-small");
+      @include mixins.apply-text("caption-small");
 
       &-key {
         font-weight: 700;

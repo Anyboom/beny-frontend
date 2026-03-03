@@ -8,33 +8,32 @@
 </template>
 
 <style scoped lang="scss">
-  @use "~/shared/assets/styles/variables" as *;
-  @use "~/shared/assets/styles/typography" as *;
-  @use "~/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/core";
+  @use "~/shared/assets/styles/mixins";
 
   .app-textarea {
-    background: $color-default-white;
-    color: $color-text;
-    border-radius: $spacing-1;
-    padding: $spacing-2;
+    background: core.$color-default-white;
+    color: core.$color-text;
+    border-radius: core.$spacing-1;
+    padding: core.$spacing-2;
     resize: none;
     outline: none;
     border: 2px solid transparent;
 
-    transition: border $transition-default;
+    transition: border core.$transition-default;
 
-    @include apply-text("input");
+    @include mixins.apply-text("input");
 
-    @include hover {
-      border: 2px solid $color-default-border-hover;
+    @include mixins.hover {
+      border: 2px solid core.$color-default-border-hover;
     }
 
     &:focus {
-      border: 2px solid $color-accent;
+      border: 2px solid core.$color-accent;
     }
 
     &::placeholder {
-      color: $color-placeholder;
+      color: core.$color-placeholder;
     }
   }
 </style>

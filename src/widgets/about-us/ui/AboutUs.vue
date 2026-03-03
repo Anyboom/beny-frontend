@@ -57,41 +57,41 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/variables" as *;
-  @use "@/shared/assets/styles/typography" as *;
-  @use "@/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/core";
+  @use "~/shared/assets/styles/semantic";
+  @use "@/shared/assets/styles/mixins";
 
   .about-us {
-    margin-bottom: $spacing-8;
+    margin-bottom: core.$spacing-8;
     &__title {
-      @include apply-text("heading-2");
-      color: $color-text;
-      margin-bottom: $spacing-2;
+      @include mixins.apply-text("heading-2");
+      color: core.$color-text;
+      margin-bottom: core.$spacing-2;
     }
 
     &__content {
-      padding-right: $spacing-4;
+      padding-right: core.$spacing-4;
     }
 
     &__wrapper {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: $spacing-2;
+      gap: core.$spacing-2;
 
-      @include view-port-sm {
+      @include mixins.view-port-sm {
         display: block;
       }
     }
 
     &__icon {
-      fill: $color-white;
+      fill: core.$color-white;
       width: 221px;
     }
 
     &__image {
-      border-radius: $spacing-2;
-      background: $color-accent;
-      padding: $spacing-8 0;
+      border-radius: core.$spacing-2;
+      background: core.$color-accent;
+      padding: core.$spacing-8 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -99,7 +99,7 @@
     }
 
     &__image-wrapper {
-      @include view-port-sm {
+      @include mixins.view-port-sm {
         display: none;
       }
     }

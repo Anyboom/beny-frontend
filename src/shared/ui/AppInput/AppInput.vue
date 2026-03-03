@@ -11,31 +11,30 @@
 </template>
 
 <style scoped lang="scss">
-  @use "~/shared/assets/styles/variables" as *;
-  @use "~/shared/assets/styles/mixins" as *;
-  @use "~/shared/assets/styles/typography" as *;
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .app-input {
-    background: $color-default-white;
-    color: $color-text;
-    border-radius: $spacing-1;
-    padding: $spacing-2;
+    background: core.$color-default-white;
+    color: core.$color-text;
+    border-radius: core.$spacing-1;
+    padding: core.$spacing-2;
     border: 2px solid transparent;
-    transition: border $transition-default;
+    transition: border core.$transition-default;
 
-    @include apply-text("input");
+    @include mixins.apply-text("input");
 
-    @include hover {
-      border: 2px solid $color-default-border-hover;
+    @include mixins.hover {
+      border: 2px solid core.$color-default-border-hover;
     }
 
     &:focus {
-      border: 2px solid $color-accent;
+      border: 2px solid core.$color-accent;
     }
 
     &::placeholder {
-      @include apply-text("caption-small");
-      color: $color-placeholder;
+      @include mixins.apply-text("caption-small");
+      color: core.$color-placeholder;
     }
   }
 </style>

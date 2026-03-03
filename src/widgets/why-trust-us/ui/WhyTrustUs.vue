@@ -58,50 +58,49 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/typography" as *;
-  @use "@/shared/assets/styles/variables" as *;
-  @use "@/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/core";
+  @use "@/shared/assets/styles/mixins";
 
   .why-trust-us {
-    margin-bottom: $spacing-8;
+    margin-bottom: core.$spacing-8;
     &__title {
-      color: $color-text;
-      margin-bottom: $spacing-2;
+      color: core.$color-text;
+      margin-bottom: core.$spacing-2;
 
-      @include apply-text("heading-2");
+      @include mixins.apply-text("heading-2");
     }
 
     &__card {
-      padding: $spacing-3;
-      border-radius: $spacing-3;
-      background: $color-white;
+      padding: core.$spacing-3;
+      border-radius: core.$spacing-3;
+      background: core.$color-white;
     }
 
     &__card-wrapper {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: $spacing-3;
+      gap: core.$spacing-3;
 
-      @include view-port-sm {
+      @include mixins.view-port-sm {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      @include view-port-xs {
+      @include mixins.view-port-xs {
         grid-template-columns: repeat(1, 1fr);
       }
     }
 
     &__card-title {
-      color: $color-text;
-      margin-bottom: $spacing-2;
+      color: core.$color-text;
+      margin-bottom: core.$spacing-2;
 
-      @include apply-text("heading-6");
+      @include mixins.apply-text("heading-6");
     }
 
     &__card-caption {
       color: #565963;
 
-      @include apply-text("caption");
+      @include mixins.apply-text("caption");
     }
   }
 </style>

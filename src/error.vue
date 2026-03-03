@@ -50,21 +50,21 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/typography" as *;
-  @use "@/shared/assets/styles/variables" as *;
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .error {
-    max-width: $spacing-16 * 4;
+    max-width: core.$spacing-16 * 4;
     display: flex;
     flex-direction: column;
-    gap: $spacing-2;
+    gap: core.$spacing-2;
 
     &__title {
-      @include apply-text("heading-1");
+      @include mixins.apply-text("heading-1");
     }
 
     &__caption {
-      @include apply-text("body");
+      @include mixins.apply-text("body");
     }
 
     &__button {

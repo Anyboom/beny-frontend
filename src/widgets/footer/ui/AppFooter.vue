@@ -30,33 +30,32 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/variables" as *;
-  @use "@/shared/assets/styles/mixins" as *;
-  @use "@/shared/assets/styles/typography" as *;
+  @use "~/shared/assets/styles/core";
+  @use "@/shared/assets/styles/mixins";
 
   .footer {
     &__wrapper {
-      padding: $spacing-3 0;
+      padding: core.$spacing-3 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     &__info {
-      color: $color-text;
+      color: core.$color-text;
       opacity: 0.8;
 
-      @include apply-text("caption");
+      @include mixins.apply-text("caption");
     }
 
     &__link {
-      color: $color-text;
+      color: core.$color-text;
       border-bottom: 2px solid transparent;
 
-      @include apply-text("link");
+      @include mixins.apply-text("link");
 
-      @include hover {
-        border-bottom: 2px solid $color-text;
+      @include mixins.hover {
+        border-bottom: 2px solid core.$color-text;
       }
     }
   }

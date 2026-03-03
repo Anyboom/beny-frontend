@@ -93,33 +93,32 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/typography" as *;
-  @use "@/shared/assets/styles/variables" as *;
-  @use "@/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/core";
+  @use "@/shared/assets/styles/mixins";
 
   .half-stats {
-    margin-bottom: $spacing-8;
+    margin-bottom: core.$spacing-8;
     &__title {
-      @include apply-text("heading-2");
-      color: $color-text;
-      margin-bottom: $spacing-2;
+      @include mixins.apply-text("heading-2");
+      color: core.$color-text;
+      margin-bottom: core.$spacing-2;
     }
 
     &__items {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: $spacing-2;
-      margin-bottom: $spacing-2;
+      gap: core.$spacing-2;
+      margin-bottom: core.$spacing-2;
 
-      @include view-port-md {
+      @include mixins.view-port-md {
         grid-template-columns: repeat(3, 1fr);
       }
 
-      @include view-port-sm {
+      @include mixins.view-port-sm {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      @include view-port-xs {
+      @include mixins.view-port-xs {
         grid-template-columns: repeat(1, 1fr);
       }
     }

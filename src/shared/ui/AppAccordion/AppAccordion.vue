@@ -19,18 +19,17 @@
 </template>
 
 <style scoped lang="scss">
-  @use "~/shared/assets/styles/variables" as *;
-  @use "~/shared/assets/styles/mixins" as *;
-  @use "~/shared/assets/styles/typography" as *;
+  @use "~/shared/assets/styles/core";
+  @use "~/shared/assets/styles/mixins";
 
   .app-accordion {
     &[open] > &__summary {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
 
-      border-top: 2px solid $color-accent;
-      border-left: 2px solid $color-accent;
-      border-right: 2px solid $color-accent;
+      border-top: 2px solid core.$color-accent;
+      border-left: 2px solid core.$color-accent;
+      border-right: 2px solid core.$color-accent;
       border-bottom: 2px solid transparent;
     }
 
@@ -39,18 +38,18 @@
     }
 
     &__icon {
-      transition: transform $transition-default;
+      transition: transform core.$transition-default;
     }
 
     &__title {
-      @include apply-text("body-small");
-      color: $color-text;
+      @include mixins.apply-text("body-small");
+      color: core.$color-text;
     }
 
     &__summary {
-      background: $color-default-white;
-      padding: $spacing-3 $spacing-2;
-      border-radius: $spacing-2;
+      background: core.$color-default-white;
+      padding: core.$spacing-3 core.$spacing-2;
+      border-radius: core.$spacing-2;
       list-style: none;
       cursor: pointer;
       user-select: none;
@@ -61,18 +60,18 @@
     }
 
     &__content {
-      background: $color-default-white;
-      padding: $spacing-3 $spacing-2;
-      color: $color-text;
+      background: core.$color-default-white;
+      padding: core.$spacing-3 core.$spacing-2;
+      color: core.$color-text;
 
       margin-top: -2px;
-      border-radius: 0 0 $spacing-2 $spacing-2;
+      border-radius: 0 0 core.$spacing-2 core.$spacing-2;
 
-      border-bottom: 2px solid $color-accent;
-      border-left: 2px solid $color-accent;
-      border-right: 2px solid $color-accent;
+      border-bottom: 2px solid core.$color-accent;
+      border-left: 2px solid core.$color-accent;
+      border-right: 2px solid core.$color-accent;
 
-      @include apply-text("caption");
+      @include mixins.apply-text("caption");
     }
   }
 </style>

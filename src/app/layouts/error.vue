@@ -9,37 +9,37 @@
 </template>
 
 <style lang="scss">
-  @use "~/shared/assets/styles/variables" as *;
-  @use "~/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/core";
+  @use "~/shared/assets/styles/mixins";
 
   body {
     :has(.error-layout) {
-      background: $color-accent;
+      background: core.$color-accent;
     }
   }
 
   .error-layout {
     height: 100dvh;
-    padding: $spacing-2;
-    background: $color-accent;
+    padding: core.$spacing-2;
+    background: core.$color-accent;
 
     &__wrapper {
-      background: $color-whisper;
-      border-radius: $spacing-3;
-      padding: 0 $spacing-3;
+      background: core.$color-whisper;
+      border-radius: core.$spacing-3;
+      padding: 0 core.$spacing-3;
       overflow: auto;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
 
-      @include view-port-sm {
+      @include mixins.view-port-sm {
         border-radius: 0;
-        padding: 0 $spacing-1;
+        padding: 0 core.$spacing-1;
       }
     }
 
-    @include view-port-sm {
+    @include mixins.view-port-sm {
       padding: 0;
     }
   }

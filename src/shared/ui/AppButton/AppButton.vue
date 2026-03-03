@@ -36,30 +36,29 @@
 </template>
 
 <style scoped lang="scss">
-  @use "~/shared/assets/styles/mixins" as *;
-  @use "~/shared/assets/styles/variables" as *;
-  @use "~/shared/assets/styles/typography" as *;
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .app-button {
     display: inline-block;
     text-transform: uppercase;
-    border-radius: $spacing-1;
-    background: $color-accent;
-    transition: $transition-default;
-    padding: $spacing-1 * 1.5 $spacing-3;
+    border-radius: core.$spacing-1;
+    background: core.$color-accent;
+    transition: core.$transition-default;
+    padding: core.$spacing-1 * 1.5 core.$spacing-3;
 
-    color: $color-default-white;
+    color: core.$color-default-white;
 
     &:disabled {
       opacity: 0.7;
       cursor: not-allowed;
     }
 
-    @include apply-text("button");
+    @include mixins.apply-text("button");
 
-    @include hover {
+    @include mixins.hover {
       &:not(:disabled) {
-        background: $color-accent-hover;
+        background: core.$color-accent-hover;
       }
     }
   }

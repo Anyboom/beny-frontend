@@ -1,0 +1,30 @@
+@use "sass:color";
+@use "colors" as core;
+
+$color-bet-status-pending: core.$color-suva-grey;
+$color-bet-status-win: core.$color-shadow-green;
+$color-bet-status-lose: core.$color-rosy-brown;
+$color-bet-status-return: core.$color-rock-blue;
+
+$color-placeholder: core.$color-storm-grey;
+
+$color-accent: core.$color-fun-blue;
+$color-accent-hover: color.adjust($color-accent, $blackness: 10%);
+
+$color-text: core.$color-ebony;
+$color-text-hover: color.adjust($color-text, $blackness: 10%);
+
+$color-text-error: core.$color-indian-red;
+
+$color-default-white: core.$color-white;
+$color-default-white-hover: color.adjust($color-default-white, $blackness: 5%);
+
+$color-default-black: core.$color-ebony;
+
+$color-default-border: core.$color-grey;
+$color-default-border-hover: $color-accent;
+
+$time-function-default: ease;
+$transition-default: 0.2s $time-function-default;
+
+$opacity-disabled: 0.6;

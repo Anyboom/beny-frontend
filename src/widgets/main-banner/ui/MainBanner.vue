@@ -91,35 +91,34 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/variables" as *;
-  @use "@/shared/assets/styles/typography" as *;
-  @use "@/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/core";
+  @use "@/shared/assets/styles/mixins";
 
   .main-banner {
-    margin-bottom: $spacing-8;
+    margin-bottom: core.$spacing-8;
     &__wrapper {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
 
-      @include view-port-md {
+      @include mixins.view-port-md {
         display: block;
       }
     }
     &__content {
-      padding: $spacing-8 * 2 0;
+      padding: core.$spacing-8 * 2 0;
 
-      @include view-port-md {
-        padding: $spacing-8 0;
+      @include mixins.view-port-md {
+        padding: core.$spacing-8 0;
       }
     }
     &__title {
-      color: $color-text;
-      margin-bottom: $spacing-5;
+      color: core.$color-text;
+      margin-bottom: core.$spacing-5;
       max-width: 540px;
 
-      @include apply-text("display-1");
+      @include mixins.apply-text("display-1");
 
-      @include view-port-md {
+      @include mixins.view-port-md {
         max-width: none;
       }
     }
@@ -128,7 +127,7 @@
       justify-content: right;
       align-items: center;
 
-      @include view-port-md {
+      @include mixins.view-port-md {
         display: none;
       }
     }
@@ -140,7 +139,7 @@
     &__card {
       width: 280px;
       position: absolute;
-      transition: $transition-default;
+      transition: core.$transition-default;
 
       &:nth-child(1) {
         z-index: 150;

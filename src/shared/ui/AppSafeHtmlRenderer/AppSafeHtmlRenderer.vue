@@ -23,17 +23,17 @@
 </template>
 
 <style lang="scss">
-  @use "~/shared/assets/styles/variables" as *;
-  @use "~/shared/assets/styles/typography" as *;
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .app-safe-html-renderer {
     p {
-      color: $color-text;
+      color: core.$color-text;
 
-      @include apply-text("body");
+      @include mixins.apply-text("body");
 
       &:not(:last-of-type) {
-        margin-bottom: $spacing-2;
+        margin-bottom: core.$spacing-2;
       }
     }
   }

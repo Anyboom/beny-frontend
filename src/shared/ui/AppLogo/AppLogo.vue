@@ -14,28 +14,28 @@
 </template>
 
 <style scoped lang="scss">
-  @use "~/shared/assets/styles/variables" as *;
-  @use "~/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .app-logo {
-    background: $color-accent;
-    padding: $spacing-1;
-    border-radius: $spacing-2;
+    background: core.$color-accent;
+    padding: core.$spacing-1;
+    border-radius: core.$spacing-2;
     width: fit-content;
     height: fit-content;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: $transition-default;
+    transition: core.$transition-default;
 
     &__icon {
       width: 100%;
       height: 100%;
-      fill: $color-default-white;
+      fill: core.$color-default-white;
     }
 
-    @include hover {
-      background: $color-accent-hover;
+    @include mixins.hover {
+      background: core.$color-accent-hover;
     }
   }
 </style>

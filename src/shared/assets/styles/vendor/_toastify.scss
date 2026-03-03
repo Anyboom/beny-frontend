@@ -1,5 +1,12 @@
-@use "variables" as *;
-@use "typography" as *;
+@use "../core";
+@use "../mixins";
+
+$color-toastify-text: core.$color-white;
+$color-toastify-status-default: core.$color-grey;
+$color-toastify-status-success: core.$color-japanese-laurel;
+$color-toastify-status-error: core.$color-persian-red;
+$color-toastify-status-info: core.$color-fun-blue;
+$color-toastify-status-warning: core.$color-orange-peel;
 
 .Toastify__toast-theme--colored.Toastify__toast--default {
   color: $color-toastify-text;
@@ -27,5 +34,5 @@
 }
 
 .Toastify__toast-body {
-  @include apply-text("body");
+  @include mixins.apply-text("body");
 }

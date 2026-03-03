@@ -46,20 +46,19 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/variables" as *;
-  @use "@/shared/assets/styles/typography" as *;
-  @use "@/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/core";
+  @use "@/shared/assets/styles/mixins";
 
   .click-bait {
-    margin-bottom: $spacing-8;
+    margin-bottom: core.$spacing-8;
 
-    @include view-port-xs {
+    @include mixins.view-port-xs {
       display: none;
     }
     &__wrapper {
-      background: $color-default-white;
-      border-radius: $spacing-2;
-      padding: $spacing-2;
+      background: core.$color-default-white;
+      border-radius: core.$spacing-2;
+      padding: core.$spacing-2;
 
       display: flex;
       justify-content: space-between;
@@ -67,8 +66,8 @@
     }
 
     &__content {
-      @include apply-text("caption");
-      color: $color-text;
+      @include mixins.apply-text("caption");
+      color: core.$color-text;
     }
   }
 </style>

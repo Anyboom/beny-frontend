@@ -123,27 +123,26 @@
 </template>
 
 <style scoped lang="scss">
-  @use "@/shared/assets/styles/typography" as *;
-  @use "@/shared/assets/styles/variables" as *;
-  @use "@/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .app-paginator {
-    margin: $spacing-2 0;
+    margin: core.$spacing-2 0;
 
     &__list {
       display: flex;
       width: fit-content;
 
-      border-radius: $spacing-1;
+      border-radius: core.$spacing-1;
       overflow: hidden;
     }
 
     &__button {
-      padding: $spacing-1 $spacing-2;
+      padding: core.$spacing-1 core.$spacing-2;
       background-color: white;
-      color: $color-text;
+      color: core.$color-text;
       cursor: pointer;
-      transition: $transition-default;
+      transition: core.$transition-default;
 
       display: flex;
       height: 100%;
@@ -151,18 +150,18 @@
       align-items: center;
 
       &.active {
-        background-color: $color-accent;
-        color: $color-default-white;
+        background-color: core.$color-accent;
+        color: core.$color-default-white;
       }
 
       &.disabled {
-        opacity: $opacity-disabled;
+        opacity: core.$opacity-disabled;
         cursor: not-allowed;
       }
 
       &:hover:not(.disabled) {
-        background-color: $color-accent;
-        color: $color-default-white;
+        background-color: core.$color-accent;
+        color: core.$color-default-white;
       }
     }
   }

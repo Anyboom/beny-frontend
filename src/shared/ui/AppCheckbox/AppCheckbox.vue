@@ -26,9 +26,8 @@
 </template>
 
 <style scoped lang="scss">
-  @use "~/shared/assets/styles/variables" as *;
-  @use "~/shared/assets/styles/mixins" as *;
-  @use "~/shared/assets/styles/typography" as *;
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .app-checkbox {
     $this: &;
@@ -36,7 +35,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    padding: $spacing-1 0;
+    padding: core.$spacing-1 0;
     user-select: none;
 
     &__input {
@@ -52,8 +51,8 @@
       }
 
       &:checked + #{$this}__checkmark {
-        background-color: $color-accent;
-        border-color: $color-accent;
+        background-color: core.$color-accent;
+        border-color: core.$color-accent;
 
         &:after {
           content: "";
@@ -70,7 +69,7 @@
     }
 
     &__label {
-      @include apply-text("label");
+      @include mixins.apply-text("label");
       color: #333;
     }
 
@@ -82,7 +81,7 @@
       border: 2px solid #ddd;
       border-radius: 4px;
       margin-right: 8px;
-      transition: all $transition-default;
+      transition: all core.$transition-default;
     }
 
     &.disabled {
@@ -90,9 +89,9 @@
       opacity: 0.6;
     }
 
-    @include hover {
+    @include mixins.hover {
       &:not(.disabled) #{$this}__checkmark {
-        border-color: $color-accent;
+        border-color: core.$color-accent;
       }
     }
   }

@@ -10,12 +10,12 @@
 </template>
 
 <style scoped lang="scss">
-  @use "~/shared/assets/styles/variables" as *;
+  @use "~/shared/assets/styles/core";
 
   .app-checkbox-skeleton {
-    padding: $spacing-1 0;
+    padding: core.$spacing-1 0;
     display: flex;
-    gap: $spacing-1;
+    gap: core.$spacing-1;
 
     &__check {
       width: 20px !important;

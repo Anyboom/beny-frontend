@@ -153,34 +153,34 @@
 </template>
 
 <style scoped lang="scss">
-  @use "@/shared/assets/styles/variables" as *;
-  @use "@/shared/assets/styles/typography" as *;
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .personal-forecast-form {
     display: flex;
     flex-direction: column;
-    gap: $spacing-1;
+    gap: core.$spacing-1;
     &__group {
       display: flex;
       flex-direction: column;
-      gap: $spacing-1;
+      gap: core.$spacing-1;
     }
 
     &__error {
-      @include apply-text("caption-small");
-      color: $color-text-error;
+      @include mixins.apply-text("caption-small");
+      color: core.$color-text-error;
     }
 
     &__label {
       font-weight: 700;
-      color: $color-text;
+      color: core.$color-text;
       width: fit-content;
 
-      @include apply-text("label");
+      @include mixins.apply-text("label");
     }
 
     &__buttons {
-      padding: $spacing-2 0;
+      padding: core.$spacing-2 0;
       text-align: right;
     }
   }

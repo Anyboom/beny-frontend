@@ -184,9 +184,8 @@
 </template>
 
 <style lang="scss">
-  @use "@/shared/assets/styles/typography" as *;
-  @use "@/shared/assets/styles/variables" as *;
-  @use "@/shared/assets/styles/mixins" as *;
+  @use "~/shared/assets/styles/mixins";
+  @use "~/shared/assets/styles/core";
 
   .app-select {
     $self: &;
@@ -203,11 +202,11 @@
     }
 
     &__header {
-      border-radius: $spacing-1;
-      padding: $spacing-2;
+      border-radius: core.$spacing-1;
+      padding: core.$spacing-2;
 
-      background: $color-default-white;
-      color: $color-text;
+      background: core.$color-default-white;
+      color: core.$color-text;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
@@ -215,10 +214,10 @@
 
       border: 2px solid transparent;
 
-      transition: border $transition-default;
+      transition: border core.$transition-default;
 
-      @include hover {
-        border: 2px solid $color-default-border-hover;
+      @include mixins.hover {
+        border: 2px solid core.$color-default-border-hover;
       }
 
       #{$self}--disabled & {
@@ -227,9 +226,9 @@
       }
 
       #{$self}--open & {
-        border-top: 2px solid $color-accent;
-        border-left: 2px solid $color-accent;
-        border-right: 2px solid $color-accent;
+        border-top: 2px solid core.$color-accent;
+        border-left: 2px solid core.$color-accent;
+        border-right: 2px solid core.$color-accent;
         border-bottom: 2px solid transparent;
 
         border-bottom-left-radius: 0;
@@ -242,9 +241,9 @@
       overflow: hidden;
       text-overflow: ellipsis;
       flex-grow: 1;
-      color: $color-text;
+      color: core.$color-text;
 
-      @include apply-text("input");
+      @include mixins.apply-text("input");
     }
 
     &__dropdown-remove,
@@ -253,7 +252,7 @@
       align-items: center;
 
       .iconify {
-        transition: $transition-default;
+        transition: core.$transition-default;
       }
 
       &--open .iconify {
@@ -266,17 +265,17 @@
       top: 100%;
       left: 0;
       right: 0;
-      border-bottom-left-radius: $spacing-1;
-      border-bottom-right-radius: $spacing-1;
-      background: $color-default-white;
+      border-bottom-left-radius: core.$spacing-1;
+      border-bottom-right-radius: core.$spacing-1;
+      background: core.$color-default-white;
       z-index: 1000;
       overflow: hidden;
 
       margin-top: -2px;
 
-      border-bottom: 2px solid $color-accent;
-      border-left: 2px solid $color-accent;
-      border-right: 2px solid $color-accent;
+      border-bottom: 2px solid core.$color-accent;
+      border-left: 2px solid core.$color-accent;
+      border-right: 2px solid core.$color-accent;
     }
 
     &__search {
@@ -284,17 +283,17 @@
       border-bottom: 1px solid #eee;
 
       &-input {
-        background: $color-default-white;
-        color: $color-text;
-        border-radius: $spacing-1;
-        padding: $spacing-2;
-        border: 2px solid $color-default-border;
+        background: core.$color-default-white;
+        color: core.$color-text;
+        border-radius: core.$spacing-1;
+        padding: core.$spacing-2;
+        border: 2px solid core.$color-default-border;
         width: 100%;
 
-        @include apply-text("input");
+        @include mixins.apply-text("input");
 
         &::placeholder {
-          color: $color-placeholder;
+          color: core.$color-placeholder;
         }
       }
     }
@@ -308,20 +307,20 @@
     }
 
     &__option {
-      padding: $spacing-1;
+      padding: core.$spacing-1;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: $spacing-1;
-      border-radius: $spacing-1;
+      gap: core.$spacing-1;
+      border-radius: core.$spacing-1;
 
       &:not(&--selected):hover {
-        background: $color-default-white-hover;
+        background: core.$color-default-white-hover;
       }
 
       &--selected {
-        background: $color-accent;
-        color: $color-white;
+        background: core.$color-accent;
+        color: core.$color-white;
       }
 
       &--disabled {
