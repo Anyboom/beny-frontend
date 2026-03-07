@@ -4,7 +4,7 @@ import { nextTick, storeToRefs } from "#imports";
 import { useFullStatsBetsStore } from "~/widgets/full-stats/model/full-stats-bets.store";
 import { useFullStatsFiltersStore } from "~/widgets/full-stats/model/full-stats-filters.store";
 
-export function useFullStatsAsyncQuery() {
+export function useFullStatsSyncQuery() {
   const router = useRouter();
   const route = useRoute();
 

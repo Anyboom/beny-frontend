@@ -7,7 +7,7 @@
   import { AppEmptyState } from "~/shared/ui/AppEmptyState";
   import { AppButton } from "~/shared/ui/AppButton";
   import { useFullStatsFilters } from "~/widgets/full-stats/model/use-full-stats-filters";
-  import { useFullStatsAsyncQuery } from "~/widgets/full-stats/model/use-full-stats-async-query";
+  import { useFullStatsSyncQuery } from "~/widgets/full-stats/model/use-full-stats-sync-query";
   import { computed } from "#imports";
   import type { BetEntity } from "~/entities/bet";
 
@@ -22,7 +22,7 @@
     updatePage(1);
   }
 
-  useFullStatsAsyncQuery();
+  useFullStatsSyncQuery();
 
   const isBetsExist = computed(() => Boolean(bets.value && bets.value.length > 0));
   const isBetsEmpty = computed(() => !isBetsExist.value);
